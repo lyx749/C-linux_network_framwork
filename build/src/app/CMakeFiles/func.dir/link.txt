@@ -1,0 +1,2 @@
+/usr/bin/ar qc libfunc.a  CMakeFiles/func.dir/http_setproctitle.cxx.o CMakeFiles/func.dir/http_printf.cxx.o
+/usr/bin/ranlib libfunc.a

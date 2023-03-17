@@ -1,0 +1,46 @@
+//配置文件
+#pragma once
+
+
+/*[log]*/
+//log 日志目录和文件名
+#cmakedefine Log "@Log@" 
+//只打印日志等级 <= LogLevel 的日志到日志文件中
+#cmakedefine LogLevel @LogLevel@
+
+/*[Proc]*/
+//需启动的 worker 进程数量
+#cmakedefine WorkerProcesses @WorkerProcesses@
+//是否以守护进程方式运行
+#cmakedefine Daemon @Daemon@
+
+//处理接收到的消息的线程池中线程数量
+#cmakedefine ProcMsgRecvWorkThreadCount @ProcMsgRecvWorkThreadCount@
+
+/*[Net]*/
+//监听端口数量
+#cmakedefine ListenPortCount @ListenPortCount@
+//数量取决于ListenPortCount，以0开始
+#cmakedefine ListenPort @ListenPort@
+
+//epoll连接的最大数
+#cmakedefine worker_connections @worker_connections@
+
+//为确保系统稳定socket关闭后资源不会立即收回，连接池资源延迟回收
+#cmakedefine Sock_RecyConnectionWaitTime @Sock_RecyConnectionWaitTime@
+
+
+//是否开启踢人时钟，1：开启   0：不开启
+#cmakedefine Sock_WaitTimeEnable @Sock_WaitTimeEnable@
+//多少秒检测一次心跳包，只有当Sock_WaitTimeEnable = 1时，有效
+#cmakedefine Sock_MaxWaitTime @Sock_MaxWaitTime@
+//当时间到达Sock_MaxWaitTime指定的时间时，直接把客户端踢出去，只有当Sock_WaitTimeEnable = 1时生效
+#cmakedefine Sock_TimeOutKick @Sock_TimeOutKick@
+
+/*[NetSecurity]*/
+//Flood攻击检测是否开启,1：开启   0：不开启
+#cmakedefine Sock_FloodAttackKickEnable @Sock_FloodAttackKickEnable@
+//Sock_FloodTimeInterval表示每次收到数据包的时间间隔是100(单位：毫秒)
+#cmakedefine Sock_FloodTimeInterval @Sock_FloodTimeInterval@
+//Sock_FloodKickCounter表示计算到连续10次，每次100毫秒时间间隔内发包，踢出此客户端
+#cmakedefine Sock_FloodKickCounter @Sock_FloodKickCounter@

@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../src/include/http_func.h
+stdio.h
+-
+stdlib.h
+-
+unistd.h
+-
+string.h
+-
+stdarg.h
+-
+stdint.h
+-
+http_global.h
+../src/include/http_global.h
+http_macro.h
+../src/include/http_macro.h
+
+../src/include/http_global.h
+
+../src/include/http_macro.h
+
+/home/lyx/httpServer/src/app/http_setproctitle.cxx
+http_func.h
+/home/lyx/httpServer/src/app/http_func.h
+

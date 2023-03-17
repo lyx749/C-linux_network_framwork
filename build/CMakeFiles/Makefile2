@@ -53,18 +53,18 @@ CMAKE_BINARY_DIR = /home/lyx/httpServer/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/httpSever.dir/all
+all: CMakeFiles/httpServer.dir/all
+all: src/all
 
 .PHONY : all
 
 # The main recursive "preinstall" target.
-preinstall:
+preinstall: src/preinstall
 
 .PHONY : preinstall
 
 # The main recursive "clean" target.
 clean: CMakeFiles/NightlyMemCheck.dir/clean
-clean: CMakeFiles/NightlyTest.dir/clean
 clean: CMakeFiles/ContinuousConfigure.dir/clean
 clean: CMakeFiles/ContinuousBuild.dir/clean
 clean: CMakeFiles/NightlyConfigure.dir/clean
@@ -83,7 +83,8 @@ clean: CMakeFiles/NightlySubmit.dir/clean
 clean: CMakeFiles/NightlyStart.dir/clean
 clean: CMakeFiles/ExperimentalCoverage.dir/clean
 clean: CMakeFiles/NightlyCoverage.dir/clean
-clean: CMakeFiles/httpSever.dir/clean
+clean: CMakeFiles/NightlyTest.dir/clean
+clean: CMakeFiles/httpServer.dir/clean
 clean: CMakeFiles/ExperimentalStart.dir/clean
 clean: CMakeFiles/NightlyBuild.dir/clean
 clean: CMakeFiles/ExperimentalBuild.dir/clean
@@ -92,8 +93,45 @@ clean: CMakeFiles/ContinuousStart.dir/clean
 clean: CMakeFiles/ContinuousMemCheck.dir/clean
 clean: CMakeFiles/ContinuousTest.dir/clean
 clean: CMakeFiles/ContinuousSubmit.dir/clean
+clean: src/clean
 
 .PHONY : clean
+
+#=============================================================================
+# Directory level rules for directory src
+
+# Recursive "all" directory target.
+src/all: src/app/all
+
+.PHONY : src/all
+
+# Recursive "preinstall" directory target.
+src/preinstall: src/app/preinstall
+
+.PHONY : src/preinstall
+
+# Recursive "clean" directory target.
+src/clean: src/app/clean
+
+.PHONY : src/clean
+
+#=============================================================================
+# Directory level rules for directory src/app
+
+# Recursive "all" directory target.
+src/app/all: src/app/CMakeFiles/func.dir/all
+
+.PHONY : src/app/all
+
+# Recursive "preinstall" directory target.
+src/app/preinstall:
+
+.PHONY : src/app/preinstall
+
+# Recursive "clean" directory target.
+src/app/clean: src/app/CMakeFiles/func.dir/clean
+
+.PHONY : src/app/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/NightlyMemCheck.dir
@@ -121,33 +159,6 @@ NightlyMemCheck: CMakeFiles/NightlyMemCheck.dir/rule
 CMakeFiles/NightlyMemCheck.dir/clean:
 	$(MAKE) -f CMakeFiles/NightlyMemCheck.dir/build.make CMakeFiles/NightlyMemCheck.dir/clean
 .PHONY : CMakeFiles/NightlyMemCheck.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/NightlyTest.dir
-
-# All Build rule for target.
-CMakeFiles/NightlyTest.dir/all:
-	$(MAKE) -f CMakeFiles/NightlyTest.dir/build.make CMakeFiles/NightlyTest.dir/depend
-	$(MAKE) -f CMakeFiles/NightlyTest.dir/build.make CMakeFiles/NightlyTest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lyx/httpServer/build/CMakeFiles --progress-num= "Built target NightlyTest"
-.PHONY : CMakeFiles/NightlyTest.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/NightlyTest.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/NightlyTest.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 0
-.PHONY : CMakeFiles/NightlyTest.dir/rule
-
-# Convenience name for target.
-NightlyTest: CMakeFiles/NightlyTest.dir/rule
-
-.PHONY : NightlyTest
-
-# clean rule for target.
-CMakeFiles/NightlyTest.dir/clean:
-	$(MAKE) -f CMakeFiles/NightlyTest.dir/build.make CMakeFiles/NightlyTest.dir/clean
-.PHONY : CMakeFiles/NightlyTest.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/ContinuousConfigure.dir
@@ -636,31 +647,58 @@ CMakeFiles/NightlyCoverage.dir/clean:
 .PHONY : CMakeFiles/NightlyCoverage.dir/clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/httpSever.dir
+# Target rules for target CMakeFiles/NightlyTest.dir
 
 # All Build rule for target.
-CMakeFiles/httpSever.dir/all:
-	$(MAKE) -f CMakeFiles/httpSever.dir/build.make CMakeFiles/httpSever.dir/depend
-	$(MAKE) -f CMakeFiles/httpSever.dir/build.make CMakeFiles/httpSever.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lyx/httpServer/build/CMakeFiles --progress-num=1,2 "Built target httpSever"
-.PHONY : CMakeFiles/httpSever.dir/all
+CMakeFiles/NightlyTest.dir/all:
+	$(MAKE) -f CMakeFiles/NightlyTest.dir/build.make CMakeFiles/NightlyTest.dir/depend
+	$(MAKE) -f CMakeFiles/NightlyTest.dir/build.make CMakeFiles/NightlyTest.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lyx/httpServer/build/CMakeFiles --progress-num= "Built target NightlyTest"
+.PHONY : CMakeFiles/NightlyTest.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/httpSever.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/httpSever.dir/all
+CMakeFiles/NightlyTest.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 0
-.PHONY : CMakeFiles/httpSever.dir/rule
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/NightlyTest.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 0
+.PHONY : CMakeFiles/NightlyTest.dir/rule
 
 # Convenience name for target.
-httpSever: CMakeFiles/httpSever.dir/rule
+NightlyTest: CMakeFiles/NightlyTest.dir/rule
 
-.PHONY : httpSever
+.PHONY : NightlyTest
 
 # clean rule for target.
-CMakeFiles/httpSever.dir/clean:
-	$(MAKE) -f CMakeFiles/httpSever.dir/build.make CMakeFiles/httpSever.dir/clean
-.PHONY : CMakeFiles/httpSever.dir/clean
+CMakeFiles/NightlyTest.dir/clean:
+	$(MAKE) -f CMakeFiles/NightlyTest.dir/build.make CMakeFiles/NightlyTest.dir/clean
+.PHONY : CMakeFiles/NightlyTest.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/httpServer.dir
+
+# All Build rule for target.
+CMakeFiles/httpServer.dir/all: src/app/CMakeFiles/func.dir/all
+	$(MAKE) -f CMakeFiles/httpServer.dir/build.make CMakeFiles/httpServer.dir/depend
+	$(MAKE) -f CMakeFiles/httpServer.dir/build.make CMakeFiles/httpServer.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lyx/httpServer/build/CMakeFiles --progress-num=4,5 "Built target httpServer"
+.PHONY : CMakeFiles/httpServer.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/httpServer.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 5
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/httpServer.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 0
+.PHONY : CMakeFiles/httpServer.dir/rule
+
+# Convenience name for target.
+httpServer: CMakeFiles/httpServer.dir/rule
+
+.PHONY : httpServer
+
+# clean rule for target.
+CMakeFiles/httpServer.dir/clean:
+	$(MAKE) -f CMakeFiles/httpServer.dir/build.make CMakeFiles/httpServer.dir/clean
+.PHONY : CMakeFiles/httpServer.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/ExperimentalStart.dir
@@ -877,6 +915,33 @@ ContinuousSubmit: CMakeFiles/ContinuousSubmit.dir/rule
 CMakeFiles/ContinuousSubmit.dir/clean:
 	$(MAKE) -f CMakeFiles/ContinuousSubmit.dir/build.make CMakeFiles/ContinuousSubmit.dir/clean
 .PHONY : CMakeFiles/ContinuousSubmit.dir/clean
+
+#=============================================================================
+# Target rules for target src/app/CMakeFiles/func.dir
+
+# All Build rule for target.
+src/app/CMakeFiles/func.dir/all:
+	$(MAKE) -f src/app/CMakeFiles/func.dir/build.make src/app/CMakeFiles/func.dir/depend
+	$(MAKE) -f src/app/CMakeFiles/func.dir/build.make src/app/CMakeFiles/func.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lyx/httpServer/build/CMakeFiles --progress-num=1,2,3 "Built target func"
+.PHONY : src/app/CMakeFiles/func.dir/all
+
+# Build rule for subdir invocation for target.
+src/app/CMakeFiles/func.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 3
+	$(MAKE) -f CMakeFiles/Makefile2 src/app/CMakeFiles/func.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 0
+.PHONY : src/app/CMakeFiles/func.dir/rule
+
+# Convenience name for target.
+func: src/app/CMakeFiles/func.dir/rule
+
+.PHONY : func
+
+# clean rule for target.
+src/app/CMakeFiles/func.dir/clean:
+	$(MAKE) -f src/app/CMakeFiles/func.dir/build.make src/app/CMakeFiles/func.dir/clean
+.PHONY : src/app/CMakeFiles/func.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

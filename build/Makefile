@@ -157,19 +157,6 @@ NightlyMemCheck/fast:
 .PHONY : NightlyMemCheck/fast
 
 #=============================================================================
-# Target rules for targets named NightlyTest
-
-# Build rule for target.
-NightlyTest: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 NightlyTest
-.PHONY : NightlyTest
-
-# fast build rule for target.
-NightlyTest/fast:
-	$(MAKE) -f CMakeFiles/NightlyTest.dir/build.make CMakeFiles/NightlyTest.dir/build
-.PHONY : NightlyTest/fast
-
-#=============================================================================
 # Target rules for targets named ContinuousConfigure
 
 # Build rule for target.
@@ -404,17 +391,30 @@ NightlyCoverage/fast:
 .PHONY : NightlyCoverage/fast
 
 #=============================================================================
-# Target rules for targets named httpSever
+# Target rules for targets named NightlyTest
 
 # Build rule for target.
-httpSever: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 httpSever
-.PHONY : httpSever
+NightlyTest: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 NightlyTest
+.PHONY : NightlyTest
 
 # fast build rule for target.
-httpSever/fast:
-	$(MAKE) -f CMakeFiles/httpSever.dir/build.make CMakeFiles/httpSever.dir/build
-.PHONY : httpSever/fast
+NightlyTest/fast:
+	$(MAKE) -f CMakeFiles/NightlyTest.dir/build.make CMakeFiles/NightlyTest.dir/build
+.PHONY : NightlyTest/fast
+
+#=============================================================================
+# Target rules for targets named httpServer
+
+# Build rule for target.
+httpServer: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 httpServer
+.PHONY : httpServer
+
+# fast build rule for target.
+httpServer/fast:
+	$(MAKE) -f CMakeFiles/httpServer.dir/build.make CMakeFiles/httpServer.dir/build
+.PHONY : httpServer/fast
 
 #=============================================================================
 # Target rules for targets named ExperimentalStart
@@ -520,13 +520,26 @@ ContinuousSubmit/fast:
 	$(MAKE) -f CMakeFiles/ContinuousSubmit.dir/build.make CMakeFiles/ContinuousSubmit.dir/build
 .PHONY : ContinuousSubmit/fast
 
+#=============================================================================
+# Target rules for targets named func
+
+# Build rule for target.
+func: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 func
+.PHONY : func
+
+# fast build rule for target.
+func/fast:
+	$(MAKE) -f src/app/CMakeFiles/func.dir/build.make src/app/CMakeFiles/func.dir/build
+.PHONY : func/fast
+
 main.o: main.cpp.o
 
 .PHONY : main.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) -f CMakeFiles/httpSever.dir/build.make CMakeFiles/httpSever.dir/main.cpp.o
+	$(MAKE) -f CMakeFiles/httpServer.dir/build.make CMakeFiles/httpServer.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -535,7 +548,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) -f CMakeFiles/httpSever.dir/build.make CMakeFiles/httpSever.dir/main.cpp.i
+	$(MAKE) -f CMakeFiles/httpServer.dir/build.make CMakeFiles/httpServer.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -544,7 +557,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) -f CMakeFiles/httpSever.dir/build.make CMakeFiles/httpSever.dir/main.cpp.s
+	$(MAKE) -f CMakeFiles/httpServer.dir/build.make CMakeFiles/httpServer.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 # Help Target
@@ -558,7 +571,6 @@ help:
 	@echo "... package_source"
 	@echo "... edit_cache"
 	@echo "... NightlyMemCheck"
-	@echo "... NightlyTest"
 	@echo "... ContinuousConfigure"
 	@echo "... ContinuousBuild"
 	@echo "... NightlyConfigure"
@@ -577,7 +589,8 @@ help:
 	@echo "... NightlyStart"
 	@echo "... ExperimentalCoverage"
 	@echo "... NightlyCoverage"
-	@echo "... httpSever"
+	@echo "... NightlyTest"
+	@echo "... httpServer"
 	@echo "... ExperimentalStart"
 	@echo "... package"
 	@echo "... NightlyBuild"
@@ -587,6 +600,7 @@ help:
 	@echo "... ContinuousMemCheck"
 	@echo "... ContinuousTest"
 	@echo "... ContinuousSubmit"
+	@echo "... func"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

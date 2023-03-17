@@ -1,1 +1,1 @@
-/usr/bin/g++  -g  -rdynamic CMakeFiles/httpSever.dir/main.cpp.o  -o httpSever 
+/usr/bin/g++   -Werror -fsanitize=undefined -fsanitize=address -g  -rdynamic -fsanitize=address -fsanitize=undefined CMakeFiles/httpSever.dir/main.cpp.o  -o httpSever 

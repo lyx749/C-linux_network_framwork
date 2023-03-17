@@ -1,7 +1,17 @@
 [
 {
   "directory": "/home/lyx/httpServer/build",
-  "command": "/usr/bin/g++    -g   -o CMakeFiles/httpSever.dir/main.cpp.o -c /home/lyx/httpServer/main.cpp",
+  "command": "/usr/bin/g++   -I/home/lyx/httpServer/src/app/../include   -fsanitize=undefined -fsanitize=address -Wall -g -g   -o CMakeFiles/httpServer.dir/main.cpp.o -c /home/lyx/httpServer/main.cpp",
   "file": "/home/lyx/httpServer/main.cpp"
+},
+{
+  "directory": "/home/lyx/httpServer/build/src/app",
+  "command": "/usr/bin/g++   -I/home/lyx/httpServer/src/app/../include   -fsanitize=undefined -fsanitize=address -Wall -g -g   -o CMakeFiles/func.dir/http_setproctitle.cxx.o -c /home/lyx/httpServer/src/app/http_setproctitle.cxx",
+  "file": "/home/lyx/httpServer/src/app/http_setproctitle.cxx"
+},
+{
+  "directory": "/home/lyx/httpServer/build/src/app",
+  "command": "/usr/bin/g++   -I/home/lyx/httpServer/src/app/../include   -fsanitize=undefined -fsanitize=address -Wall -g -g   -o CMakeFiles/func.dir/http_printf.cxx.o -c /home/lyx/httpServer/src/app/http_printf.cxx",
+  "file": "/home/lyx/httpServer/src/app/http_printf.cxx"
 }
 ]
