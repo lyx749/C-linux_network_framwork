@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/lyx/httpServer/build",
+  "command": "/usr/bin/g++    -g   -o CMakeFiles/httpSever.dir/main.cpp.o -c /home/lyx/httpServer/main.cpp",
+  "file": "/home/lyx/httpServer/main.cpp"
+}
+]

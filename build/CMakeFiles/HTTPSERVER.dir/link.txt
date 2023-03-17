@@ -1,0 +1,1 @@
+/usr/bin/g++  -g  -rdynamic CMakeFiles/HTTPSERVER.dir/main.cpp.o  -o HTTPSERVER 
