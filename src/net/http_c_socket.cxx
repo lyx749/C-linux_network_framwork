@@ -94,7 +94,7 @@ bool CSocket::openListeningSockets()
 {
     int sockfd;
     struct sockaddr_in serverAddr;
-    int servPort;
+    // int servPort;
     memset(&serverAddr, 0, sizeof(serverAddr));
     serverAddr.sin_family = AF_INET;
     serverAddr.sin_addr.s_addr = htonl(INADDR_ANY);

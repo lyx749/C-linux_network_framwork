@@ -11,7 +11,6 @@
 		"commands" : 
 		[
 			"add_executable",
-			"target_link_options",
 			"target_link_libraries"
 		],
 		"files" : 
@@ -32,17 +31,11 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 20,
-				"parent" : 0
-			},
-			{
-				"command" : 2,
-				"file" : 0,
 				"line" : 31,
 				"parent" : 0
 			},
 			{
-				"command" : 2,
+				"command" : 1,
 				"file" : 0,
 				"line" : 32,
 				"parent" : 0
@@ -55,17 +48,17 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : " -fsanitize=undefined -fsanitize=address -Wall -g -g  "
+					"fragment" : "-O3 -DNDEBUG  "
 				}
 			],
 			"includes" : 
 			[
 				{
-					"backtrace" : 3,
+					"backtrace" : 2,
 					"path" : "/home/lyx/httpServer/src/app/../include"
 				},
 				{
-					"backtrace" : 4,
+					"backtrace" : 3,
 					"path" : "/home/lyx/httpServer/src/net/../include"
 				}
 			],
@@ -79,15 +72,15 @@
 	"dependencies" : 
 	[
 		{
-			"backtrace" : 3,
+			"backtrace" : 2,
 			"id" : "func::@ff93792cf40911dae1b8"
 		},
 		{
-			"backtrace" : 4,
+			"backtrace" : 3,
 			"id" : "net::@fa6dfe1ce2083cdf68d6"
 		},
 		{
-			"backtrace" : 4,
+			"backtrace" : 3,
 			"id" : "memory::@32fad1bb1431edb5ea41"
 		}
 	],
@@ -97,7 +90,7 @@
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "-fsanitize=undefined -fsanitize=address -Wall -g -g",
+				"fragment" : "-O3 -DNDEBUG",
 				"role" : "flags"
 			},
 			{
@@ -106,21 +99,11 @@
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "-fsanitize=address",
-				"role" : "flags"
-			},
-			{
-				"backtrace" : 2,
-				"fragment" : "-fsanitize=undefined",
-				"role" : "flags"
-			},
-			{
-				"backtrace" : 3,
 				"fragment" : "src/app/libfunc.a",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 4,
+				"backtrace" : 3,
 				"fragment" : "src/net/libnet.a",
 				"role" : "libraries"
 			},

@@ -185,6 +185,60 @@ http_c_socket.cxx.s:
 	cd /home/lyx/httpServer/build && $(MAKE) -f src/net/CMakeFiles/net.dir/build.make src/net/CMakeFiles/net.dir/http_c_socket.cxx.s
 .PHONY : http_c_socket.cxx.s
 
+http_c_socket_accept.o: http_c_socket_accept.cxx.o
+
+.PHONY : http_c_socket_accept.o
+
+# target to build an object file
+http_c_socket_accept.cxx.o:
+	cd /home/lyx/httpServer/build && $(MAKE) -f src/net/CMakeFiles/net.dir/build.make src/net/CMakeFiles/net.dir/http_c_socket_accept.cxx.o
+.PHONY : http_c_socket_accept.cxx.o
+
+http_c_socket_accept.i: http_c_socket_accept.cxx.i
+
+.PHONY : http_c_socket_accept.i
+
+# target to preprocess a source file
+http_c_socket_accept.cxx.i:
+	cd /home/lyx/httpServer/build && $(MAKE) -f src/net/CMakeFiles/net.dir/build.make src/net/CMakeFiles/net.dir/http_c_socket_accept.cxx.i
+.PHONY : http_c_socket_accept.cxx.i
+
+http_c_socket_accept.s: http_c_socket_accept.cxx.s
+
+.PHONY : http_c_socket_accept.s
+
+# target to generate assembly for a file
+http_c_socket_accept.cxx.s:
+	cd /home/lyx/httpServer/build && $(MAKE) -f src/net/CMakeFiles/net.dir/build.make src/net/CMakeFiles/net.dir/http_c_socket_accept.cxx.s
+.PHONY : http_c_socket_accept.cxx.s
+
+http_c_socket_request.o: http_c_socket_request.cxx.o
+
+.PHONY : http_c_socket_request.o
+
+# target to build an object file
+http_c_socket_request.cxx.o:
+	cd /home/lyx/httpServer/build && $(MAKE) -f src/net/CMakeFiles/net.dir/build.make src/net/CMakeFiles/net.dir/http_c_socket_request.cxx.o
+.PHONY : http_c_socket_request.cxx.o
+
+http_c_socket_request.i: http_c_socket_request.cxx.i
+
+.PHONY : http_c_socket_request.i
+
+# target to preprocess a source file
+http_c_socket_request.cxx.i:
+	cd /home/lyx/httpServer/build && $(MAKE) -f src/net/CMakeFiles/net.dir/build.make src/net/CMakeFiles/net.dir/http_c_socket_request.cxx.i
+.PHONY : http_c_socket_request.cxx.i
+
+http_c_socket_request.s: http_c_socket_request.cxx.s
+
+.PHONY : http_c_socket_request.s
+
+# target to generate assembly for a file
+http_c_socket_request.cxx.s:
+	cd /home/lyx/httpServer/build && $(MAKE) -f src/net/CMakeFiles/net.dir/build.make src/net/CMakeFiles/net.dir/http_c_socket_request.cxx.s
+.PHONY : http_c_socket_request.cxx.s
+
 http_connect_socket.o: http_connect_socket.cxx.o
 
 .PHONY : http_connect_socket.o
@@ -227,6 +281,12 @@ help:
 	@echo "... http_c_socket.o"
 	@echo "... http_c_socket.i"
 	@echo "... http_c_socket.s"
+	@echo "... http_c_socket_accept.o"
+	@echo "... http_c_socket_accept.i"
+	@echo "... http_c_socket_accept.s"
+	@echo "... http_c_socket_request.o"
+	@echo "... http_c_socket_request.i"
+	@echo "... http_c_socket_request.s"
 	@echo "... http_connect_socket.o"
 	@echo "... http_connect_socket.i"
 	@echo "... http_connect_socket.s"

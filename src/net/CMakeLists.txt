@@ -5,6 +5,8 @@ add_library(
     STATIC
     http_c_socket.cxx
     http_connect_socket.cxx
+    http_c_socket_accept.cxx
+    http_c_socket_request.cxx
 )
 
 target_link_libraries(net PRIVATE memory)
