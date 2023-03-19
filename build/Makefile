@@ -533,6 +533,32 @@ func/fast:
 	$(MAKE) -f src/app/CMakeFiles/func.dir/build.make src/app/CMakeFiles/func.dir/build
 .PHONY : func/fast
 
+#=============================================================================
+# Target rules for targets named net
+
+# Build rule for target.
+net: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 net
+.PHONY : net
+
+# fast build rule for target.
+net/fast:
+	$(MAKE) -f src/net/CMakeFiles/net.dir/build.make src/net/CMakeFiles/net.dir/build
+.PHONY : net/fast
+
+#=============================================================================
+# Target rules for targets named memory
+
+# Build rule for target.
+memory: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 memory
+.PHONY : memory
+
+# fast build rule for target.
+memory/fast:
+	$(MAKE) -f src/misc/CMakeFiles/memory.dir/build.make src/misc/CMakeFiles/memory.dir/build
+.PHONY : memory/fast
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -601,6 +627,8 @@ help:
 	@echo "... ContinuousTest"
 	@echo "... ContinuousSubmit"
 	@echo "... func"
+	@echo "... net"
+	@echo "... memory"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

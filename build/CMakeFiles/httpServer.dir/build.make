@@ -80,6 +80,8 @@ httpServer_EXTERNAL_OBJECTS =
 httpServer: CMakeFiles/httpServer.dir/main.cpp.o
 httpServer: CMakeFiles/httpServer.dir/build.make
 httpServer: src/app/libfunc.a
+httpServer: src/net/libnet.a
+httpServer: src/misc/libmemory.a
 httpServer: CMakeFiles/httpServer.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/lyx/httpServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable httpServer"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/httpServer.dir/link.txt --verbose=$(VERBOSE)

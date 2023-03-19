@@ -6,5 +6,5 @@ CXX_FLAGS =  -fsanitize=undefined -fsanitize=address -Wall -g -g
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/lyx/httpServer/src/app/../include 
+CXX_INCLUDES = -I/home/lyx/httpServer/src/app/../include -I/home/lyx/httpServer/src/net/../include 
 

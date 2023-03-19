@@ -102,16 +102,22 @@ clean: src/clean
 
 # Recursive "all" directory target.
 src/all: src/app/all
+src/all: src/net/all
+src/all: src/misc/all
 
 .PHONY : src/all
 
 # Recursive "preinstall" directory target.
 src/preinstall: src/app/preinstall
+src/preinstall: src/net/preinstall
+src/preinstall: src/misc/preinstall
 
 .PHONY : src/preinstall
 
 # Recursive "clean" directory target.
 src/clean: src/app/clean
+src/clean: src/net/clean
+src/clean: src/misc/clean
 
 .PHONY : src/clean
 
@@ -132,6 +138,42 @@ src/app/preinstall:
 src/app/clean: src/app/CMakeFiles/func.dir/clean
 
 .PHONY : src/app/clean
+
+#=============================================================================
+# Directory level rules for directory src/misc
+
+# Recursive "all" directory target.
+src/misc/all: src/misc/CMakeFiles/memory.dir/all
+
+.PHONY : src/misc/all
+
+# Recursive "preinstall" directory target.
+src/misc/preinstall:
+
+.PHONY : src/misc/preinstall
+
+# Recursive "clean" directory target.
+src/misc/clean: src/misc/CMakeFiles/memory.dir/clean
+
+.PHONY : src/misc/clean
+
+#=============================================================================
+# Directory level rules for directory src/net
+
+# Recursive "all" directory target.
+src/net/all: src/net/CMakeFiles/net.dir/all
+
+.PHONY : src/net/all
+
+# Recursive "preinstall" directory target.
+src/net/preinstall:
+
+.PHONY : src/net/preinstall
+
+# Recursive "clean" directory target.
+src/net/clean: src/net/CMakeFiles/net.dir/clean
+
+.PHONY : src/net/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/NightlyMemCheck.dir
@@ -678,6 +720,8 @@ CMakeFiles/NightlyTest.dir/clean:
 
 # All Build rule for target.
 CMakeFiles/httpServer.dir/all: src/app/CMakeFiles/func.dir/all
+CMakeFiles/httpServer.dir/all: src/net/CMakeFiles/net.dir/all
+CMakeFiles/httpServer.dir/all: src/misc/CMakeFiles/memory.dir/all
 	$(MAKE) -f CMakeFiles/httpServer.dir/build.make CMakeFiles/httpServer.dir/depend
 	$(MAKE) -f CMakeFiles/httpServer.dir/build.make CMakeFiles/httpServer.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lyx/httpServer/build/CMakeFiles --progress-num=4,5 "Built target httpServer"
@@ -685,7 +729,7 @@ CMakeFiles/httpServer.dir/all: src/app/CMakeFiles/func.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/httpServer.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 5
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 10
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/httpServer.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 0
 .PHONY : CMakeFiles/httpServer.dir/rule
@@ -942,6 +986,60 @@ func: src/app/CMakeFiles/func.dir/rule
 src/app/CMakeFiles/func.dir/clean:
 	$(MAKE) -f src/app/CMakeFiles/func.dir/build.make src/app/CMakeFiles/func.dir/clean
 .PHONY : src/app/CMakeFiles/func.dir/clean
+
+#=============================================================================
+# Target rules for target src/net/CMakeFiles/net.dir
+
+# All Build rule for target.
+src/net/CMakeFiles/net.dir/all: src/misc/CMakeFiles/memory.dir/all
+	$(MAKE) -f src/net/CMakeFiles/net.dir/build.make src/net/CMakeFiles/net.dir/depend
+	$(MAKE) -f src/net/CMakeFiles/net.dir/build.make src/net/CMakeFiles/net.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lyx/httpServer/build/CMakeFiles --progress-num=8,9,10 "Built target net"
+.PHONY : src/net/CMakeFiles/net.dir/all
+
+# Build rule for subdir invocation for target.
+src/net/CMakeFiles/net.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 5
+	$(MAKE) -f CMakeFiles/Makefile2 src/net/CMakeFiles/net.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 0
+.PHONY : src/net/CMakeFiles/net.dir/rule
+
+# Convenience name for target.
+net: src/net/CMakeFiles/net.dir/rule
+
+.PHONY : net
+
+# clean rule for target.
+src/net/CMakeFiles/net.dir/clean:
+	$(MAKE) -f src/net/CMakeFiles/net.dir/build.make src/net/CMakeFiles/net.dir/clean
+.PHONY : src/net/CMakeFiles/net.dir/clean
+
+#=============================================================================
+# Target rules for target src/misc/CMakeFiles/memory.dir
+
+# All Build rule for target.
+src/misc/CMakeFiles/memory.dir/all:
+	$(MAKE) -f src/misc/CMakeFiles/memory.dir/build.make src/misc/CMakeFiles/memory.dir/depend
+	$(MAKE) -f src/misc/CMakeFiles/memory.dir/build.make src/misc/CMakeFiles/memory.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lyx/httpServer/build/CMakeFiles --progress-num=6,7 "Built target memory"
+.PHONY : src/misc/CMakeFiles/memory.dir/all
+
+# Build rule for subdir invocation for target.
+src/misc/CMakeFiles/memory.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 src/misc/CMakeFiles/memory.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 0
+.PHONY : src/misc/CMakeFiles/memory.dir/rule
+
+# Convenience name for target.
+memory: src/misc/CMakeFiles/memory.dir/rule
+
+.PHONY : memory
+
+# clean rule for target.
+src/misc/CMakeFiles/memory.dir/clean:
+	$(MAKE) -f src/misc/CMakeFiles/memory.dir/build.make src/misc/CMakeFiles/memory.dir/clean
+.PHONY : src/misc/CMakeFiles/memory.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

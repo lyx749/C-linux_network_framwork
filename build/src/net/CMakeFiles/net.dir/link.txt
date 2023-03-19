@@ -1,0 +1,2 @@
+/usr/bin/ar qc libnet.a  CMakeFiles/net.dir/http_c_socket.cxx.o CMakeFiles/net.dir/http_connect_socket.cxx.o
+/usr/bin/ranlib libnet.a

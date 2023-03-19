@@ -30,4 +30,23 @@
 #define HTTP_PROCESS_MASTER 0 // master 进程，管理进程
 #define HTTP_PROCESS_WORKER 1 // worker 进程，工作进程
 
+
+
+#define _PKG_MAX_LENGTH 30000 //包头加包体的最大长度
+
+//收包状态
+#define _PKG_HD_INIT 0  //初始状态。准备接收数据包头
+#define _PKG_HD_RECVING 1 //接收包头中，包头信息不完整，继续接受中
+#define _PKG_BD_INIT 2 //包头信息接收完，准备接收包体
+#define _PKG_BD_RECVING 3 //接收包体中，包体不完整，继续接收中，处理后直接返回到_PKG_HD_INIT_状态
+#define _DATA_BUFSIZE_ 20 //存放包头数组大小
+
+#pragma pack(1) //内存对齐1个字节
+typedef struct _COMM_PKG_HEADER
+{
+    unsigned short pkgLen; // “包头加包体”的总长度
+    unsigned short msgCode; //消息类型
+    int crc32;              // CRC32位校验码
+} COMM_PKG_HEADER_T, COMM_PKG_HEADER_PTR;
+#pragma pack()
 #endif

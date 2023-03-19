@@ -43,3 +43,15 @@
 /home/lyx/httpServer/build/src/app/CMakeFiles/rebuild_cache.dir
 /home/lyx/httpServer/build/src/app/CMakeFiles/package.dir
 /home/lyx/httpServer/build/src/app/CMakeFiles/func.dir
+/home/lyx/httpServer/build/src/net/CMakeFiles/edit_cache.dir
+/home/lyx/httpServer/build/src/net/CMakeFiles/test.dir
+/home/lyx/httpServer/build/src/net/CMakeFiles/package_source.dir
+/home/lyx/httpServer/build/src/net/CMakeFiles/rebuild_cache.dir
+/home/lyx/httpServer/build/src/net/CMakeFiles/package.dir
+/home/lyx/httpServer/build/src/net/CMakeFiles/net.dir
+/home/lyx/httpServer/build/src/misc/CMakeFiles/edit_cache.dir
+/home/lyx/httpServer/build/src/misc/CMakeFiles/test.dir
+/home/lyx/httpServer/build/src/misc/CMakeFiles/rebuild_cache.dir
+/home/lyx/httpServer/build/src/misc/CMakeFiles/package.dir
+/home/lyx/httpServer/build/src/misc/CMakeFiles/package_source.dir
+/home/lyx/httpServer/build/src/misc/CMakeFiles/memory.dir

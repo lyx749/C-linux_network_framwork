@@ -11,8 +11,6 @@ SetConfigure()
 
 add_executable(httpServer main.cpp)
 
-
-
 #判断内存是否完全释放AddressSanitizer
 if(CMAKE_BUILD_TYPE MATCHES "Debug")
     set(
@@ -31,6 +29,7 @@ elseif(CMAKE_BUILD_TYPE MATCHES "Releases")
     )
 endif()
 target_link_libraries(httpServer PUBLIC func)
+target_link_libraries(httpServer PUBLIC net)
 include(CTest)
 enable_testing()
 add_subdirectory(src)

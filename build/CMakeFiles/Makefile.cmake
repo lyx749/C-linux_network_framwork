@@ -15,6 +15,8 @@ set(CMAKE_MAKEFILE_DEPENDS
   "../httpSeverConfig.h.in"
   "../src/CMakeLists.txt"
   "../src/app/CMakeLists.txt"
+  "../src/misc/CMakeLists.txt"
+  "../src/net/CMakeLists.txt"
   "/usr/share/cmake-3.16/Modules/CMakeCInformation.cmake"
   "/usr/share/cmake-3.16/Modules/CMakeCXXInformation.cmake"
   "/usr/share/cmake-3.16/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake"
@@ -58,6 +60,8 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   "src/CMakeFiles/CMakeDirectoryInformation.cmake"
   "src/app/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "src/net/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "src/misc/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
@@ -92,4 +96,6 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/ContinuousTest.dir/DependInfo.cmake"
   "CMakeFiles/ContinuousSubmit.dir/DependInfo.cmake"
   "src/app/CMakeFiles/func.dir/DependInfo.cmake"
+  "src/net/CMakeFiles/net.dir/DependInfo.cmake"
+  "src/misc/CMakeFiles/memory.dir/DependInfo.cmake"
   )

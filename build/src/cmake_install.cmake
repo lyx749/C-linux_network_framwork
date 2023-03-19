@@ -40,6 +40,8 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/lyx/httpServer/build/src/app/cmake_install.cmake")
+  include("/home/lyx/httpServer/build/src/net/cmake_install.cmake")
+  include("/home/lyx/httpServer/build/src/misc/cmake_install.cmake")
 
 endif()
 
