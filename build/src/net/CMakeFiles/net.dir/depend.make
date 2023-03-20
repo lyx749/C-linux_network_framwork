@@ -13,15 +13,15 @@ src/net/CMakeFiles/net.dir/http_c_socket_accept.cxx.o: ../src/include/http_c_soc
 src/net/CMakeFiles/net.dir/http_c_socket_accept.cxx.o: ../src/include/http_macro.h
 src/net/CMakeFiles/net.dir/http_c_socket_accept.cxx.o: ../src/net/http_c_socket_accept.cxx
 
+src/net/CMakeFiles/net.dir/http_c_socket_connect.cxx.o: ../build/httpServerConfig.h
+src/net/CMakeFiles/net.dir/http_c_socket_connect.cxx.o: ../src/include/http_c_memory.h
+src/net/CMakeFiles/net.dir/http_c_socket_connect.cxx.o: ../src/include/http_c_socket.h
+src/net/CMakeFiles/net.dir/http_c_socket_connect.cxx.o: ../src/include/http_macro.h
+src/net/CMakeFiles/net.dir/http_c_socket_connect.cxx.o: ../src/net/http_c_socket_connect.cxx
+
 src/net/CMakeFiles/net.dir/http_c_socket_request.cxx.o: ../build/httpServerConfig.h
 src/net/CMakeFiles/net.dir/http_c_socket_request.cxx.o: ../src/include/http_c_memory.h
 src/net/CMakeFiles/net.dir/http_c_socket_request.cxx.o: ../src/include/http_c_socket.h
 src/net/CMakeFiles/net.dir/http_c_socket_request.cxx.o: ../src/include/http_macro.h
 src/net/CMakeFiles/net.dir/http_c_socket_request.cxx.o: ../src/net/http_c_socket_request.cxx
-
-src/net/CMakeFiles/net.dir/http_connect_socket.cxx.o: ../build/httpServerConfig.h
-src/net/CMakeFiles/net.dir/http_connect_socket.cxx.o: ../src/include/http_c_memory.h
-src/net/CMakeFiles/net.dir/http_connect_socket.cxx.o: ../src/include/http_c_socket.h
-src/net/CMakeFiles/net.dir/http_connect_socket.cxx.o: ../src/include/http_macro.h
-src/net/CMakeFiles/net.dir/http_connect_socket.cxx.o: ../src/net/http_connect_socket.cxx
 

@@ -62,11 +62,11 @@ http_c_socket.h
 http_c_socket.h
 /home/lyx/httpServer/src/net/http_c_socket.h
 
-/home/lyx/httpServer/src/net/http_c_socket_request.cxx
+/home/lyx/httpServer/src/net/http_c_socket_connect.cxx
 http_c_socket.h
 /home/lyx/httpServer/src/net/http_c_socket.h
 
-/home/lyx/httpServer/src/net/http_connect_socket.cxx
+/home/lyx/httpServer/src/net/http_c_socket_request.cxx
 http_c_socket.h
 /home/lyx/httpServer/src/net/http_c_socket.h
 

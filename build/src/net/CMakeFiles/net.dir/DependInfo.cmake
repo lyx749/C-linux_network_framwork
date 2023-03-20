@@ -6,8 +6,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/lyx/httpServer/src/net/http_c_socket.cxx" "/home/lyx/httpServer/build/src/net/CMakeFiles/net.dir/http_c_socket.cxx.o"
   "/home/lyx/httpServer/src/net/http_c_socket_accept.cxx" "/home/lyx/httpServer/build/src/net/CMakeFiles/net.dir/http_c_socket_accept.cxx.o"
+  "/home/lyx/httpServer/src/net/http_c_socket_connect.cxx" "/home/lyx/httpServer/build/src/net/CMakeFiles/net.dir/http_c_socket_connect.cxx.o"
   "/home/lyx/httpServer/src/net/http_c_socket_request.cxx" "/home/lyx/httpServer/build/src/net/CMakeFiles/net.dir/http_c_socket_request.cxx.o"
-  "/home/lyx/httpServer/src/net/http_connect_socket.cxx" "/home/lyx/httpServer/build/src/net/CMakeFiles/net.dir/http_connect_socket.cxx.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

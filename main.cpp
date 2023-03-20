@@ -7,7 +7,6 @@
 // size_t g_envneedmem = 0;  // 相关环境变量总大小
 // char* gp_envmem = NULL;   // 环境变量内存新位置
 
-
 // //static void free_resource(); // 内存释放
 
 // int main(int argc, char* const* argv) {
@@ -23,7 +22,7 @@
 //     }
 //     for (int i = 0; environ[i]; ++i) {
 //         g_envneedmem += strlen(environ[i]) + 1;
-//     }    
+//     }
 //     g_os_argc = argc;
 //     g_os_argv = (char**)argv;
 //     http_init_setproctitle(); // 移动环境变量
@@ -52,11 +51,11 @@
 int main()
 {
     CSocket a{};
+    a.httpEpollInit();
     a.openListeningSockets();
 
     while (1)
     {
-        
+        a.httpEpollProcessEvents(-1);
     }
-
 }

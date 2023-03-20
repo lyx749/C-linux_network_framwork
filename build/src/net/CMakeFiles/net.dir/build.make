@@ -70,18 +70,18 @@ src/net/CMakeFiles/net.dir/http_c_socket.cxx.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/net.dir/http_c_socket.cxx.s"
 	cd /home/lyx/httpServer/build/src/net && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lyx/httpServer/src/net/http_c_socket.cxx -o CMakeFiles/net.dir/http_c_socket.cxx.s
 
-src/net/CMakeFiles/net.dir/http_connect_socket.cxx.o: src/net/CMakeFiles/net.dir/flags.make
-src/net/CMakeFiles/net.dir/http_connect_socket.cxx.o: ../src/net/http_connect_socket.cxx
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lyx/httpServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/net/CMakeFiles/net.dir/http_connect_socket.cxx.o"
-	cd /home/lyx/httpServer/build/src/net && /usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/net.dir/http_connect_socket.cxx.o -c /home/lyx/httpServer/src/net/http_connect_socket.cxx
+src/net/CMakeFiles/net.dir/http_c_socket_connect.cxx.o: src/net/CMakeFiles/net.dir/flags.make
+src/net/CMakeFiles/net.dir/http_c_socket_connect.cxx.o: ../src/net/http_c_socket_connect.cxx
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lyx/httpServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/net/CMakeFiles/net.dir/http_c_socket_connect.cxx.o"
+	cd /home/lyx/httpServer/build/src/net && /usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/net.dir/http_c_socket_connect.cxx.o -c /home/lyx/httpServer/src/net/http_c_socket_connect.cxx
 
-src/net/CMakeFiles/net.dir/http_connect_socket.cxx.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/net.dir/http_connect_socket.cxx.i"
-	cd /home/lyx/httpServer/build/src/net && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lyx/httpServer/src/net/http_connect_socket.cxx > CMakeFiles/net.dir/http_connect_socket.cxx.i
+src/net/CMakeFiles/net.dir/http_c_socket_connect.cxx.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/net.dir/http_c_socket_connect.cxx.i"
+	cd /home/lyx/httpServer/build/src/net && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lyx/httpServer/src/net/http_c_socket_connect.cxx > CMakeFiles/net.dir/http_c_socket_connect.cxx.i
 
-src/net/CMakeFiles/net.dir/http_connect_socket.cxx.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/net.dir/http_connect_socket.cxx.s"
-	cd /home/lyx/httpServer/build/src/net && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lyx/httpServer/src/net/http_connect_socket.cxx -o CMakeFiles/net.dir/http_connect_socket.cxx.s
+src/net/CMakeFiles/net.dir/http_c_socket_connect.cxx.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/net.dir/http_c_socket_connect.cxx.s"
+	cd /home/lyx/httpServer/build/src/net && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lyx/httpServer/src/net/http_c_socket_connect.cxx -o CMakeFiles/net.dir/http_c_socket_connect.cxx.s
 
 src/net/CMakeFiles/net.dir/http_c_socket_accept.cxx.o: src/net/CMakeFiles/net.dir/flags.make
 src/net/CMakeFiles/net.dir/http_c_socket_accept.cxx.o: ../src/net/http_c_socket_accept.cxx
@@ -112,7 +112,7 @@ src/net/CMakeFiles/net.dir/http_c_socket_request.cxx.s: cmake_force
 # Object files for target net
 net_OBJECTS = \
 "CMakeFiles/net.dir/http_c_socket.cxx.o" \
-"CMakeFiles/net.dir/http_connect_socket.cxx.o" \
+"CMakeFiles/net.dir/http_c_socket_connect.cxx.o" \
 "CMakeFiles/net.dir/http_c_socket_accept.cxx.o" \
 "CMakeFiles/net.dir/http_c_socket_request.cxx.o"
 
@@ -120,7 +120,7 @@ net_OBJECTS = \
 net_EXTERNAL_OBJECTS =
 
 src/net/libnet.a: src/net/CMakeFiles/net.dir/http_c_socket.cxx.o
-src/net/libnet.a: src/net/CMakeFiles/net.dir/http_connect_socket.cxx.o
+src/net/libnet.a: src/net/CMakeFiles/net.dir/http_c_socket_connect.cxx.o
 src/net/libnet.a: src/net/CMakeFiles/net.dir/http_c_socket_accept.cxx.o
 src/net/libnet.a: src/net/CMakeFiles/net.dir/http_c_socket_request.cxx.o
 src/net/libnet.a: src/net/CMakeFiles/net.dir/build.make

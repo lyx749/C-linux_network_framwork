@@ -75,5 +75,7 @@ void CSocket::httpEventAccept(http_connection_ptr oldc)
             closeConnection(newc);
             return;
         }
+        ++onlineUserCount;
+        break;
     } while (1);
 }

@@ -1,8 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/net.dir/http_c_socket.cxx.o"
   "CMakeFiles/net.dir/http_c_socket_accept.cxx.o"
+  "CMakeFiles/net.dir/http_c_socket_connect.cxx.o"
   "CMakeFiles/net.dir/http_c_socket_request.cxx.o"
-  "CMakeFiles/net.dir/http_connect_socket.cxx.o"
   "libnet.a"
   "libnet.pdb"
 )

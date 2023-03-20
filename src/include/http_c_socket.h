@@ -19,7 +19,7 @@
 #include <http_c_memory.h>
 
 #define HTTP_LISTEN_BACKLOG 511  //已完成连接队列最大值
-#define HPS_MAX_EVENTS 512      //epoll_wait 一次最多接收事件数量
+#define HTTP_MAX_EVENTS 512      //epoll_wait 一次最多接收事件数量
 class CSocket;
 typedef struct http_listening_s http_listening_t, *http_listening_ptr;
 typedef struct http_connection_s http_connection_t, *http_connection_ptr;
@@ -79,6 +79,7 @@ public:
     CSocket();
     virtual ~CSocket();
     int httpEpollInit();
+    int httpEpollProcessEvents(int timer);
     int httpEpollOperEvent(int fd, uint32_t eventType, uint32_t flag, int bcaction, http_connection_ptr pConn);
 
 public:
@@ -87,6 +88,7 @@ public:
     void CleaConnectPool();
     http_connection_ptr getAConnectionFromPool(int isock);
     void freeConnectionToPool(http_connection_ptr pConn);
+    void pushAConnectionToConnetPool(http_connection_ptr pConn);
 
     //init socket
     bool openListeningSockets();
@@ -99,6 +101,8 @@ public:
     void readRequestHandler(http_connection_ptr pConn);
     void writeRequestHandler(http_connection_ptr pConn);
 
+    ssize_t recvProc(http_connection_ptr pConn, char *buff, ssize_t buflen);
+
 private:
     int epollHandlefd;
     int workerConnections;  //epoll连接的最大项数
@@ -109,8 +113,20 @@ private:
     std::atomic<int> allConnectionsInPool_n;          //连接池的总连接数
     std::atomic<int> freeConnectionsInFreePool_n;     //连接池空闲连接数
     std::mutex getConnectionMutex;      //连接相关互斥量
+    std::list<http_connection_ptr> recycleConnectionPool;   //回收池，将要回收的连接放到这里
+    std::atomic<int> recycleConnection_n;       //回收池连接数量
+    std::mutex recycleConnectionMutex;      //回收队列的互斥量
+    /*
+    为什么要延迟回收，保证这个连接的业务逻辑执行完再分配给新的连接
+    */
+    int recycleConnectionWaitTime;      //延迟回收时间
 
     std::vector<http_listening_ptr> listenSocketList;     //监听套接字队列
+    struct epoll_event readyEvents[HTTP_MAX_EVENTS];       //用于接收准备就绪的事件数组
+
+
+private:
+    std::atomic<int> onlineUserCount;       //目前服务器在线人数
 };
 
 #endif

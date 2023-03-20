@@ -5,6 +5,8 @@ CSocket::CSocket()
     workerConnections = 1;
     epollHandlefd = -1;
     CSlistenPortCount = ListenPortCount;
+    onlineUserCount = 0;
+    recycleConnectionWaitTime = 60;     //60秒回收回收队列里的连接
 }
 
 CSocket::~CSocket()
@@ -86,6 +88,57 @@ int CSocket::httpEpollOperEvent(int fd, uint32_t eventType, uint32_t flag, int b
     {
         perror("CSocket::httpEpollOperEvent()中epoll_ctl error");
         return -1;
+    }
+    return 1;
+}
+
+// 0 正常退出， 1 成功， -1 error
+int CSocket::httpEpollProcessEvents(int timer)
+{
+    int eventsCount = epoll_wait(epollHandlefd, readyEvents, HTTP_MAX_EVENTS, timer);
+    if (eventsCount == -1)
+    {
+        perror("CSocket::httpEpollProcessEvents's epoll_wait() error");
+        return -1;
+    }
+
+    if (eventsCount == 0)
+    {
+        if (timer != -1)
+        {
+            // 属于时间到了正常返回
+            return 0;
+        }
+        perror("CSocket::httpEpollProcessEvents's epoll_wait() don't set timeout, but don't baak any events");
+        return -1;
+    }
+
+    http_connection_ptr p_Conn;
+    for (int i = 0; i < eventsCount; ++i)
+    {
+        p_Conn = (http_connection_ptr)readyEvents[i].data.ptr;
+
+        if ((p_Conn->events & EPOLLIN) && (readyEvents[i].events & EPOLLIN))
+        {
+            (this->*(p_Conn->readHandler))(p_Conn);
+            /*
+                这种写法使用了成员函数指针调用的语法，其中(this->*(p_Conn->rhandler))表示解除成员函数指针的引用，将其作为一个函数调用，
+                并在this指向的对象上调用该函数，然后将p_Conn作为参数传递。
+            */
+        }
+
+        if ((p_Conn->events & EPOLLOUT) && (readyEvents[i].events & EPOLLOUT))
+        {
+            if (readyEvents[i].events & (EPOLLERR | EPOLLHUP | EPOLLRDHUP))
+            {
+                // 只有投递了 写事件，但对端断开时，程序流程才走到这里，投递了写事件意味着 iThrowsendCount标记肯定被+1了，这里我们减回
+                --p_Conn->iThrowSendCount;
+            }
+            else
+            {
+                (this->*(p_Conn->writeHandler))(p_Conn);
+            }
+        }
     }
     return 1;
 }

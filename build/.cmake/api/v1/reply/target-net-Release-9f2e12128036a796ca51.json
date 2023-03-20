@@ -113,7 +113,7 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "src/net/http_connect_socket.cxx",
+			"path" : "src/net/http_c_socket_connect.cxx",
 			"sourceGroupIndex" : 0
 		},
 		{

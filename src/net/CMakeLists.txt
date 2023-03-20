@@ -4,7 +4,7 @@ add_library(
     net
     STATIC
     http_c_socket.cxx
-    http_connect_socket.cxx
+    http_c_socket_connect.cxx
     http_c_socket_accept.cxx
     http_c_socket_request.cxx
 )

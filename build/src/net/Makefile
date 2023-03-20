@@ -212,6 +212,33 @@ http_c_socket_accept.cxx.s:
 	cd /home/lyx/httpServer/build && $(MAKE) -f src/net/CMakeFiles/net.dir/build.make src/net/CMakeFiles/net.dir/http_c_socket_accept.cxx.s
 .PHONY : http_c_socket_accept.cxx.s
 
+http_c_socket_connect.o: http_c_socket_connect.cxx.o
+
+.PHONY : http_c_socket_connect.o
+
+# target to build an object file
+http_c_socket_connect.cxx.o:
+	cd /home/lyx/httpServer/build && $(MAKE) -f src/net/CMakeFiles/net.dir/build.make src/net/CMakeFiles/net.dir/http_c_socket_connect.cxx.o
+.PHONY : http_c_socket_connect.cxx.o
+
+http_c_socket_connect.i: http_c_socket_connect.cxx.i
+
+.PHONY : http_c_socket_connect.i
+
+# target to preprocess a source file
+http_c_socket_connect.cxx.i:
+	cd /home/lyx/httpServer/build && $(MAKE) -f src/net/CMakeFiles/net.dir/build.make src/net/CMakeFiles/net.dir/http_c_socket_connect.cxx.i
+.PHONY : http_c_socket_connect.cxx.i
+
+http_c_socket_connect.s: http_c_socket_connect.cxx.s
+
+.PHONY : http_c_socket_connect.s
+
+# target to generate assembly for a file
+http_c_socket_connect.cxx.s:
+	cd /home/lyx/httpServer/build && $(MAKE) -f src/net/CMakeFiles/net.dir/build.make src/net/CMakeFiles/net.dir/http_c_socket_connect.cxx.s
+.PHONY : http_c_socket_connect.cxx.s
+
 http_c_socket_request.o: http_c_socket_request.cxx.o
 
 .PHONY : http_c_socket_request.o
@@ -239,33 +266,6 @@ http_c_socket_request.cxx.s:
 	cd /home/lyx/httpServer/build && $(MAKE) -f src/net/CMakeFiles/net.dir/build.make src/net/CMakeFiles/net.dir/http_c_socket_request.cxx.s
 .PHONY : http_c_socket_request.cxx.s
 
-http_connect_socket.o: http_connect_socket.cxx.o
-
-.PHONY : http_connect_socket.o
-
-# target to build an object file
-http_connect_socket.cxx.o:
-	cd /home/lyx/httpServer/build && $(MAKE) -f src/net/CMakeFiles/net.dir/build.make src/net/CMakeFiles/net.dir/http_connect_socket.cxx.o
-.PHONY : http_connect_socket.cxx.o
-
-http_connect_socket.i: http_connect_socket.cxx.i
-
-.PHONY : http_connect_socket.i
-
-# target to preprocess a source file
-http_connect_socket.cxx.i:
-	cd /home/lyx/httpServer/build && $(MAKE) -f src/net/CMakeFiles/net.dir/build.make src/net/CMakeFiles/net.dir/http_connect_socket.cxx.i
-.PHONY : http_connect_socket.cxx.i
-
-http_connect_socket.s: http_connect_socket.cxx.s
-
-.PHONY : http_connect_socket.s
-
-# target to generate assembly for a file
-http_connect_socket.cxx.s:
-	cd /home/lyx/httpServer/build && $(MAKE) -f src/net/CMakeFiles/net.dir/build.make src/net/CMakeFiles/net.dir/http_connect_socket.cxx.s
-.PHONY : http_connect_socket.cxx.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -284,12 +284,12 @@ help:
 	@echo "... http_c_socket_accept.o"
 	@echo "... http_c_socket_accept.i"
 	@echo "... http_c_socket_accept.s"
+	@echo "... http_c_socket_connect.o"
+	@echo "... http_c_socket_connect.i"
+	@echo "... http_c_socket_connect.s"
 	@echo "... http_c_socket_request.o"
 	@echo "... http_c_socket_request.i"
 	@echo "... http_c_socket_request.s"
-	@echo "... http_connect_socket.o"
-	@echo "... http_connect_socket.i"
-	@echo "... http_connect_socket.s"
 .PHONY : help
 
 
