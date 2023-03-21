@@ -21,7 +21,7 @@
 //监听端口数量
 #define ListenPortCount 1
 //数量取决于ListenPortCount，以0开始
-#define ListenPort 6666
+#define ListenPort 7777
 
 //epoll连接的最大数
 #define worker_connections 2048

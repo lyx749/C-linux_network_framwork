@@ -144,6 +144,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named ContinuousSubmit
+
+# Build rule for target.
+ContinuousSubmit: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 ContinuousSubmit
+.PHONY : ContinuousSubmit
+
+# fast build rule for target.
+ContinuousSubmit/fast:
+	$(MAKE) -f CMakeFiles/ContinuousSubmit.dir/build.make CMakeFiles/ContinuousSubmit.dir/build
+.PHONY : ContinuousSubmit/fast
+
+#=============================================================================
 # Target rules for targets named NightlyMemCheck
 
 # Build rule for target.
@@ -300,6 +313,19 @@ ContinuousCoverage/fast:
 .PHONY : ContinuousCoverage/fast
 
 #=============================================================================
+# Target rules for targets named client
+
+# Build rule for target.
+client: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 client
+.PHONY : client
+
+# fast build rule for target.
+client/fast:
+	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/build
+.PHONY : client/fast
+
+#=============================================================================
 # Target rules for targets named ExperimentalConfigure
 
 # Build rule for target.
@@ -324,6 +350,45 @@ Continuous: cmake_check_build_system
 Continuous/fast:
 	$(MAKE) -f CMakeFiles/Continuous.dir/build.make CMakeFiles/Continuous.dir/build
 .PHONY : Continuous/fast
+
+#=============================================================================
+# Target rules for targets named NightlyCoverage
+
+# Build rule for target.
+NightlyCoverage: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 NightlyCoverage
+.PHONY : NightlyCoverage
+
+# fast build rule for target.
+NightlyCoverage/fast:
+	$(MAKE) -f CMakeFiles/NightlyCoverage.dir/build.make CMakeFiles/NightlyCoverage.dir/build
+.PHONY : NightlyCoverage/fast
+
+#=============================================================================
+# Target rules for targets named NightlyTest
+
+# Build rule for target.
+NightlyTest: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 NightlyTest
+.PHONY : NightlyTest
+
+# fast build rule for target.
+NightlyTest/fast:
+	$(MAKE) -f CMakeFiles/NightlyTest.dir/build.make CMakeFiles/NightlyTest.dir/build
+.PHONY : NightlyTest/fast
+
+#=============================================================================
+# Target rules for targets named httpServer
+
+# Build rule for target.
+httpServer: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 httpServer
+.PHONY : httpServer
+
+# fast build rule for target.
+httpServer/fast:
+	$(MAKE) -f CMakeFiles/httpServer.dir/build.make CMakeFiles/httpServer.dir/build
+.PHONY : httpServer/fast
 
 #=============================================================================
 # Target rules for targets named Nightly
@@ -376,45 +441,6 @@ ExperimentalCoverage: cmake_check_build_system
 ExperimentalCoverage/fast:
 	$(MAKE) -f CMakeFiles/ExperimentalCoverage.dir/build.make CMakeFiles/ExperimentalCoverage.dir/build
 .PHONY : ExperimentalCoverage/fast
-
-#=============================================================================
-# Target rules for targets named NightlyCoverage
-
-# Build rule for target.
-NightlyCoverage: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 NightlyCoverage
-.PHONY : NightlyCoverage
-
-# fast build rule for target.
-NightlyCoverage/fast:
-	$(MAKE) -f CMakeFiles/NightlyCoverage.dir/build.make CMakeFiles/NightlyCoverage.dir/build
-.PHONY : NightlyCoverage/fast
-
-#=============================================================================
-# Target rules for targets named NightlyTest
-
-# Build rule for target.
-NightlyTest: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 NightlyTest
-.PHONY : NightlyTest
-
-# fast build rule for target.
-NightlyTest/fast:
-	$(MAKE) -f CMakeFiles/NightlyTest.dir/build.make CMakeFiles/NightlyTest.dir/build
-.PHONY : NightlyTest/fast
-
-#=============================================================================
-# Target rules for targets named httpServer
-
-# Build rule for target.
-httpServer: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 httpServer
-.PHONY : httpServer
-
-# fast build rule for target.
-httpServer/fast:
-	$(MAKE) -f CMakeFiles/httpServer.dir/build.make CMakeFiles/httpServer.dir/build
-.PHONY : httpServer/fast
 
 #=============================================================================
 # Target rules for targets named ExperimentalStart
@@ -508,19 +534,6 @@ ContinuousTest/fast:
 .PHONY : ContinuousTest/fast
 
 #=============================================================================
-# Target rules for targets named ContinuousSubmit
-
-# Build rule for target.
-ContinuousSubmit: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 ContinuousSubmit
-.PHONY : ContinuousSubmit
-
-# fast build rule for target.
-ContinuousSubmit/fast:
-	$(MAKE) -f CMakeFiles/ContinuousSubmit.dir/build.make CMakeFiles/ContinuousSubmit.dir/build
-.PHONY : ContinuousSubmit/fast
-
-#=============================================================================
 # Target rules for targets named func
 
 # Build rule for target.
@@ -559,6 +572,33 @@ memory/fast:
 	$(MAKE) -f src/misc/CMakeFiles/memory.dir/build.make src/misc/CMakeFiles/memory.dir/build
 .PHONY : memory/fast
 
+httpServerClient.o: httpServerClient.cpp.o
+
+.PHONY : httpServerClient.o
+
+# target to build an object file
+httpServerClient.cpp.o:
+	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/httpServerClient.cpp.o
+.PHONY : httpServerClient.cpp.o
+
+httpServerClient.i: httpServerClient.cpp.i
+
+.PHONY : httpServerClient.i
+
+# target to preprocess a source file
+httpServerClient.cpp.i:
+	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/httpServerClient.cpp.i
+.PHONY : httpServerClient.cpp.i
+
+httpServerClient.s: httpServerClient.cpp.s
+
+.PHONY : httpServerClient.s
+
+# target to generate assembly for a file
+httpServerClient.cpp.s:
+	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/httpServerClient.cpp.s
+.PHONY : httpServerClient.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -595,6 +635,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... package_source"
+	@echo "... ContinuousSubmit"
 	@echo "... edit_cache"
 	@echo "... NightlyMemCheck"
 	@echo "... ContinuousConfigure"
@@ -608,15 +649,16 @@ help:
 	@echo "... ExperimentalSubmit"
 	@echo "... Experimental"
 	@echo "... ContinuousCoverage"
+	@echo "... client"
 	@echo "... ExperimentalConfigure"
 	@echo "... Continuous"
+	@echo "... NightlyCoverage"
+	@echo "... NightlyTest"
+	@echo "... httpServer"
 	@echo "... Nightly"
 	@echo "... NightlySubmit"
 	@echo "... NightlyStart"
 	@echo "... ExperimentalCoverage"
-	@echo "... NightlyCoverage"
-	@echo "... NightlyTest"
-	@echo "... httpServer"
 	@echo "... ExperimentalStart"
 	@echo "... package"
 	@echo "... NightlyBuild"
@@ -625,10 +667,12 @@ help:
 	@echo "... ContinuousStart"
 	@echo "... ContinuousMemCheck"
 	@echo "... ContinuousTest"
-	@echo "... ContinuousSubmit"
 	@echo "... func"
 	@echo "... net"
 	@echo "... memory"
+	@echo "... httpServerClient.o"
+	@echo "... httpServerClient.i"
+	@echo "... httpServerClient.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

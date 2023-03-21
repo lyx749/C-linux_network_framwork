@@ -47,6 +47,6 @@ typedef struct _COMM_PKG_HEADER
     unsigned short pkgLen; // “包头加包体”的总长度
     unsigned short msgCode; //消息类型
     int crc32;              // CRC32位校验码
-} COMM_PKG_HEADER_T, COMM_PKG_HEADER_PTR;
+} COMM_PKG_HEADER_T, *COMM_PKG_HEADER_PTR;
 #pragma pack()
 #endif

@@ -10,6 +10,7 @@ include(configure.cmake)
 SetConfigure()
 
 add_executable(httpServer main.cpp)
+add_executable(client httpServerClient.cpp)
 
 #判断内存是否完全释放AddressSanitizer
 if(CMAKE_BUILD_TYPE MATCHES "Debug")

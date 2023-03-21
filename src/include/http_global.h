@@ -1,6 +1,6 @@
 #ifndef HTTP_GLOBAL_H
 #define HTTP_GLOBAL_H
-
+#include <sys/types.h>
 // 日志
 typedef struct {
     int log_level; // 日志级别

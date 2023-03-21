@@ -51,9 +51,8 @@
 int main()
 {
     CSocket a{};
-    a.httpEpollInit();
     a.openListeningSockets();
-
+    a.httpEpollInit();
     while (1)
     {
         a.httpEpollProcessEvents(-1);

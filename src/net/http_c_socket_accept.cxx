@@ -7,7 +7,7 @@ void CSocket::httpEventAccept(http_connection_ptr oldc)
     int level;
 
     int s;
-    http_connection_ptr newc;  // 代表连接池的一个连接
+    http_connection_ptr newc; // 代表连接池的一个连接
 
     do
     {
@@ -38,6 +38,11 @@ void CSocket::httpEventAccept(http_connection_ptr oldc)
             else if (errno == EMFILE)
                 level = HTTP_LOG_CRIT;
 
+            if (errno == ECONNABORTED) // 对方关闭套接字
+            {
+                // 这个错误因为可以忽略，所以不用干啥
+                // do nothing
+            }
             // if (useAceept4 && errno == ENOSYS) // accpet4()函数未实现
             // {
             //     useAceept4 = 0;
@@ -56,7 +61,7 @@ void CSocket::httpEventAccept(http_connection_ptr oldc)
                 return;
             }
         }
-        if(fcntl(s, F_SETFL, O_NONBLOCK) == -1)
+        if (fcntl(s, F_SETFL, O_NONBLOCK) == -1)
         {
             perror("CSocket::httpEventAccept's fcntl error");
             close(s);
@@ -65,12 +70,12 @@ void CSocket::httpEventAccept(http_connection_ptr oldc)
         newc = getAConnectionFromPool(s);
 
         memcpy(&newc->clienAddr, &clientAddr, clientAddrLen);
-        newc->listening = oldc->listening;      //将连接对象和监听端口绑定
+        newc->listening = oldc->listening; // 将连接对象和监听端口绑定
 
-        newc->readHandler = &CSocket::readRequestHandler;
+        newc->readHandler = &CSocket::testHandle;
         newc->writeHandler = &CSocket::writeRequestHandler;
 
-        if(httpEpollOperEvent(s, EPOLL_CTL_ADD, EPOLLIN | EPOLLRDHUP, 0, newc) == -1)
+        if (httpEpollOperEvent(s, EPOLL_CTL_ADD, EPOLLIN | EPOLLRDHUP, 0, newc) == -1)
         {
             closeConnection(newc);
             return;

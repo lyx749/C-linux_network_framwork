@@ -7,6 +7,8 @@ CSocket::CSocket()
     CSlistenPortCount = ListenPortCount;
     onlineUserCount = 0;
     recycleConnectionWaitTime = 60;     //60秒回收回收队列里的连接
+    PKG_HEADER_LEN = sizeof(COMM_PKG_HEADER_T);
+    MSG_HEADER_LEN = sizeof(STRUCT_MSG_HEADER_T);
 }
 
 CSocket::~CSocket()
@@ -56,7 +58,8 @@ int CSocket::httpEpollOperEvent(int fd, uint32_t eventType, uint32_t flag, int b
     memset(&ev, 0, sizeof(ev));
     if (eventType == EPOLL_CTL_ADD)
     {
-        ev.events = fd;
+        ev.data.fd = fd;
+        ev.events = flag;
         pConn->events = flag;
     }
     else if (eventType == EPOLL_CTL_MOD)

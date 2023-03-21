@@ -9,6 +9,7 @@
 #include <string.h>
 #include <thread>
 #include <semaphore.h>
+#include <errno.h>
 #include <vector>
 #include <map>
 #include <atomic>
@@ -73,6 +74,12 @@ struct http_connection_s
     time_t lastPingTime;   //心跳包检测
 };
 
+typedef struct _STRUCT_MSG_HEADER
+{
+    http_connection_ptr pConn;      //记录对应的链接，注意这是一个指针
+    uint64_t inCurrsequence;      //收到数据包时记录对应连接的序号，将来能用于比较连接是否已经作废
+} STRUCT_MSG_HEADER_T, *STRUCT_MSG_HEADER_PTR;
+
 class CSocket
 {
 public:
@@ -96,12 +103,15 @@ public:
 
 
     //handler fucntion(callback fucntion)
+    void testHandle(http_connection_ptr pConn);
     void httpEventAccept(http_connection_ptr oldc);
     void closeConnection(http_connection_ptr pConn);
     void readRequestHandler(http_connection_ptr pConn);
     void writeRequestHandler(http_connection_ptr pConn);
 
     ssize_t recvProc(http_connection_ptr pConn, char *buff, ssize_t buflen);
+    void httpWaitRequestHandlerProcHeader(http_connection_ptr pConn, bool isFlood);
+    void httpWaitRequestHandlerProcBody(http_connection_ptr pConn, bool isFlood);
 
 private:
     int epollHandlefd;
@@ -127,6 +137,11 @@ private:
 
 private:
     std::atomic<int> onlineUserCount;       //目前服务器在线人数
+
+
+protected:
+    int PKG_HEADER_LEN;     //数据包包头长度
+    int MSG_HEADER_LEN;     //消息头长度
 };
 
 #endif
