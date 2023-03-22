@@ -56,18 +56,6 @@ http_c_memory.h
 
 ../src/include/http_macro.h
 
-/home/lyx/httpServer/src/net/http_c_socket.cxx
-http_c_socket.h
-/home/lyx/httpServer/src/net/http_c_socket.h
-
-/home/lyx/httpServer/src/net/http_c_socket_accept.cxx
-http_c_socket.h
-/home/lyx/httpServer/src/net/http_c_socket.h
-
-/home/lyx/httpServer/src/net/http_c_socket_connect.cxx
-http_c_socket.h
-/home/lyx/httpServer/src/net/http_c_socket.h
-
 /home/lyx/httpServer/src/net/http_c_socket_request.cxx
 http_c_socket.h
 /home/lyx/httpServer/src/net/http_c_socket.h

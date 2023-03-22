@@ -43,7 +43,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-O3 -DNDEBUG  "
+					"fragment" : " -fsanitize=undefined -fsanitize=address -Wall -g -g  "
 				}
 			],
 			"includes" : 

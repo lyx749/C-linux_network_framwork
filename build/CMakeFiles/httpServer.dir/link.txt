@@ -1,1 +1,1 @@
-/usr/bin/g++  -O3 -DNDEBUG  -rdynamic CMakeFiles/httpServer.dir/main.cpp.o  -o httpServer  src/app/libfunc.a src/net/libnet.a src/misc/libmemory.a 
+/usr/bin/g++   -fsanitize=undefined -fsanitize=address -Wall -g -g  -rdynamic -fsanitize=address -fsanitize=undefined CMakeFiles/httpServer.dir/main.cpp.o  -o httpServer  src/app/libfunc.a src/net/libnet.a src/misc/libmemory.a 

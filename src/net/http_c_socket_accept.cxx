@@ -72,7 +72,7 @@ void CSocket::httpEventAccept(http_connection_ptr oldc)
         memcpy(&newc->clienAddr, &clientAddr, clientAddrLen);
         newc->listening = oldc->listening; // 将连接对象和监听端口绑定
 
-        newc->readHandler = &CSocket::testHandle;
+        newc->readHandler = &CSocket::readRequestHandler;
         newc->writeHandler = &CSocket::writeRequestHandler;
 
         if (httpEpollOperEvent(s, EPOLL_CTL_ADD, EPOLLIN | EPOLLRDHUP, 0, newc) == -1)

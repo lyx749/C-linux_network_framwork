@@ -1,1 +1,1 @@
-/usr/bin/g++  -O3 -DNDEBUG  -rdynamic CMakeFiles/client.dir/httpServerClient.cpp.o  -o client 
+/usr/bin/g++   -fsanitize=undefined -fsanitize=address -Wall -g -g  -rdynamic CMakeFiles/client.dir/httpServerClient.cpp.o  -o client 

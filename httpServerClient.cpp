@@ -27,7 +27,7 @@ class client
 {
 private:
     static inline client *clientInterface;
-    client();
+    client(){};
 
 public:
     ~client(){}
@@ -46,7 +46,7 @@ public:
     public:
         ~deleteInterface()
         {
-            delete[] clientInterface;
+            delete clientInterface;
             clientInterface = NULL;
         }
     };
@@ -57,7 +57,7 @@ public:
         COMM_PKG_HEADER_PTR pakageHeaderPtr = (COMM_PKG_HEADER_PTR)temp;
         pakageHeaderPtr->pkgLen = htons(PKG_HEADER_LEN + sizeof(STRUCT_LOGIN_T));
         pakageHeaderPtr->msgCode = htons(1);
-        pakageHeaderPtr->crc32 = htons(123);
+        pakageHeaderPtr->crc32 = htonl(123);
         STRUCT_LOGIN_PTR loginPtr = (STRUCT_LOGIN_PTR)(temp + PKG_HEADER_LEN);
         strcpy(loginPtr->password, "123456");
         strcpy(loginPtr->username, "lyx");
@@ -86,7 +86,7 @@ public:
             perror("connect error");
             exit(1);
         }
-
+        printf("connect to IP = %s port = %hu\n", IP, port);
         return sockfd;
     }
 
@@ -95,15 +95,17 @@ public:
         ssize_t needSendLen = buff.second;
         ssize_t sendedLen = 0;
         ssize_t tempLen = 0;
-
+        printf("needSendLen = %ld\n", needSendLen);
         while (sendedLen < needSendLen)
         {
-            if ((tempLen == send(sockfd, buff.first, needSendLen, 0)) < 0)
+            if ((tempLen = send(sockfd, buff.first, needSendLen, 0)) < 0)
             {
                 perror("send error");
                 exit(1);
             }
+            
             sendedLen += tempLen;
+            printf("SendLen = %ld\n",sendedLen);
         }
         delete[] buff.first;
         return sendedLen;
