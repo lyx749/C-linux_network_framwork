@@ -144,6 +144,36 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
+src/misc/CMakeFiles/threadPool.dir/rule:
+	cd /home/lyx/httpServer/build && $(MAKE) -f CMakeFiles/Makefile2 src/misc/CMakeFiles/threadPool.dir/rule
+.PHONY : src/misc/CMakeFiles/threadPool.dir/rule
+
+# Convenience name for target.
+threadPool: src/misc/CMakeFiles/threadPool.dir/rule
+
+.PHONY : threadPool
+
+# fast build rule for target.
+threadPool/fast:
+	cd /home/lyx/httpServer/build && $(MAKE) -f src/misc/CMakeFiles/threadPool.dir/build.make src/misc/CMakeFiles/threadPool.dir/build
+.PHONY : threadPool/fast
+
+# Convenience name for target.
+src/misc/CMakeFiles/crc32.dir/rule:
+	cd /home/lyx/httpServer/build && $(MAKE) -f CMakeFiles/Makefile2 src/misc/CMakeFiles/crc32.dir/rule
+.PHONY : src/misc/CMakeFiles/crc32.dir/rule
+
+# Convenience name for target.
+crc32: src/misc/CMakeFiles/crc32.dir/rule
+
+.PHONY : crc32
+
+# fast build rule for target.
+crc32/fast:
+	cd /home/lyx/httpServer/build && $(MAKE) -f src/misc/CMakeFiles/crc32.dir/build.make src/misc/CMakeFiles/crc32.dir/build
+.PHONY : crc32/fast
+
+# Convenience name for target.
 src/misc/CMakeFiles/memory.dir/rule:
 	cd /home/lyx/httpServer/build && $(MAKE) -f CMakeFiles/Makefile2 src/misc/CMakeFiles/memory.dir/rule
 .PHONY : src/misc/CMakeFiles/memory.dir/rule
@@ -157,6 +187,33 @@ memory: src/misc/CMakeFiles/memory.dir/rule
 memory/fast:
 	cd /home/lyx/httpServer/build && $(MAKE) -f src/misc/CMakeFiles/memory.dir/build.make src/misc/CMakeFiles/memory.dir/build
 .PHONY : memory/fast
+
+http_c_crc32.o: http_c_crc32.cxx.o
+
+.PHONY : http_c_crc32.o
+
+# target to build an object file
+http_c_crc32.cxx.o:
+	cd /home/lyx/httpServer/build && $(MAKE) -f src/misc/CMakeFiles/crc32.dir/build.make src/misc/CMakeFiles/crc32.dir/http_c_crc32.cxx.o
+.PHONY : http_c_crc32.cxx.o
+
+http_c_crc32.i: http_c_crc32.cxx.i
+
+.PHONY : http_c_crc32.i
+
+# target to preprocess a source file
+http_c_crc32.cxx.i:
+	cd /home/lyx/httpServer/build && $(MAKE) -f src/misc/CMakeFiles/crc32.dir/build.make src/misc/CMakeFiles/crc32.dir/http_c_crc32.cxx.i
+.PHONY : http_c_crc32.cxx.i
+
+http_c_crc32.s: http_c_crc32.cxx.s
+
+.PHONY : http_c_crc32.s
+
+# target to generate assembly for a file
+http_c_crc32.cxx.s:
+	cd /home/lyx/httpServer/build && $(MAKE) -f src/misc/CMakeFiles/crc32.dir/build.make src/misc/CMakeFiles/crc32.dir/http_c_crc32.cxx.s
+.PHONY : http_c_crc32.cxx.s
 
 http_c_memory.o: http_c_memory.cxx.o
 
@@ -185,6 +242,33 @@ http_c_memory.cxx.s:
 	cd /home/lyx/httpServer/build && $(MAKE) -f src/misc/CMakeFiles/memory.dir/build.make src/misc/CMakeFiles/memory.dir/http_c_memory.cxx.s
 .PHONY : http_c_memory.cxx.s
 
+http_c_threadpool.o: http_c_threadpool.cxx.o
+
+.PHONY : http_c_threadpool.o
+
+# target to build an object file
+http_c_threadpool.cxx.o:
+	cd /home/lyx/httpServer/build && $(MAKE) -f src/misc/CMakeFiles/threadPool.dir/build.make src/misc/CMakeFiles/threadPool.dir/http_c_threadpool.cxx.o
+.PHONY : http_c_threadpool.cxx.o
+
+http_c_threadpool.i: http_c_threadpool.cxx.i
+
+.PHONY : http_c_threadpool.i
+
+# target to preprocess a source file
+http_c_threadpool.cxx.i:
+	cd /home/lyx/httpServer/build && $(MAKE) -f src/misc/CMakeFiles/threadPool.dir/build.make src/misc/CMakeFiles/threadPool.dir/http_c_threadpool.cxx.i
+.PHONY : http_c_threadpool.cxx.i
+
+http_c_threadpool.s: http_c_threadpool.cxx.s
+
+.PHONY : http_c_threadpool.s
+
+# target to generate assembly for a file
+http_c_threadpool.cxx.s:
+	cd /home/lyx/httpServer/build && $(MAKE) -f src/misc/CMakeFiles/threadPool.dir/build.make src/misc/CMakeFiles/threadPool.dir/http_c_threadpool.cxx.s
+.PHONY : http_c_threadpool.cxx.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -195,11 +279,19 @@ help:
 	@echo "... test"
 	@echo "... rebuild_cache"
 	@echo "... package"
+	@echo "... threadPool"
 	@echo "... package_source"
+	@echo "... crc32"
 	@echo "... memory"
+	@echo "... http_c_crc32.o"
+	@echo "... http_c_crc32.i"
+	@echo "... http_c_crc32.s"
 	@echo "... http_c_memory.o"
 	@echo "... http_c_memory.i"
 	@echo "... http_c_memory.s"
+	@echo "... http_c_threadpool.o"
+	@echo "... http_c_threadpool.i"
+	@echo "... http_c_threadpool.s"
 .PHONY : help
 
 

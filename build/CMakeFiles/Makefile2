@@ -106,6 +106,7 @@ clean: src/clean
 src/all: src/app/all
 src/all: src/net/all
 src/all: src/misc/all
+src/all: src/logic/all
 
 .PHONY : src/all
 
@@ -113,6 +114,7 @@ src/all: src/misc/all
 src/preinstall: src/app/preinstall
 src/preinstall: src/net/preinstall
 src/preinstall: src/misc/preinstall
+src/preinstall: src/logic/preinstall
 
 .PHONY : src/preinstall
 
@@ -120,6 +122,7 @@ src/preinstall: src/misc/preinstall
 src/clean: src/app/clean
 src/clean: src/net/clean
 src/clean: src/misc/clean
+src/clean: src/logic/clean
 
 .PHONY : src/clean
 
@@ -142,9 +145,29 @@ src/app/clean: src/app/CMakeFiles/func.dir/clean
 .PHONY : src/app/clean
 
 #=============================================================================
+# Directory level rules for directory src/logic
+
+# Recursive "all" directory target.
+src/logic/all: src/logic/CMakeFiles/logic.dir/all
+
+.PHONY : src/logic/all
+
+# Recursive "preinstall" directory target.
+src/logic/preinstall:
+
+.PHONY : src/logic/preinstall
+
+# Recursive "clean" directory target.
+src/logic/clean: src/logic/CMakeFiles/logic.dir/clean
+
+.PHONY : src/logic/clean
+
+#=============================================================================
 # Directory level rules for directory src/misc
 
 # Recursive "all" directory target.
+src/misc/all: src/misc/CMakeFiles/threadPool.dir/all
+src/misc/all: src/misc/CMakeFiles/crc32.dir/all
 src/misc/all: src/misc/CMakeFiles/memory.dir/all
 
 .PHONY : src/misc/all
@@ -155,6 +178,8 @@ src/misc/preinstall:
 .PHONY : src/misc/preinstall
 
 # Recursive "clean" directory target.
+src/misc/clean: src/misc/CMakeFiles/threadPool.dir/clean
+src/misc/clean: src/misc/CMakeFiles/crc32.dir/clean
 src/misc/clean: src/misc/CMakeFiles/memory.dir/clean
 
 .PHONY : src/misc/clean
@@ -532,7 +557,7 @@ CMakeFiles/ContinuousCoverage.dir/clean:
 # Target rules for target CMakeFiles/client.dir
 
 # All Build rule for target.
-CMakeFiles/client.dir/all:
+CMakeFiles/client.dir/all: src/misc/CMakeFiles/crc32.dir/all
 	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/depend
 	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lyx/httpServer/build/CMakeFiles --progress-num=1,2 "Built target client"
@@ -540,7 +565,7 @@ CMakeFiles/client.dir/all:
 
 # Build rule for subdir invocation for target.
 CMakeFiles/client.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 4
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/client.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 0
 .PHONY : CMakeFiles/client.dir/rule
@@ -669,15 +694,18 @@ CMakeFiles/NightlyTest.dir/clean:
 # All Build rule for target.
 CMakeFiles/httpServer.dir/all: src/app/CMakeFiles/func.dir/all
 CMakeFiles/httpServer.dir/all: src/net/CMakeFiles/net.dir/all
+CMakeFiles/httpServer.dir/all: src/misc/CMakeFiles/threadPool.dir/all
+CMakeFiles/httpServer.dir/all: src/misc/CMakeFiles/crc32.dir/all
 CMakeFiles/httpServer.dir/all: src/misc/CMakeFiles/memory.dir/all
+CMakeFiles/httpServer.dir/all: src/logic/CMakeFiles/logic.dir/all
 	$(MAKE) -f CMakeFiles/httpServer.dir/build.make CMakeFiles/httpServer.dir/depend
 	$(MAKE) -f CMakeFiles/httpServer.dir/build.make CMakeFiles/httpServer.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lyx/httpServer/build/CMakeFiles --progress-num=6,7 "Built target httpServer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lyx/httpServer/build/CMakeFiles --progress-num=8,9 "Built target httpServer"
 .PHONY : CMakeFiles/httpServer.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/httpServer.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 12
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 18
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/httpServer.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 0
 .PHONY : CMakeFiles/httpServer.dir/rule
@@ -996,7 +1024,7 @@ CMakeFiles/ContinuousTest.dir/clean:
 src/app/CMakeFiles/func.dir/all:
 	$(MAKE) -f src/app/CMakeFiles/func.dir/build.make src/app/CMakeFiles/func.dir/depend
 	$(MAKE) -f src/app/CMakeFiles/func.dir/build.make src/app/CMakeFiles/func.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lyx/httpServer/build/CMakeFiles --progress-num=3,4,5 "Built target func"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lyx/httpServer/build/CMakeFiles --progress-num=5,6,7 "Built target func"
 .PHONY : src/app/CMakeFiles/func.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1023,7 +1051,7 @@ src/app/CMakeFiles/func.dir/clean:
 src/net/CMakeFiles/net.dir/all: src/misc/CMakeFiles/memory.dir/all
 	$(MAKE) -f src/net/CMakeFiles/net.dir/build.make src/net/CMakeFiles/net.dir/depend
 	$(MAKE) -f src/net/CMakeFiles/net.dir/build.make src/net/CMakeFiles/net.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lyx/httpServer/build/CMakeFiles --progress-num=10,11,12,13,14 "Built target net"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lyx/httpServer/build/CMakeFiles --progress-num=14,15,16,17,18 "Built target net"
 .PHONY : src/net/CMakeFiles/net.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1044,13 +1072,67 @@ src/net/CMakeFiles/net.dir/clean:
 .PHONY : src/net/CMakeFiles/net.dir/clean
 
 #=============================================================================
+# Target rules for target src/misc/CMakeFiles/threadPool.dir
+
+# All Build rule for target.
+src/misc/CMakeFiles/threadPool.dir/all: src/misc/CMakeFiles/crc32.dir/all
+	$(MAKE) -f src/misc/CMakeFiles/threadPool.dir/build.make src/misc/CMakeFiles/threadPool.dir/depend
+	$(MAKE) -f src/misc/CMakeFiles/threadPool.dir/build.make src/misc/CMakeFiles/threadPool.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lyx/httpServer/build/CMakeFiles --progress-num=19,20 "Built target threadPool"
+.PHONY : src/misc/CMakeFiles/threadPool.dir/all
+
+# Build rule for subdir invocation for target.
+src/misc/CMakeFiles/threadPool.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 4
+	$(MAKE) -f CMakeFiles/Makefile2 src/misc/CMakeFiles/threadPool.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 0
+.PHONY : src/misc/CMakeFiles/threadPool.dir/rule
+
+# Convenience name for target.
+threadPool: src/misc/CMakeFiles/threadPool.dir/rule
+
+.PHONY : threadPool
+
+# clean rule for target.
+src/misc/CMakeFiles/threadPool.dir/clean:
+	$(MAKE) -f src/misc/CMakeFiles/threadPool.dir/build.make src/misc/CMakeFiles/threadPool.dir/clean
+.PHONY : src/misc/CMakeFiles/threadPool.dir/clean
+
+#=============================================================================
+# Target rules for target src/misc/CMakeFiles/crc32.dir
+
+# All Build rule for target.
+src/misc/CMakeFiles/crc32.dir/all:
+	$(MAKE) -f src/misc/CMakeFiles/crc32.dir/build.make src/misc/CMakeFiles/crc32.dir/depend
+	$(MAKE) -f src/misc/CMakeFiles/crc32.dir/build.make src/misc/CMakeFiles/crc32.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lyx/httpServer/build/CMakeFiles --progress-num=3,4 "Built target crc32"
+.PHONY : src/misc/CMakeFiles/crc32.dir/all
+
+# Build rule for subdir invocation for target.
+src/misc/CMakeFiles/crc32.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 2
+	$(MAKE) -f CMakeFiles/Makefile2 src/misc/CMakeFiles/crc32.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 0
+.PHONY : src/misc/CMakeFiles/crc32.dir/rule
+
+# Convenience name for target.
+crc32: src/misc/CMakeFiles/crc32.dir/rule
+
+.PHONY : crc32
+
+# clean rule for target.
+src/misc/CMakeFiles/crc32.dir/clean:
+	$(MAKE) -f src/misc/CMakeFiles/crc32.dir/build.make src/misc/CMakeFiles/crc32.dir/clean
+.PHONY : src/misc/CMakeFiles/crc32.dir/clean
+
+#=============================================================================
 # Target rules for target src/misc/CMakeFiles/memory.dir
 
 # All Build rule for target.
 src/misc/CMakeFiles/memory.dir/all:
 	$(MAKE) -f src/misc/CMakeFiles/memory.dir/build.make src/misc/CMakeFiles/memory.dir/depend
 	$(MAKE) -f src/misc/CMakeFiles/memory.dir/build.make src/misc/CMakeFiles/memory.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lyx/httpServer/build/CMakeFiles --progress-num=8,9 "Built target memory"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lyx/httpServer/build/CMakeFiles --progress-num=12,13 "Built target memory"
 .PHONY : src/misc/CMakeFiles/memory.dir/all
 
 # Build rule for subdir invocation for target.
@@ -1069,6 +1151,34 @@ memory: src/misc/CMakeFiles/memory.dir/rule
 src/misc/CMakeFiles/memory.dir/clean:
 	$(MAKE) -f src/misc/CMakeFiles/memory.dir/build.make src/misc/CMakeFiles/memory.dir/clean
 .PHONY : src/misc/CMakeFiles/memory.dir/clean
+
+#=============================================================================
+# Target rules for target src/logic/CMakeFiles/logic.dir
+
+# All Build rule for target.
+src/logic/CMakeFiles/logic.dir/all: src/net/CMakeFiles/net.dir/all
+src/logic/CMakeFiles/logic.dir/all: src/misc/CMakeFiles/memory.dir/all
+	$(MAKE) -f src/logic/CMakeFiles/logic.dir/build.make src/logic/CMakeFiles/logic.dir/depend
+	$(MAKE) -f src/logic/CMakeFiles/logic.dir/build.make src/logic/CMakeFiles/logic.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lyx/httpServer/build/CMakeFiles --progress-num=10,11 "Built target logic"
+.PHONY : src/logic/CMakeFiles/logic.dir/all
+
+# Build rule for subdir invocation for target.
+src/logic/CMakeFiles/logic.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 9
+	$(MAKE) -f CMakeFiles/Makefile2 src/logic/CMakeFiles/logic.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 0
+.PHONY : src/logic/CMakeFiles/logic.dir/rule
+
+# Convenience name for target.
+logic: src/logic/CMakeFiles/logic.dir/rule
+
+.PHONY : logic
+
+# clean rule for target.
+src/logic/CMakeFiles/logic.dir/clean:
+	$(MAKE) -f src/logic/CMakeFiles/logic.dir/build.make src/logic/CMakeFiles/logic.dir/clean
+.PHONY : src/logic/CMakeFiles/logic.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

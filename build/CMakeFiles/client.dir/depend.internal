@@ -3,3 +3,4 @@
 
 CMakeFiles/client.dir/httpServerClient.cpp.o
  /home/lyx/httpServer/httpServerClient.cpp
+ /home/lyx/httpServer/src/include/http_c_crc32.h

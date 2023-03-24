@@ -1,5 +1,7 @@
 #include "http_c_socket.h"
-
+#include "../../build/httpServerConfig.h"
+#include "http_c_memory.h"
+#include "http_global.h"
 void CSocket::httpEventAccept(http_connection_ptr oldc)
 {
     struct sockaddr clientAddr;

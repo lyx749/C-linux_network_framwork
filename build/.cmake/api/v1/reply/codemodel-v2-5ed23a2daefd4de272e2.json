@@ -47,7 +47,7 @@
 						26,
 						27,
 						28,
-						30
+						31
 					]
 				},
 				{
@@ -56,7 +56,8 @@
 					[
 						2,
 						3,
-						4
+						4,
+						5
 					],
 					"minimumCMakeVersion" : 
 					{
@@ -77,7 +78,7 @@
 					"source" : "src/app",
 					"targetIndexes" : 
 					[
-						29
+						30
 					]
 				},
 				{
@@ -91,7 +92,7 @@
 					"source" : "src/net",
 					"targetIndexes" : 
 					[
-						32
+						34
 					]
 				},
 				{
@@ -105,7 +106,23 @@
 					"source" : "src/misc",
 					"targetIndexes" : 
 					[
-						31
+						29,
+						33,
+						35
+					]
+				},
+				{
+					"build" : "src/logic",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0.0"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "src/logic",
+					"targetIndexes" : 
+					[
+						32
 					]
 				}
 			],
@@ -119,7 +136,8 @@
 						1,
 						2,
 						3,
-						4
+						4,
+						5
 					],
 					"name" : "httpServer",
 					"targetIndexes" : 
@@ -156,7 +174,10 @@
 						29,
 						30,
 						31,
-						32
+						32,
+						33,
+						34,
+						35
 					]
 				}
 			],
@@ -361,8 +382,15 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "client::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-client-Debug-4f7a58f553143c8f12d4.json",
+					"jsonFile" : "target-client-Debug-d441eac80c28461d6e65.json",
 					"name" : "client",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "crc32::@32fad1bb1431edb5ea41",
+					"jsonFile" : "target-crc32-Debug-87204e78676d8f57dce1.json",
+					"name" : "crc32",
 					"projectIndex" : 0
 				},
 				{
@@ -375,8 +403,15 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "httpServer::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-httpServer-Debug-69ed2ed72934febfcff8.json",
+					"jsonFile" : "target-httpServer-Debug-888d3767a67577648774.json",
 					"name" : "httpServer",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "logic::@ea15d1ede4aa1a4a3a18",
+					"jsonFile" : "target-logic-Debug-a8167b71eda1618ca84e.json",
+					"name" : "logic",
 					"projectIndex" : 0
 				},
 				{
@@ -391,6 +426,13 @@
 					"id" : "net::@fa6dfe1ce2083cdf68d6",
 					"jsonFile" : "target-net-Debug-f75405f38ad796177021.json",
 					"name" : "net",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "threadPool::@32fad1bb1431edb5ea41",
+					"jsonFile" : "target-threadPool-Debug-8112cc8414f096865859.json",
+					"name" : "threadPool",
 					"projectIndex" : 0
 				}
 			]

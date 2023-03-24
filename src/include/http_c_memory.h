@@ -15,7 +15,7 @@ public:
     ~CMemory() {}
 
 private:
-    static inline CMemory *memoryInstance;
+    static CMemory *memoryInstance;
 
 public:
     static CMemory *GetInstance()

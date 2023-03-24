@@ -83,7 +83,7 @@
 			[
 				{
 					"name" : "HELPSTRING",
-					"value" : "No help, variable specified on the command line."
+					"value" : "Choose the type of build, options are: None Debug Release RelWithDebInfo MinSizeRel ..."
 				}
 			],
 			"type" : "STRING",
@@ -871,7 +871,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "5"
+			"value" : "6"
 		},
 		{
 			"name" : "CMAKE_OBJCOPY",
@@ -2166,6 +2166,18 @@
 			"value" : "/home/lyx/httpServer"
 		},
 		{
+			"name" : "logic_LIB_DEPENDS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Dependencies for the target"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "general;net;"
+		},
+		{
 			"name" : "net_LIB_DEPENDS",
 			"properties" : 
 			[
@@ -2176,6 +2188,18 @@
 			],
 			"type" : "STATIC",
 			"value" : "general;memory;"
+		},
+		{
+			"name" : "threadPool_LIB_DEPENDS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Dependencies for the target"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "general;pthread;general;crc32;"
 		}
 	],
 	"kind" : "cache",

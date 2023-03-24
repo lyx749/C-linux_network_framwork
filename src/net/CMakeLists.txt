@@ -9,5 +9,5 @@ add_library(
     http_c_socket_request.cxx
 )
 
-target_link_libraries(net PRIVATE memory)
+target_link_libraries(net PUBLIC memory)
 target_include_directories(net PUBLIC ../include)

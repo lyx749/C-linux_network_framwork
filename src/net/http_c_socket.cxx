@@ -1,12 +1,14 @@
 #include "http_c_socket.h"
-
+#include "../../build/httpServerConfig.h"
+#include "http_c_memory.h"
+#include "http_global.h"
 CSocket::CSocket()
 {
     workerConnections = 1;
     epollHandlefd = -1;
     CSlistenPortCount = ListenPortCount;
     onlineUserCount = 0;
-    recycleConnectionWaitTime = 60;     //60秒回收回收队列里的连接
+    recycleConnectionWaitTime = 60; // 60秒回收回收队列里的连接
     PKG_HEADER_LEN = sizeof(COMM_PKG_HEADER_T);
     MSG_HEADER_LEN = sizeof(STRUCT_MSG_HEADER_T);
 }
@@ -219,3 +221,18 @@ void CSocket::closeListeningSockets()
     }
     return;
 }
+
+bool CSocket::Initialize()
+{
+    if(openListeningSockets() == false)
+    {
+        return false;
+    }
+    return true;
+}
+
+void CSocket::threadRecvProcFunc(char *PMsgBuff)
+{
+    return;
+}
+

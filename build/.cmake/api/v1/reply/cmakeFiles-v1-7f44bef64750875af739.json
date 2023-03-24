@@ -186,6 +186,9 @@
 		},
 		{
 			"path" : "src/misc/CMakeLists.txt"
+		},
+		{
+			"path" : "src/logic/CMakeLists.txt"
 		}
 	],
 	"kind" : "cmakeFiles",

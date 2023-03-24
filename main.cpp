@@ -1,6 +1,8 @@
 #include <iostream>
 #include "http_func.h"
 #include "http_c_socket.h"
+#include "http_global.h"
+#include "build/httpServerConfig.h"
 // char** g_os_argv;         // 原始命令行参数数组
 // int g_os_argc;            // 启动参数个数
 // size_t g_argvneedmem = 0; // 启动参数内存大小
@@ -47,9 +49,12 @@
 // //     }
 // //     return;
 // // }
+CLogicSocket g_socket;
+WorkerThreadPool g_threadpool;
 
 int main()
 {
+    g_threadpool.createAllThreads(ProcMsgRecvWorkThreadCount);
     CSocket a{};
     a.openListeningSockets();
     a.httpEpollInit();
@@ -57,4 +62,5 @@ int main()
     {
         a.httpEpollProcessEvents(-1);
     }
+    g_threadpool.destroyAllThreads();
 }

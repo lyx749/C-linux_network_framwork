@@ -54,5 +54,13 @@
 /home/lyx/httpServer/build/src/misc/CMakeFiles/test.dir
 /home/lyx/httpServer/build/src/misc/CMakeFiles/rebuild_cache.dir
 /home/lyx/httpServer/build/src/misc/CMakeFiles/package.dir
+/home/lyx/httpServer/build/src/misc/CMakeFiles/threadPool.dir
 /home/lyx/httpServer/build/src/misc/CMakeFiles/package_source.dir
+/home/lyx/httpServer/build/src/misc/CMakeFiles/crc32.dir
 /home/lyx/httpServer/build/src/misc/CMakeFiles/memory.dir
+/home/lyx/httpServer/build/src/logic/CMakeFiles/edit_cache.dir
+/home/lyx/httpServer/build/src/logic/CMakeFiles/test.dir
+/home/lyx/httpServer/build/src/logic/CMakeFiles/rebuild_cache.dir
+/home/lyx/httpServer/build/src/logic/CMakeFiles/package.dir
+/home/lyx/httpServer/build/src/logic/CMakeFiles/package_source.dir
+/home/lyx/httpServer/build/src/logic/CMakeFiles/logic.dir

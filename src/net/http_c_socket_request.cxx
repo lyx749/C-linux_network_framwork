@@ -1,11 +1,7 @@
 #include "http_c_socket.h"
-typedef struct _STRUCT_LOGIN
-{
-    char username[56]; // 用户名
-    char password[40]; // 密码
-
-} STRUCT_LOGIN_T, *STRUCT_LOGIN_PTR;
-#pragma pack()
+#include "../../build/httpServerConfig.h"
+#include "http_c_memory.h"
+#include "http_global.h"
 void CSocket::readRequestHandler(http_connection_ptr pConn)
 {
     bool isFlood = false;
@@ -126,7 +122,6 @@ void CSocket::httpWaitRequestHandlerProcHeader(http_connection_ptr pConn, bool &
     CMemory *CMemoryPtr = CMemory::GetInstance();
     COMM_PKG_HEADER_PTR pakagePtr = (COMM_PKG_HEADER_PTR)pConn->dataHeadInfo;
     uint16_t pakageLen = ntohs(pakagePtr->pkgLen);
-    printf("%hu\n", pakageLen);
     if (pakageLen < PKG_HEADER_LEN) // 数据包的总长度比包头长度还小，肯定是伪造数据包
     {
         printf("pakageLen < PKG_HEADER_LEN error\n");
@@ -170,26 +165,12 @@ void CSocket::httpWaitRequestHandlerProcHeader(http_connection_ptr pConn, bool &
 
 void CSocket::httpWaitRequestHandlerProcBody(http_connection_ptr pConn, bool &isFlood)
 {
-    /*
-    donothing
-    */
-    testHandle(pConn);
+    g_threadpool.inMsgRecvQueueAndSignal(pConn->recvMemoryPtr);
     pConn->recvMemoryPtr = NULL;
     pConn->recvBufHeadPtr = pConn->dataHeadInfo;
     pConn->needRecvLen = PKG_HEADER_LEN;
     pConn->currentStat = _PKG_HD_INIT;
     return;
-}
-
-void CSocket::testHandle(http_connection_ptr pConn)
-{
-    char *temp = pConn->recvMemoryPtr + MSG_HEADER_LEN;
-    COMM_PKG_HEADER_PTR tempHeaderPtr = (COMM_PKG_HEADER_PTR)temp;
-    printf("PkgLen = %hu, MsgCode = %hu, crc32 = %d\n", ntohs(tempHeaderPtr->pkgLen), ntohs(tempHeaderPtr->msgCode), 
-    ntohl(tempHeaderPtr->crc32));
-    temp += PKG_HEADER_LEN;
-    STRUCT_LOGIN_PTR tempLoginPtr = (STRUCT_LOGIN_PTR)temp;
-    printf("usrname : %s, password : %s\n", tempLoginPtr->username, tempLoginPtr->password);
 }
 
 void CSocket::writeRequestHandler(http_connection_ptr pConn)

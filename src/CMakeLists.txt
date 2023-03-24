@@ -1,3 +1,4 @@
 add_subdirectory(app)
 add_subdirectory(net)
 add_subdirectory(misc)
+add_subdirectory(logic)

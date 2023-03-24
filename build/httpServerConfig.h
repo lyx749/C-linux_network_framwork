@@ -15,7 +15,7 @@
 #define Daemon 1
 
 //处理接收到的消息的线程池中线程数量
-#define ProcMsgRecvWorkThreadCount 120
+#define ProcMsgRecvWorkThreadCount 12
 
 /*[Net]*/
 //监听端口数量

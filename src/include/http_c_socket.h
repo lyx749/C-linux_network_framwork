@@ -16,11 +16,9 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include "http_macro.h"
-#include "../../build/httpServerConfig.h"
-#include <http_c_memory.h>
-
 #define HTTP_LISTEN_BACKLOG 511 // 已完成连接队列最大值
 #define HTTP_MAX_EVENTS 512     // epoll_wait 一次最多接收事件数量
+
 class CSocket;
 typedef struct http_listening_s http_listening_t, *http_listening_ptr;
 typedef struct http_connection_s http_connection_t, *http_connection_ptr;
@@ -85,6 +83,10 @@ class CSocket
 public:
     CSocket();
     virtual ~CSocket();
+    virtual bool Initialize();
+    virtual void threadRecvProcFunc(char *PMsgBuff);
+
+public:
     int httpEpollInit();
     int httpEpollProcessEvents(int timer);
     int httpEpollOperEvent(int fd, uint32_t eventType, uint32_t flag, int bcaction, http_connection_ptr pConn);

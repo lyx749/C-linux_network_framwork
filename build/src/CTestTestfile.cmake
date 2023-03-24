@@ -7,3 +7,4 @@
 subdirs("app")
 subdirs("net")
 subdirs("misc")
+subdirs("logic")

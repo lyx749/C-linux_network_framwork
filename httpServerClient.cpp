@@ -5,6 +5,7 @@
 #include <string.h>
 #include <map>
 #include <stdio.h>
+#include "src/include/http_c_crc32.h"
 #pragma pack(1) // 内存对齐1个字节
 typedef struct _COMM_PKG_HEADER
 {
@@ -26,11 +27,11 @@ int PKG_HEADER_LEN = sizeof(COMM_PKG_HEADER_T);
 class client
 {
 private:
-    static inline client *clientInterface;
+    static client *clientInterface;
     client(){};
 
 public:
-    ~client(){}
+    ~client() {}
     static client *getInterface()
     {
         if (!clientInterface)
@@ -56,11 +57,15 @@ public:
         char *temp = new char[PKG_HEADER_LEN + sizeof(STRUCT_LOGIN_T)]{};
         COMM_PKG_HEADER_PTR pakageHeaderPtr = (COMM_PKG_HEADER_PTR)temp;
         pakageHeaderPtr->pkgLen = htons(PKG_HEADER_LEN + sizeof(STRUCT_LOGIN_T));
+
         pakageHeaderPtr->msgCode = htons(1);
-        pakageHeaderPtr->crc32 = htonl(123);
+
         STRUCT_LOGIN_PTR loginPtr = (STRUCT_LOGIN_PTR)(temp + PKG_HEADER_LEN);
         strcpy(loginPtr->password, "123456");
         strcpy(loginPtr->username, "lyx");
+        int calcCrc = CCRC32::GetInstance()->Get_CRC((unsigned char *)loginPtr, sizeof(STRUCT_LOGIN_T));
+        printf("%d\n", calcCrc);
+        pakageHeaderPtr->crc32 = htonl(calcCrc);
         return std::make_pair(temp, PKG_HEADER_LEN + sizeof(STRUCT_LOGIN_T));
     }
 
@@ -103,15 +108,15 @@ public:
                 perror("send error");
                 exit(1);
             }
-            
+
             sendedLen += tempLen;
-            printf("SendLen = %ld\n",sendedLen);
+            printf("SendLen = %ld\n", sendedLen);
         }
         delete[] buff.first;
         return sendedLen;
     }
 };
-
+client *client::clientInterface = NULL;
 int main()
 {
     client *cPtr = client::getInterface();

@@ -560,6 +560,32 @@ net/fast:
 .PHONY : net/fast
 
 #=============================================================================
+# Target rules for targets named threadPool
+
+# Build rule for target.
+threadPool: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 threadPool
+.PHONY : threadPool
+
+# fast build rule for target.
+threadPool/fast:
+	$(MAKE) -f src/misc/CMakeFiles/threadPool.dir/build.make src/misc/CMakeFiles/threadPool.dir/build
+.PHONY : threadPool/fast
+
+#=============================================================================
+# Target rules for targets named crc32
+
+# Build rule for target.
+crc32: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 crc32
+.PHONY : crc32
+
+# fast build rule for target.
+crc32/fast:
+	$(MAKE) -f src/misc/CMakeFiles/crc32.dir/build.make src/misc/CMakeFiles/crc32.dir/build
+.PHONY : crc32/fast
+
+#=============================================================================
 # Target rules for targets named memory
 
 # Build rule for target.
@@ -571,6 +597,19 @@ memory: cmake_check_build_system
 memory/fast:
 	$(MAKE) -f src/misc/CMakeFiles/memory.dir/build.make src/misc/CMakeFiles/memory.dir/build
 .PHONY : memory/fast
+
+#=============================================================================
+# Target rules for targets named logic
+
+# Build rule for target.
+logic: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 logic
+.PHONY : logic
+
+# fast build rule for target.
+logic/fast:
+	$(MAKE) -f src/logic/CMakeFiles/logic.dir/build.make src/logic/CMakeFiles/logic.dir/build
+.PHONY : logic/fast
 
 httpServerClient.o: httpServerClient.cpp.o
 
@@ -669,7 +708,10 @@ help:
 	@echo "... ContinuousTest"
 	@echo "... func"
 	@echo "... net"
+	@echo "... threadPool"
+	@echo "... crc32"
 	@echo "... memory"
+	@echo "... logic"
 	@echo "... httpServerClient.o"
 	@echo "... httpServerClient.i"
 	@echo "... httpServerClient.s"

@@ -1,20 +1,23 @@
 #include "http_c_threadpool.h"
 #include "http_c_socket.h"
-bool threadPool::ifThreadExit = false;
+#include "http_c_memory.h"
+#include "http_global.h"
+bool WorkerThreadPool::ifThreadExit = false;
 
-threadPool::threadPool()
+WorkerThreadPool::WorkerThreadPool()
 {
     runningThreadNumbers = 0;
     lastEmgTime = 0;
     messageRecvQueueCount = 0;
 }
 
-threadPool::~threadPool()
+WorkerThreadPool::~WorkerThreadPool()
 {
+    ifRunning = {false};
     clearMsgRecvQueue();
 }
 
-void threadPool::clearMsgRecvQueue()
+void WorkerThreadPool::clearMsgRecvQueue()
 {
     char *temp;
     CMemory *memoryPtr = CMemory::GetInstance();
@@ -27,7 +30,7 @@ void threadPool::clearMsgRecvQueue()
     }
 }
 
-bool threadPool::createAllThreads(int threadNum)
+bool WorkerThreadPool::createAllThreads(int threadNum)
 {
     createThreadNumber = threadNum;
 
@@ -35,13 +38,13 @@ bool threadPool::createAllThreads(int threadNum)
     {
         for (int i = 0; i < threadNum; ++i)
         {
-            std::atomic<bool> temp = false;
+            bool temp = false;
             ifRunning.push_back(temp);
-            threadVector.push_back(std::thread(&threadPool::ThreadFunc, this, this, temp));
+            threadVector.push_back(std::thread(&WorkerThreadPool::ThreadFunc, this, (void *)this, i));
         }
-        std::atomic<bool> temp = false;
-        ifRunning.push_back(temp);
-        threadVector.push_back(std::thread(&threadPool::expansionAndShrinkThreadNumber, this, this, temp));
+        // bool temp = false;
+        // ifRunning.push_back(temp);
+        // threadVector.push_back(std::thread(&WorkerThreadPool::expansionAndShrinkThreadNumber, this, this, temp));
     }
     catch (...)
     {
@@ -58,17 +61,19 @@ again:
             goto again;
         }
     }
+
+    return true;
 }
 
-void threadPool::ThreadFunc(void *threadData, std::atomic<bool> &ifRunning)
+void WorkerThreadPool::ThreadFunc(void *threadData, int i)
 {
-    threadPool *tPtr = (threadPool *)threadData;
+    WorkerThreadPool *tPtr = (WorkerThreadPool *)threadData;
     CMemory *memoryPtr = CMemory::GetInstance();
     while (true)
     {
         std::unique_lock<std::mutex> ulk(tPtr->pthreadMutex);
         tPtr->pthreadCondition.wait(ulk, [&]()
-                                    { if (ifRunning == false) ifRunning = true;
+                                    { if (tPtr->ifRunning[i] == false) tPtr->ifRunning[i] = true;
                                         return !tPtr->ifThreadExit && tPtr->messageRecvQueue.size() != 0; });
 
         if (ifThreadExit)
@@ -81,13 +86,13 @@ void threadPool::ThreadFunc(void *threadData, std::atomic<bool> &ifRunning)
         messageRecvQueue.pop_front();
         --tPtr->messageRecvQueueCount;
         ulk.unlock();
-
-        /*
-         */
+        g_socket.threadRecvProcFunc(jobBuff);
+        memoryPtr->FreeMemory(jobBuff);
+        --tPtr->runningThreadNumbers;
     }
 }
 
-void threadPool::destroyAllThreads()
+void WorkerThreadPool::destroyAllThreads()
 {
     if (this->ifThreadExit)
     {
@@ -105,7 +110,7 @@ void threadPool::destroyAllThreads()
     this->clearMsgRecvQueue();
 }
 
-void threadPool::inMsgRecvQueueAndSignal(char *buf)
+void WorkerThreadPool::inMsgRecvQueueAndSignal(char *buf)
 {
     std::unique_lock<std::mutex> ulk(this->pthreadMutex);
 
@@ -113,7 +118,7 @@ void threadPool::inMsgRecvQueueAndSignal(char *buf)
 
     ulk.unlock();
 again:
-    if(this->callAHandlerThread() == -1)
+    if (this->callAHandlerThread() == -1)
     {
         printf("wait for 5s\n");
         std::this_thread::sleep_for(std::chrono::minutes(5));
@@ -121,12 +126,12 @@ again:
     }
 }
 
-int threadPool::callAHandlerThread()
+int WorkerThreadPool::callAHandlerThread()
 {
-    if(this->createThreadNumber == this->runningThreadNumbers)
+    if (this->createThreadNumber == this->runningThreadNumbers)
     {
         printf("threadNums is not enough\n");
-        return - 1;
+        return -1;
     }
     this->pthreadCondition.notify_one();
     return 1;
