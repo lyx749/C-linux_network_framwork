@@ -87,7 +87,7 @@ http_connection_ptr CSocket::getAConnectionFromPool(int isock)
     return tempPtr;
 }
 
-//归还参数pConn所代表的连接到到连接池中
+// 归还参数pConn所代表的连接到到连接池中
 void CSocket::freeConnectionToPool(http_connection_ptr pConn)
 {
     std::lock_guard<std::mutex> lk(getConnectionMutex);
@@ -98,21 +98,20 @@ void CSocket::freeConnectionToPool(http_connection_ptr pConn)
     ++freeConnectionsInFreePool_n;
 }
 
-
-void CSocket::pushAConnectionToConnetPool(http_connection_ptr pConn)
+void CSocket::pushAConnectionToRecyclePool(http_connection_ptr pConn)
 {
     bool ifFind = false;
     std::lock_guard<std::mutex> lk(recycleConnectionMutex);
     for (auto pos = recycleConnectionPool.begin(); pos != recycleConnectionPool.end(); ++pos)
     {
-        if(*pos == pConn)
+        if (*pos == pConn)
         {
             ifFind = true;
             break;
         }
     }
 
-    if(ifFind)  //保证这个连接只能加入一次回收池，避免被回收多次
+    if (ifFind) // 保证这个连接只能加入一次回收池，避免被回收多次
         return;
 
     pConn->inRecyleTime = time(NULL);
@@ -126,10 +125,16 @@ void CSocket::pushAConnectionToConnetPool(http_connection_ptr pConn)
 void CSocket::closeConnection(http_connection_ptr pConn)
 {
     freeConnectionToPool(pConn);
-    if(pConn->fd != -1)
+    if (pConn->fd != -1)
     {
         close(pConn->fd);
         pConn->fd = -1;
     }
     return;
+}
+
+void CSocket::ServerRecycleConnectionThread(void *threadData)
+{
+    CSocket *thisPtr = (CSocket *)threadData;
+    
 }

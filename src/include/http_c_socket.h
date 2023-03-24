@@ -15,6 +15,7 @@
 #include <atomic>
 #include <unistd.h>
 #include <fcntl.h>
+#include <thread>
 #include "http_macro.h"
 #define HTTP_LISTEN_BACKLOG 511 // 已完成连接队列最大值
 #define HTTP_MAX_EVENTS 512     // epoll_wait 一次最多接收事件数量
@@ -97,7 +98,7 @@ public:
     void CleaConnectPool();
     http_connection_ptr getAConnectionFromPool(int isock);
     void freeConnectionToPool(http_connection_ptr pConn);
-    void pushAConnectionToConnetPool(http_connection_ptr pConn);
+    void pushAConnectionToRecyclePool(http_connection_ptr pConn);
 
     // init socket
     bool openListeningSockets();
@@ -113,6 +114,10 @@ public:
     ssize_t recvProc(http_connection_ptr pConn, char *buff, ssize_t buflen);
     void httpWaitRequestHandlerProcHeader(http_connection_ptr pConn, bool &isFlood);
     void httpWaitRequestHandlerProcBody(http_connection_ptr pConn, bool &isFlood);
+
+
+    //thread handler
+    void ServerRecycleConnectionThread(void *threadData);
 
 private:
     int epollHandlefd;
@@ -143,6 +148,10 @@ private:
     int floodAkEnable;              // Flood攻击检测是否开启,1：开启   0：不开启
     unsigned int floodTimeInterval; // 表示每次收到数据包的时间间隔是100(毫秒)
     int floodKickCount;             // 累积多少次踢出此人
+
+
+    //thread
+    std::vector<std::thread> serverProcThreadPool;
 
 protected:
     int PKG_HEADER_LEN; // 数据包包头长度
