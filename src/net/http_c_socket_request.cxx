@@ -63,7 +63,7 @@ void CSocket::readRequestHandler(http_connection_ptr pConn)
 
     if (isFlood)
     {
-        closeConnection(pConn);
+        zdCloseSocketProc(pConn);
     }
 
     return;
@@ -75,7 +75,7 @@ ssize_t CSocket::recvProc(http_connection_ptr pConn, char *buff, ssize_t buflen)
     if (n == 0) // client close connetion
     {
         printf("client closed connect\n");
-        closeConnection(pConn);
+        zdCloseSocketProc(pConn);
         return -1;
     }
 
@@ -111,7 +111,7 @@ ssize_t CSocket::recvProc(http_connection_ptr pConn, char *buff, ssize_t buflen)
                 fprintf(stderr, "CSocket::recvProc's recv errno = %s", strerror(errno));
             }
         }
-        closeConnection(pConn);
+        zdCloseSocketProc(pConn);
         return -1;
     }
     return n;

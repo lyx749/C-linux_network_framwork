@@ -56,10 +56,6 @@
 			[
 				{
 					"backtrace" : 3,
-					"path" : "/home/lyx/httpServer/src/app/../include"
-				},
-				{
-					"backtrace" : 3,
 					"path" : "/home/lyx/httpServer/src/net/../include"
 				},
 				{
@@ -76,10 +72,6 @@
 	],
 	"dependencies" : 
 	[
-		{
-			"backtrace" : 3,
-			"id" : "func::@ff93792cf40911dae1b8"
-		},
 		{
 			"backtrace" : 3,
 			"id" : "net::@fa6dfe1ce2083cdf68d6"
@@ -123,11 +115,6 @@
 				"backtrace" : 2,
 				"fragment" : "-fsanitize=undefined",
 				"role" : "flags"
-			},
-			{
-				"backtrace" : 3,
-				"fragment" : "src/app/libfunc.a",
-				"role" : "libraries"
 			},
 			{
 				"backtrace" : 3,

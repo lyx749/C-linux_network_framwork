@@ -79,7 +79,6 @@ httpServer_EXTERNAL_OBJECTS =
 
 httpServer: CMakeFiles/httpServer.dir/main.cpp.o
 httpServer: CMakeFiles/httpServer.dir/build.make
-httpServer: src/app/libfunc.a
 httpServer: src/net/libnet.a
 httpServer: src/misc/libthreadPool.a
 httpServer: src/logic/liblogic.a

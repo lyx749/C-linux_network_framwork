@@ -41,6 +41,8 @@ unistd.h
 -
 fcntl.h
 -
+thread
+-
 http_macro.h
 ../src/include/http_macro.h
 

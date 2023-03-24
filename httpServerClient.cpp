@@ -16,8 +16,8 @@ typedef struct _COMM_PKG_HEADER
 
 typedef struct _STRUCT_LOGIN
 {
-    char username[56]; // 用户名
-    char password[40]; // 密码
+    char username[56]{}; // 用户名
+    char password[40]{}; // 密码
 
 } STRUCT_LOGIN_T, *STRUCT_LOGIN_PTR;
 #pragma pack()
@@ -58,7 +58,7 @@ public:
         COMM_PKG_HEADER_PTR pakageHeaderPtr = (COMM_PKG_HEADER_PTR)temp;
         pakageHeaderPtr->pkgLen = htons(PKG_HEADER_LEN + sizeof(STRUCT_LOGIN_T));
 
-        pakageHeaderPtr->msgCode = htons(1);
+        pakageHeaderPtr->msgCode = htons(0);
 
         STRUCT_LOGIN_PTR loginPtr = (STRUCT_LOGIN_PTR)(temp + PKG_HEADER_LEN);
         strcpy(loginPtr->password, "123456");

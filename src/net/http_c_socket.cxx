@@ -8,7 +8,7 @@ CSocket::CSocket()
     epollHandlefd = -1;
     CSlistenPortCount = ListenPortCount;
     onlineUserCount = 0;
-    recycleConnectionWaitTime = 60; // 60秒回收回收队列里的连接
+    recycleConnectionWaitTime = Sock_RecyConnectionWaitTime; // 60秒回收回收队列里的连接
     PKG_HEADER_LEN = sizeof(COMM_PKG_HEADER_T);
     MSG_HEADER_LEN = sizeof(STRUCT_MSG_HEADER_T);
 }
@@ -224,7 +224,7 @@ void CSocket::closeListeningSockets()
 
 bool CSocket::Initialize()
 {
-    if(openListeningSockets() == false)
+    if (openListeningSockets() == false)
     {
         return false;
     }
@@ -236,3 +236,27 @@ void CSocket::threadRecvProcFunc(char *PMsgBuff)
     return;
 }
 
+bool CSocket::InitializeSubproc()
+{
+    this->serverProcThreadPool.push_back(std::thread(&CSocket::ServerRecycleConnectionThread, this, (void *)this)); // 创建回收线程
+}
+
+void CSocket::zdCloseSocketProc(http_connection_ptr pConn)
+{
+    if(pConn->fd != -1)
+    {
+        close(pConn->fd);
+        pConn->fd = -1;
+    }
+
+    if(pConn->iThrowSendCount > 0)  //归0
+        --pConn->iThrowSendCount;
+
+    pushAConnectionToRecyclePool(pConn);
+}
+
+void CSocket::msgSend(char *pSendBuff)
+{
+    CMemory *memoryPtr = CMemory::GetInstance();
+    std::lock_guard<std::mutex> lk(sendMsgQueueMutex);
+}

@@ -692,7 +692,6 @@ CMakeFiles/NightlyTest.dir/clean:
 # Target rules for target CMakeFiles/httpServer.dir
 
 # All Build rule for target.
-CMakeFiles/httpServer.dir/all: src/app/CMakeFiles/func.dir/all
 CMakeFiles/httpServer.dir/all: src/net/CMakeFiles/net.dir/all
 CMakeFiles/httpServer.dir/all: src/misc/CMakeFiles/threadPool.dir/all
 CMakeFiles/httpServer.dir/all: src/misc/CMakeFiles/crc32.dir/all
@@ -705,7 +704,7 @@ CMakeFiles/httpServer.dir/all: src/logic/CMakeFiles/logic.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/httpServer.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 18
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 15
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/httpServer.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 0
 .PHONY : CMakeFiles/httpServer.dir/rule

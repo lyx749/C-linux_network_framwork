@@ -85,6 +85,7 @@ public:
     CSocket();
     virtual ~CSocket();
     virtual bool Initialize();
+    virtual bool InitializeSubproc();                                    //创建线程[子进程中执行]
     virtual void threadRecvProcFunc(char *PMsgBuff);
 
 public:
@@ -119,6 +120,10 @@ public:
     //thread handler
     void ServerRecycleConnectionThread(void *threadData);
 
+protected:
+    void msgSend(char *pSendBuff);
+    void zdCloseSocketProc(http_connection_ptr pConn);  //延迟关闭
+
 private:
     int epollHandlefd;
     int workerConnections; // epoll连接的最大项数
@@ -148,10 +153,15 @@ private:
     int floodAkEnable;              // Flood攻击检测是否开启,1：开启   0：不开启
     unsigned int floodTimeInterval; // 表示每次收到数据包的时间间隔是100(毫秒)
     int floodKickCount;             // 累积多少次踢出此人
-
-
-    //thread
+    
+    //消息队列
+    std::list<char *> messageSendQueue;
+    std::atomic<int> messageSendQueueCount;
+    std::mutex sendMsgQueueMutex;
+    sem_t sendMsgQueueSem_t;
+    // thread
     std::vector<std::thread> serverProcThreadPool;
+
 
 protected:
     int PKG_HEADER_LEN; // 数据包包头长度

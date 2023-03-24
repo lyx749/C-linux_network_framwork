@@ -13,8 +13,8 @@ typedef struct
 #pragma pack(1)
 typedef struct _STRUCT_LOGIN
 {
-    char username[56]; // 用户名
-    char password[40]; // 密码
+    char username[56]{}; // 用户名
+    char password[40]{}; // 密码
 
 } STRUCT_LOGIN_T, *STRUCT_LOGIN_PTR;
 #pragma pack()
@@ -27,7 +27,7 @@ extern size_t g_argvneedmem;          // 启动参数内存大小
 extern int g_daemonized;              // 是否以守护进程方式运行
 extern CLogicSocket g_socket;         // 全局socket
 extern WorkerThreadPool g_threadpool; // 线程池
-extern int g_stopEvent;
+extern bool g_stopEvent;              //程序退出 false不退出 true退出
 
 extern pid_t hps_pid;     // 当前进程 id
 extern pid_t hps_parent;  // 当前进程父进程 id

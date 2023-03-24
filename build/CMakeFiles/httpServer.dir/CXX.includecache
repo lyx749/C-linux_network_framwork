@@ -41,6 +41,8 @@ unistd.h
 -
 fcntl.h
 -
+thread
+-
 http_macro.h
 ../src/include/http_macro.h
 
@@ -62,24 +64,6 @@ future
 chrono
 -
 
-../src/include/http_func.h
-stdio.h
--
-stdlib.h
--
-unistd.h
--
-string.h
--
-stdarg.h
--
-stdint.h
--
-http_global.h
-../src/include/http_global.h
-http_macro.h
-../src/include/http_macro.h
-
 ../src/include/http_global.h
 sys/types.h
 -
@@ -95,8 +79,6 @@ http_c_logic.h
 /home/lyx/httpServer/main.cpp
 iostream
 -
-http_func.h
-/home/lyx/httpServer/http_func.h
 http_c_socket.h
 /home/lyx/httpServer/http_c_socket.h
 http_global.h

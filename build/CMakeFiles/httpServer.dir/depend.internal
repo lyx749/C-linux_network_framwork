@@ -5,7 +5,6 @@ CMakeFiles/httpServer.dir/main.cpp.o
  ../src/include/http_c_logic.h
  ../src/include/http_c_socket.h
  ../src/include/http_c_threadpool.h
- ../src/include/http_func.h
  ../src/include/http_global.h
  ../src/include/http_macro.h
  /home/lyx/httpServer/build/httpServerConfig.h

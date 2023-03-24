@@ -136,5 +136,54 @@ void CSocket::closeConnection(http_connection_ptr pConn)
 void CSocket::ServerRecycleConnectionThread(void *threadData)
 {
     CSocket *thisPtr = (CSocket *)threadData;
-    
+    while (true)
+    {
+        std::this_thread::sleep_for(std::chrono::milliseconds(200));
+        if (thisPtr->recycleConnection_n > 0)
+        {
+            time_t currentTime = time(NULL);
+            std::unique_lock<std::mutex> ulk(thisPtr->recycleConnectionMutex);
+        again1:
+            for (auto pos = thisPtr->recycleConnectionPool.begin(); pos != thisPtr->recycleConnectionPool.end(); ++pos)
+            {
+                if (((*pos)->inRecyleTime + thisPtr->recycleConnectionWaitTime > currentTime) && (!g_stopEvent)) // 如果g_stopEvent为真说明整个程序要结束了，必须进行强制释放
+                    continue;
+
+                if ((*pos)->iThrowSendCount > 0)
+                {
+                    // 不应该在这个位置出现这个现象，打印一下日志
+                    perror("CSocket::ServerRecycleConnectionThread's (*pos)->iThrowSendCount > 0");
+                }
+
+                --thisPtr->recycleConnection_n;
+                thisPtr->freeConnectionToPool((*pos));
+                thisPtr->recycleConnectionPool.erase(pos); // 所有迭代器失效
+                goto again1;
+            }
+            ulk.unlock();
+        }
+
+        if (g_stopEvent)        //程序要退出了，强制回收所有连接
+        {
+            if (thisPtr->recycleConnection_n > 0)
+            {
+                std::lock_guard<std::mutex> lk(thisPtr->recycleConnectionMutex);
+            again2:
+                for (auto pos = thisPtr->recycleConnectionPool.begin(); pos != thisPtr->recycleConnectionPool.end(); ++pos)
+                {
+                    if ((*pos)->iThrowSendCount > 0)
+                    {
+                        // 不应该在这个位置出现这个现象，打印一下日志
+                        perror("CSocket::ServerRecycleConnectionThread's (*pos)->iThrowSendCount > 0");
+                    }
+
+                    --thisPtr->recycleConnection_n;
+                    thisPtr->freeConnectionToPool((*pos));
+                    thisPtr->recycleConnectionPool.erase(pos); // 所有迭代器失效
+                    goto again2;
+                }
+            }
+            break;
+        }
+    }
 }

@@ -4,7 +4,6 @@
 CMakeFiles/httpServer.dir/main.cpp.o: ../src/include/http_c_logic.h
 CMakeFiles/httpServer.dir/main.cpp.o: ../src/include/http_c_socket.h
 CMakeFiles/httpServer.dir/main.cpp.o: ../src/include/http_c_threadpool.h
-CMakeFiles/httpServer.dir/main.cpp.o: ../src/include/http_func.h
 CMakeFiles/httpServer.dir/main.cpp.o: ../src/include/http_global.h
 CMakeFiles/httpServer.dir/main.cpp.o: ../src/include/http_macro.h
 CMakeFiles/httpServer.dir/main.cpp.o: httpServerConfig.h

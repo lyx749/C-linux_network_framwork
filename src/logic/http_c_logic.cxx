@@ -1,9 +1,15 @@
 #include "http_macro.h"
 #include "http_c_crc32.h"
 #include "http_global.h"
+#include "http_c_memory.h"
+std::vector<logicHandler> handlerVector;
 CLogicSocket::CLogicSocket()
 {
-    // handlerVector.push_back(&CLogicSocket::logicHandlerLogin);
+}
+
+void CLogicSocket::addThreadFuncToVector()
+{
+    handlerVector.push_back(&CLogicSocket::logicHandlerLogin);
 }
 
 bool CLogicSocket::Initialize()
@@ -54,22 +60,53 @@ void CLogicSocket::threadRecvProcFunc(char *pMsgBuf)
     {
         return;
     }
-
-    // if(imsgCode >= handlerVector.size())
-    // {
-    //     printf("error msgCode\n");
-    //     return;
-    // }
-
-    // (this->*(handlerVector[imsgCode]))(pConn, pMsgHeader, pPkgHeader, (char *)pPkgBody, pkglen);
-    logicHandlerLogin(pConn, pMsgHeader, pPkgHeader, (char *)pPkgBody, pkglen);
+    printf("imsgCode = %d handlerVector.szie() = %d\n", imsgCode, handlerVector.size());
+    if (imsgCode >= handlerVector.size())
+    {
+        printf("error msgCode\n");
+        return;
+    }
+    if (!(this->*(handlerVector[imsgCode]))(pConn, pMsgHeader, pPkgHeader, (char *)pPkgBody, pkglen))
+    {
+        perror("CLogicSocket::threadRecvProcFunc handlerVector[imsgCode] error");
+        return;
+    }
+    // logicHandlerLogin(pConn, pMsgHeader, pPkgHeader, (char *)pPkgBody, pkglen);
 }
 
-bool CLogicSocket::logicHandlerLogin(http_connection_ptr pConn, STRUCT_MSG_HEADER_PTR pMsgHeader, COMM_PKG_HEADER_PTR pPkgHeader, char *pkgPtr, int pkgLen)
+bool CLogicSocket::logicHandlerLogin(http_connection_ptr pConn, STRUCT_MSG_HEADER_PTR pMsgHeader, COMM_PKG_HEADER_PTR pPkgHeader, char *pkgBodyPtr, int pkgLen)
 {
-    printf("PkgLen = %hu, MsgCode = %hu, crc32 = %d\n", ntohs(pPkgHeader->pkgLen), ntohs(pPkgHeader->msgCode),
-           pPkgHeader->crc32);
-    STRUCT_LOGIN_PTR tempLoginPtr = (STRUCT_LOGIN_PTR)pkgPtr;
-    printf("usrname : %s, password : %s\n", tempLoginPtr->username, tempLoginPtr->password);
+    if (pkgBodyPtr == NULL)
+        return false;
+
+    int iRecvLen = sizeof(STRUCT_LOGIN_T);
+
+    if (iRecvLen != pkgLen - sizeof(COMM_PKG_HEADER_T))
+        return false;
+
+    std::lock_guard<std::mutex> lk(pConn->logicProcMutex);
+
+    STRUCT_LOGIN_PTR p_RecvInfo = (STRUCT_LOGIN_PTR)pkgBodyPtr;
+    /*
+    因为还没连接数据库，这个地方可以做一个用户名和密码匹配，成功返回成功连接，失败返回失败
+    所以为了测试方便默认正确
+    p_RecvInfo->username[sizeof(p_RecvInfo->username)-1]=0;
+    p_RecvInfo->password[sizeof(p_RecvInfo->password)-1]=0;
+    */
+    COMM_PKG_HEADER_PTR tempHeaderPtr;
+    CCRC32 *p_crc32 = CCRC32::GetInstance();
+    CMemory *memoryPtr = CMemory::GetInstance();
+    char *sendBuff = (char *)memoryPtr->AllocMemory(MSG_HEADER_LEN + PKG_HEADER_LEN + 100, true);   //因为还没确定回包的结构，这里先给100个字节
+    memcpy(sendBuff, pMsgHeader, MSG_HEADER_LEN);
+    tempHeaderPtr = (COMM_PKG_HEADER_PTR)(sendBuff + MSG_HEADER_LEN);
+
+    pPkgHeader->msgCode = htons(10);    //同样是未确定
+
+    pPkgHeader->pkgLen = htons(PKG_HEADER_LEN + 100);
+
+    char *backPackage = (char *)(sendBuff + MSG_HEADER_LEN + PKG_HEADER_LEN);
+    strcpy(backPackage, "success login");
+    pPkgHeader->crc32 = htonl(p_crc32->Get_CRC((unsigned char *)backPackage, 100));
+    msgSend(sendBuff);
     return true;
 }

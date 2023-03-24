@@ -49,6 +49,8 @@ unistd.h
 -
 fcntl.h
 -
+thread
+-
 http_macro.h
 ../src/include/http_macro.h
 
@@ -81,6 +83,36 @@ http_c_logic.h
 ../src/include/http_macro.h
 
 /home/lyx/httpServer/build/httpServerConfig.h
+
+/home/lyx/httpServer/src/net/http_c_socket.cxx
+http_c_socket.h
+/home/lyx/httpServer/src/net/http_c_socket.h
+../../build/httpServerConfig.h
+/home/lyx/httpServer/build/httpServerConfig.h
+http_c_memory.h
+/home/lyx/httpServer/src/net/http_c_memory.h
+http_global.h
+/home/lyx/httpServer/src/net/http_global.h
+
+/home/lyx/httpServer/src/net/http_c_socket_accept.cxx
+http_c_socket.h
+/home/lyx/httpServer/src/net/http_c_socket.h
+../../build/httpServerConfig.h
+/home/lyx/httpServer/build/httpServerConfig.h
+http_c_memory.h
+/home/lyx/httpServer/src/net/http_c_memory.h
+http_global.h
+/home/lyx/httpServer/src/net/http_global.h
+
+/home/lyx/httpServer/src/net/http_c_socket_connect.cxx
+http_c_socket.h
+/home/lyx/httpServer/src/net/http_c_socket.h
+../../build/httpServerConfig.h
+/home/lyx/httpServer/build/httpServerConfig.h
+http_c_memory.h
+/home/lyx/httpServer/src/net/http_c_memory.h
+http_global.h
+/home/lyx/httpServer/src/net/http_global.h
 
 /home/lyx/httpServer/src/net/http_c_socket_request.cxx
 http_c_socket.h

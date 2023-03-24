@@ -1,5 +1,4 @@
 #include <iostream>
-#include "http_func.h"
 #include "http_c_socket.h"
 #include "http_global.h"
 #include "build/httpServerConfig.h"
@@ -51,9 +50,10 @@
 // // }
 CLogicSocket g_socket;
 WorkerThreadPool g_threadpool;
-
+bool g_stopEvent;
 int main()
 {
+    g_socket.addThreadFuncToVector();
     g_threadpool.createAllThreads(ProcMsgRecvWorkThreadCount);
     CSocket a{};
     a.openListeningSockets();
