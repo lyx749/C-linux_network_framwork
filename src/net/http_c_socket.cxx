@@ -243,20 +243,177 @@ bool CSocket::InitializeSubproc()
 
 void CSocket::zdCloseSocketProc(http_connection_ptr pConn)
 {
-    if(pConn->fd != -1)
+    if (pConn->fd != -1)
     {
         close(pConn->fd);
         pConn->fd = -1;
     }
 
-    if(pConn->iThrowSendCount > 0)  //归0
+    if (pConn->iThrowSendCount > 0) // 归0
         --pConn->iThrowSendCount;
 
     pushAConnectionToRecyclePool(pConn);
+}
+
+void CSocket::clearMessageQueue()
+{
+    char *tempPoint;
+    CMemory *memoryPtr = CMemory::GetInstance();
+    while (!this->messageSendQueue.empty())
+    {
+        tempPoint = messageSendQueue.front();
+        messageSendQueue.pop_front();
+        memoryPtr->FreeMemory(tempPoint);
+    }
 }
 
 void CSocket::msgSend(char *pSendBuff)
 {
     CMemory *memoryPtr = CMemory::GetInstance();
     std::lock_guard<std::mutex> lk(sendMsgQueueMutex);
+
+    // 发送消息队列过大也可能给服务器带来风险
+    if (messageSendQueueCount > 50000)
+    {
+        // 发送队列过大，比如客户端恶意不接受数据，就会导致这个队列越来越大
+        // 那么可以考虑为了服务器安全，干掉一些数据的发送，虽然有可能导致客户端出现问题，但总比服务器不稳定要好很多
+        perror("CSocket::msgSend() messageSendQueueCount is to big");
+        discardPackageCount++;
+        memoryPtr->FreeMemory(pSendBuff);
+        return;
+    }
+
+    STRUCT_MSG_HEADER_PTR pMsgHeader = (STRUCT_MSG_HEADER_PTR)pSendBuff;
+    http_connection_ptr pConn = pMsgHeader->pConn;
+
+    if (pConn->inSendQueueCount > 400)
+    {
+        // 该用户收消息太慢(或者干脆不接收消息)，累积的该用户的发送队列中有的数据条目数过大，认为是恶意用户，直接切断
+        fprintf(stderr, "CSocekt::msgSend() found that a user %d has a backlog of packets to be sent, cutting off the connection to him!\n", pConn->fd);
+        discardPackageCount++;
+        memoryPtr->FreeMemory(pSendBuff);
+        zdCloseSocketProc(pConn);
+        return;
+    }
+
+    ++pConn->inSendQueueCount;
+    messageSendQueue.push_back(pSendBuff);
+    ++messageSendQueueCount;
+
+    if (sem_post(&sendMsgQueueSem_t) == -1)
+        perror("CSocekt::msgSend() sem_post error");
+}
+
+void CSocket::ServerSendPackageThread(void *threadData)
+{
+    CSocket *thisPtr = static_cast<CSocket *>(threadData);
+
+    char *pMsgBuff;
+    STRUCT_MSG_HEADER_PTR pMsgHeader;
+    COMM_PKG_HEADER_PTR pPkgHeader;
+    http_connection_ptr pConn;
+
+    CMemory *memoryPtr = CMemory::GetInstance();
+    while (!g_stopEvent)
+    {
+        /*
+        如果被某个信号中断，sem_wait也可能会过早的返回，错误为EINTR
+        整个程序退出之前，也要sem_post()一下，确保如果本线程卡在sem_wait()，也能走下去从而让本线程成功返回
+        */
+        if (sem_wait(&thisPtr->sendMsgQueueSem_t) == -1)
+        {
+            if (errno != EINTR)
+                fprintf(stderr, "CSocket::ServerSendPackageThread() sem_wait error : %s\n", strerror(errno));
+        }
+
+        if (g_stopEvent)
+            break;
+
+        if (thisPtr->messageSendQueueCount > 0)
+        {
+            std::unique_lock<std::mutex> ulk(thisPtr->sendMsgQueueMutex);
+        again:
+            for (auto pos = messageSendQueue.begin(); pos != messageSendQueue.end() && !g_stopEvent; ++pos)
+            {
+                pMsgBuff = (*pos);
+                pMsgHeader = (STRUCT_MSG_HEADER_PTR)pMsgBuff;
+                pPkgHeader = (COMM_PKG_HEADER_PTR)(pMsgBuff + thisPtr->MSG_HEADER_LEN);
+                pConn = pMsgHeader->pConn;
+
+                // 包过期，因为如果这个连接被回收，比如在freeConnectionToPool pushAConnectionToRecyclePool closeConnection中都会自增iCurrsequence
+                if (pConn->inCurrsequence != pMsgHeader->inCurrsequence)
+                {
+                    thisPtr->messageSendQueue.erase(pos);
+                    --thisPtr->messageSendQueueCount;
+                    memoryPtr->FreeMemory(pMsgBuff);
+                    goto again;
+                }
+
+                if (pConn->iThrowSendCount > 0)
+                    // 发送缓冲区已满，目前该事件在红黑树上进行监听，要靠系统驱动发送消息，所以这里不发送
+                    continue;
+
+                --pConn->inSendQueueCount; // 该连接在发送消息队列有的数据条目数减一
+
+                pConn->sendPackageMemPtr = pMsgBuff;
+                thisPtr->messageSendQueue.erase(pos);
+                --thisPtr->messageSendQueueCount;
+                pConn->sendPackageSendBuf = (char *)pPkgHeader; // 要发送数据的缓冲区指针，因为发送的数据不一定全能发送出去，该变量用于标记发送到哪了
+                pConn->needSendLen = ntohs(pPkgHeader->pkgLen);
+                // 我采用 epoll水平触发的策略，能走到这里的，都应该是还没有投递 写事件 到epoll中
+                // epoll水平触发发送数据的改进方案：
+                // 开始不把socket写事件通知加入到epoll,当我需要写数据的时候，直接调用write/send发送数据；
+                // 如果返回了EAGIN【发送缓冲区满了，需要等待可写事件才能继续往缓冲区里写数据】，此时，我再把写事件通知加入到epoll，
+                // 此时，就变成了在epoll驱动下写数据，全部数据发送完毕后，再把写事件通知从epoll中干掉；
+                // 优点：数据不多的时候，可以避免epoll的写事件的增加/删除，提高了程序的执行效率；
+
+                ssize_t sendSize = thisPtr->sendProc(pConn, pConn->sendPackageSendBuf, pConn->needSendLen);
+                if (sendSize > 0)
+                {
+                    if (sendSize == pConn->needSendLen)
+                    {
+                        memoryPtr->FreeMemory(pConn->sendPackageMemPtr);
+                        pConn->sendPackageMemPtr = NULL;
+                    }
+                    else // 没有全部发送完毕(EAGAIN)，数据只发出去了一部分，缓冲区已满
+                    {
+                        pConn->sendPackageSendBuf += sendSize;
+                        pConn->needSendLen -= sendSize;
+                        ++pConn->iThrowSendCount; // 标记缓冲区已满
+
+                        if (thisPtr->httpEpollOperEvent(pConn->fd, EPOLL_CTL_MOD, EPOLLOUT, 0, pConn) == -1)
+                            perror("CSocket::ServerSendPackageThread httpEpollOperEvent error");
+                    }
+                    goto again;
+                }
+                else if (sendSize == 0)
+                {
+                    // 发送0个字节，首先因为我发送的内容不是0个字节的；
+                    // 然后如果发送 缓冲区满则返回的应该是-1，而错误码应该是EAGAIN，所以我综合认为，这种情况我就把这个发送的包丢弃了【按对端关闭了socket处理】
+                    // 然后这个包干掉，不发送了
+                    memoryPtr->FreeMemory(pConn->sendPackageMemPtr);
+                    pConn->sendPackageMemPtr = NULL;
+                    goto again;
+                }
+                else if (sendSize == -1)
+                {
+                    // 发送缓冲区已经满了【一个字节都没发出去，说明发送 缓冲区当前正好是满的】
+                    ++pConn->iThrowSendCount;
+                    if (thisPtr->httpEpollOperEvent(pConn->fd, EPOLL_CTL_MOD, EPOLLOUT, 0, pConn) == -1)
+                        perror("CSocket::ServerSendPackageThread httpEpollOperEvent error");
+
+                    goto again;
+                }
+                else    //一般走到这说明返回值为-2，一般就认为是对端断开了，等待recv()来做断开socket以及回收资源
+                {
+                    memoryPtr->FreeMemory(pConn->sendPackageMemPtr);
+                    pConn->sendPackageMemPtr = NULL;
+                    goto again;
+                }
+
+                goto again;
+            }
+            ulk.unlock();
+        }
+    }
 }

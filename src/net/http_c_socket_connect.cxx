@@ -52,7 +52,7 @@ void CSocket::InitConnectPool()
     allConnectionsInPool_n = freeConnectionsInFreePool_n = connectionPool.size();
 }
 
-void CSocket::CleaConnectPool()
+void CSocket::ClearConnectPool()
 {
     CMemory *P_memory = CMemory::GetInstance();
     while (!connectionPool.empty())
@@ -135,17 +135,17 @@ void CSocket::closeConnection(http_connection_ptr pConn)
 
 void CSocket::ServerRecycleConnectionThread(void *threadData)
 {
-    CSocket *thisPtr = (CSocket *)threadData;
+    CSocket *thisPtr = static_cast<CSocket *>(threadData);
     while (true)
     {
         std::this_thread::sleep_for(std::chrono::milliseconds(200));
         if (thisPtr->recycleConnection_n > 0)
         {
-            time_t currentTime = time(NULL);
             std::unique_lock<std::mutex> ulk(thisPtr->recycleConnectionMutex);
         again1:
             for (auto pos = thisPtr->recycleConnectionPool.begin(); pos != thisPtr->recycleConnectionPool.end(); ++pos)
             {
+                time_t currentTime = time(NULL);
                 if (((*pos)->inRecyleTime + thisPtr->recycleConnectionWaitTime > currentTime) && (!g_stopEvent)) // 如果g_stopEvent为真说明整个程序要结束了，必须进行强制释放
                     continue;
 
@@ -163,7 +163,7 @@ void CSocket::ServerRecycleConnectionThread(void *threadData)
             ulk.unlock();
         }
 
-        if (g_stopEvent)        //程序要退出了，强制回收所有连接
+        if (g_stopEvent) // 程序要退出了，强制回收所有连接
         {
             if (thisPtr->recycleConnection_n > 0)
             {

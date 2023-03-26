@@ -67,7 +67,7 @@ again:
 
 void WorkerThreadPool::ThreadFunc(void *threadData, int i)
 {
-    WorkerThreadPool *tPtr = (WorkerThreadPool *)threadData;
+    WorkerThreadPool *tPtr = static_cast<WorkerThreadPool*>(threadData);
     CMemory *memoryPtr = CMemory::GetInstance();
     while (true)
     {

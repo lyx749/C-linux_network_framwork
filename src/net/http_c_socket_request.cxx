@@ -173,6 +173,41 @@ void CSocket::httpWaitRequestHandlerProcBody(http_connection_ptr pConn, bool &is
     return;
 }
 
+ssize_t CSocket::sendProc(http_connection_ptr pConn, char *sendBuff, ssize_t size)
+{
+    ssize_t n;
+    while (true)
+    {
+        n = send(pConn->fd, sendBuff, size, 0);
+        if (n > 0)
+            return n;
+        // 发送成功一些数据，但发送了多少，我这里不关心，也不需要再次send
+        // 这里有两种情况
+        //(1) n == size也就是想发送多少都发送成功了，这表示完全发完毕了
+        //(2) n < size 没发送完毕，那肯定是发送缓冲区满了，所以也不必要重试发送，直接返回吧
+        if (n == 0)
+        {
+            // send返回0代表对方关闭了连接
+            return 0;
+        }
+
+        if(errno == EAGAIN || errno == EWOULDBLOCK)
+        {
+            //缓冲区满了
+            return -1;
+        }
+
+        if(errno == EINTR)  //慢系统调用，阻塞
+        {
+            continue;
+        }
+        else
+        {
+            return -2;  //一般来说这种情况属于对端关闭连接
+        }
+    }
+}
+
 void CSocket::writeRequestHandler(http_connection_ptr pConn)
 {
 }

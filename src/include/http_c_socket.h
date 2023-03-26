@@ -69,8 +69,11 @@ struct http_connection_s
     char *sendPackageSendBuf;         // 发送数据的缓冲区的头指针，包头+包体
     unsigned int needSendLen;
 
-    time_t inRecyleTime; // 判断回收时间
+    time_t inRecyleTime; // 入到回收队列的时间
     time_t lastPingTime; // 心跳包检测
+
+    //网络安全
+    std::atomic<int> inSendQueueCount;      //发送队伍的数据条目数
 };
 
 typedef struct _STRUCT_MSG_HEADER
@@ -96,7 +99,7 @@ public:
 public:
     // connected pool
     void InitConnectPool();
-    void CleaConnectPool();
+    void ClearConnectPool();
     http_connection_ptr getAConnectionFromPool(int isock);
     void freeConnectionToPool(http_connection_ptr pConn);
     void pushAConnectionToRecyclePool(http_connection_ptr pConn);
@@ -119,6 +122,15 @@ public:
 
     //thread handler
     void ServerRecycleConnectionThread(void *threadData);
+    void ServerSendPackageThread(void *threadData);
+
+
+    //sendProc
+    ssize_t sendProc(http_connection_ptr pConn, char *sendBuff, ssize_t size);
+
+
+    //messageQueue
+    void clearMessageQueue();
 
 protected:
     void msgSend(char *pSendBuff);
@@ -162,6 +174,9 @@ private:
     // thread
     std::vector<std::thread> serverProcThreadPool;
 
+
+    //统计
+    int discardPackageCount;    //当前在线用户数统计
 
 protected:
     int PKG_HEADER_LEN; // 数据包包头长度
