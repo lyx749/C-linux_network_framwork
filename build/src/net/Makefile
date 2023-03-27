@@ -266,6 +266,33 @@ http_c_socket_request.cxx.s:
 	cd /home/lyx/httpServer/build && $(MAKE) -f src/net/CMakeFiles/net.dir/build.make src/net/CMakeFiles/net.dir/http_c_socket_request.cxx.s
 .PHONY : http_c_socket_request.cxx.s
 
+http_c_socket_time.o: http_c_socket_time.cxx.o
+
+.PHONY : http_c_socket_time.o
+
+# target to build an object file
+http_c_socket_time.cxx.o:
+	cd /home/lyx/httpServer/build && $(MAKE) -f src/net/CMakeFiles/net.dir/build.make src/net/CMakeFiles/net.dir/http_c_socket_time.cxx.o
+.PHONY : http_c_socket_time.cxx.o
+
+http_c_socket_time.i: http_c_socket_time.cxx.i
+
+.PHONY : http_c_socket_time.i
+
+# target to preprocess a source file
+http_c_socket_time.cxx.i:
+	cd /home/lyx/httpServer/build && $(MAKE) -f src/net/CMakeFiles/net.dir/build.make src/net/CMakeFiles/net.dir/http_c_socket_time.cxx.i
+.PHONY : http_c_socket_time.cxx.i
+
+http_c_socket_time.s: http_c_socket_time.cxx.s
+
+.PHONY : http_c_socket_time.s
+
+# target to generate assembly for a file
+http_c_socket_time.cxx.s:
+	cd /home/lyx/httpServer/build && $(MAKE) -f src/net/CMakeFiles/net.dir/build.make src/net/CMakeFiles/net.dir/http_c_socket_time.cxx.s
+.PHONY : http_c_socket_time.cxx.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -290,6 +317,9 @@ help:
 	@echo "... http_c_socket_request.o"
 	@echo "... http_c_socket_request.i"
 	@echo "... http_c_socket_request.s"
+	@echo "... http_c_socket_time.o"
+	@echo "... http_c_socket_time.i"
+	@echo "... http_c_socket_time.s"
 .PHONY : help
 
 

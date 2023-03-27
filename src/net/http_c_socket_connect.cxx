@@ -41,7 +41,7 @@ void CSocket::InitConnectPool()
 
     int http_connection_t_len = sizeof(http_connection_t);
 
-    for (int i = 0; i < worker_connections; ++i)
+    for (int i = 0; i < workerConnections; ++i)
     {
         connectPtr = (http_connection_ptr)P_memory->AllocMemory(http_connection_t_len, true);
         connectPtr = new (connectPtr) http_connection_s(); // 放置new函数，意思是初始化，但是不分配内存
@@ -94,7 +94,6 @@ void CSocket::freeConnectionToPool(http_connection_ptr pConn)
     pConn->putOneToFree();
 
     freeConnectionPool.push_back(pConn);
-
     ++freeConnectionsInFreePool_n;
 }
 
@@ -130,6 +129,7 @@ void CSocket::closeConnection(http_connection_ptr pConn)
         close(pConn->fd);
         pConn->fd = -1;
     }
+    --onlineUserCount;
     return;
 }
 
@@ -148,7 +148,11 @@ void CSocket::ServerRecycleConnectionThread(void *threadData)
                 time_t currentTime = time(NULL);
                 if (((*pos)->inRecyleTime + thisPtr->recycleConnectionWaitTime > currentTime) && (!g_stopEvent)) // 如果g_stopEvent为真说明整个程序要结束了，必须进行强制释放
                     continue;
-
+                //if(p_Conn->iThrowsendCount != 0)
+                /*
+                可能在处理心跳包的问题上，如果这个时候刚好切断这个连接调用了zdclose这个函数，并且同时该客户端在这一瞬间也关闭了连接，在recvproc函数里面
+                也调用了zdclose这个函数导致一个sockfd被关闭两次，ithrowSendCount会出现小于0的情况
+                */
                 if ((*pos)->iThrowSendCount > 0)
                 {
                     // 不应该在这个位置出现这个现象，打印一下日志

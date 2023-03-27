@@ -4,6 +4,7 @@
 src/logic/CMakeFiles/logic.dir/http_c_logic.cxx.o
  ../src/include/http_c_crc32.h
  ../src/include/http_c_logic.h
+ ../src/include/http_c_memory.h
  ../src/include/http_c_socket.h
  ../src/include/http_c_threadpool.h
  ../src/include/http_global.h

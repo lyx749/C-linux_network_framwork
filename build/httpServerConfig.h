@@ -33,11 +33,11 @@
 //是否开启踢人时钟，1：开启   0：不开启
 #define Sock_WaitTimeEnable 1
 //多少秒检测一次心跳包，只有当Sock_WaitTimeEnable = 1时，有效
-#define Sock_MaxWaitTime 20
+#define Sock_MaxWaitTime 5
 //当时间到达Sock_MaxWaitTime指定的时间时，直接把客户端踢出去，只有当Sock_WaitTimeEnable = 1时生效
-/* #undef Sock_TimeOutKick */
+#define Sock_TimeOutKick 0
 
-/*[NetSecurity]*/
+
 //Flood攻击检测是否开启,1：开启   0：不开启
 #define Sock_FloodAttackKickEnable 1
 //Sock_FloodTimeInterval表示每次收到数据包的时间间隔是100(单位：毫秒)

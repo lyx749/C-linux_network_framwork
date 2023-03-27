@@ -37,3 +37,11 @@ src/net/CMakeFiles/net.dir/http_c_socket_request.cxx.o: ../src/include/http_macr
 src/net/CMakeFiles/net.dir/http_c_socket_request.cxx.o: httpServerConfig.h
 src/net/CMakeFiles/net.dir/http_c_socket_request.cxx.o: ../src/net/http_c_socket_request.cxx
 
+src/net/CMakeFiles/net.dir/http_c_socket_time.cxx.o: ../src/include/http_c_logic.h
+src/net/CMakeFiles/net.dir/http_c_socket_time.cxx.o: ../src/include/http_c_memory.h
+src/net/CMakeFiles/net.dir/http_c_socket_time.cxx.o: ../src/include/http_c_socket.h
+src/net/CMakeFiles/net.dir/http_c_socket_time.cxx.o: ../src/include/http_c_threadpool.h
+src/net/CMakeFiles/net.dir/http_c_socket_time.cxx.o: ../src/include/http_global.h
+src/net/CMakeFiles/net.dir/http_c_socket_time.cxx.o: ../src/include/http_macro.h
+src/net/CMakeFiles/net.dir/http_c_socket_time.cxx.o: ../src/net/http_c_socket_time.cxx
+

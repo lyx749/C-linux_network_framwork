@@ -20,6 +20,14 @@ string.h
 http_c_socket.h
 ../src/include/http_c_socket.h
 
+../src/include/http_c_memory.h
+stddef.h
+-
+stdlib.h
+-
+string.h
+-
+
 ../src/include/http_c_socket.h
 mutex
 -
@@ -52,6 +60,8 @@ unistd.h
 fcntl.h
 -
 thread
+-
+map
 -
 http_macro.h
 ../src/include/http_macro.h
@@ -91,4 +101,6 @@ http_c_crc32.h
 /home/lyx/httpServer/src/logic/http_c_crc32.h
 http_global.h
 /home/lyx/httpServer/src/logic/http_global.h
+http_c_memory.h
+/home/lyx/httpServer/src/logic/http_c_memory.h
 

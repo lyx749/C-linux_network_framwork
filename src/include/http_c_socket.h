@@ -16,6 +16,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <thread>
+#include <map>
 #include "http_macro.h"
 #define HTTP_LISTEN_BACKLOG 511 // 已完成连接队列最大值
 #define HTTP_MAX_EVENTS 512     // epoll_wait 一次最多接收事件数量
@@ -72,8 +73,10 @@ struct http_connection_s
     time_t inRecyleTime; // 入到回收队列的时间
     time_t lastPingTime; // 心跳包检测
 
-    //网络安全
-    std::atomic<int> inSendQueueCount;      //发送队伍的数据条目数
+    // 网络安全
+    std::atomic<int> inSendQueueCount; // 发送队伍的数据条目数
+    uint64_t floodLateKickTime;       //flood上次收包时间
+    int floodAttackCount;           //flood攻击在该时间收到包的数量的统计
 };
 
 typedef struct _STRUCT_MSG_HEADER
@@ -88,15 +91,17 @@ public:
     CSocket();
     virtual ~CSocket();
     virtual bool Initialize();
-    virtual bool InitializeSubproc();                                    //创建线程[子进程中执行]
+    virtual bool InitializeSubproc(); // 创建线程[子进程中执行]
+    virtual void shutdownSubproc();
     virtual void threadRecvProcFunc(char *PMsgBuff);
+    virtual void procPingTimeOutChecking(STRUCT_MSG_HEADER_PTR pMsgHeader, time_t currentTime); // 处理心跳包超时
 
 public:
     int httpEpollInit();
     int httpEpollProcessEvents(int timer);
     int httpEpollOperEvent(int fd, uint32_t eventType, uint32_t flag, int bcaction, http_connection_ptr pConn);
 
-public:
+private:
     // connected pool
     void InitConnectPool();
     void ClearConnectPool();
@@ -119,22 +124,27 @@ public:
     void httpWaitRequestHandlerProcHeader(http_connection_ptr pConn, bool &isFlood);
     void httpWaitRequestHandlerProcBody(http_connection_ptr pConn, bool &isFlood);
 
-
-    //thread handler
+    // thread handler
     void ServerRecycleConnectionThread(void *threadData);
     void ServerSendPackageThread(void *threadData);
+    void ServerTimerMapQueueMonitorThread(void *threadData);
 
-
-    //sendProc
+    // sendProc
     ssize_t sendProc(http_connection_ptr pConn, char *sendBuff, ssize_t size);
 
-
-    //messageQueue
+    // messageQueue
     void clearMessageQueue();
+
+    // time
+    void addToTimerMapQueue(http_connection_ptr pConn);
+    time_t getEarliestTime(); // map的第一个元素
+    STRUCT_MSG_HEADER_PTR getOverTimeTimer(time_t currentTime);
+    STRUCT_MSG_HEADER_PTR removeFirstTimer();
+    void deleteFromTimerMapQueue(http_connection_ptr pConn);
 
 protected:
     void msgSend(char *pSendBuff);
-    void zdCloseSocketProc(http_connection_ptr pConn);  //延迟关闭
+    void zdCloseSocketProc(http_connection_ptr pConn); // 延迟关闭
 
 private:
     int epollHandlefd;
@@ -159,14 +169,14 @@ private:
 
 private:
     std::atomic<int> onlineUserCount; // 目前服务器在线人数
-    
 
-    //网络安全相关
+    // 网络安全相关
     int floodAkEnable;              // Flood攻击检测是否开启,1：开启   0：不开启
     unsigned int floodTimeInterval; // 表示每次收到数据包的时间间隔是100(毫秒)
     int floodKickCount;             // 累积多少次踢出此人
-    
-    //消息队列
+    bool testFlood(http_connection_ptr pConn);
+
+    // 消息队列
     std::list<char *> messageSendQueue;
     std::atomic<int> messageSendQueueCount;
     std::mutex sendMsgQueueMutex;
@@ -174,13 +184,25 @@ private:
     // thread
     std::vector<std::thread> serverProcThreadPool;
 
+    // 统计
+    int discardPackageCount; // 丢掉的发送数据包个数
 
-    //统计
-    int discardPackageCount;    //当前在线用户数统计
+    // 心跳包时间相关
+    int ifOpenTimeCount;    //是否开始踢人时钟， 1开启，0不开启
+    std::mutex timeMapQueueMutex;
+    std::multimap<time_t, STRUCT_MSG_HEADER_PTR> timerMapQueue;
+    std::atomic<int> timeMapQueueCount; // 时间队列的长度
+    time_t timeMapQueueHeaderValue;     // 时间队列头部的值
 
 protected:
     int PKG_HEADER_LEN; // 数据包包头长度
     int MSG_HEADER_LEN; // 消息头长度
+
+    int waitTime;       // 多长时间检测一次心跳包
+    /*
+    ifOpenTimeoutKick该选项一般用于账号密码服务器，服务器不要用户长期留在该页面上，超时就自动剔除用户
+    */
+    int ifOpenTimeoutKick; // 是否开启立刻踢人
 };
 
 #endif

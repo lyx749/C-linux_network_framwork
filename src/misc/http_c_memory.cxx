@@ -11,5 +11,5 @@ void *CMemory::AllocMemory(int needMemoryCount, bool ifMemset)
 }
 void CMemory::FreeMemory(void *point)
 {
-    delete[] ((char *)point);
+    delete []((char *)point);
 }

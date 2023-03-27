@@ -39,6 +39,8 @@ void CSocket::readRequestHandler(http_connection_ptr pConn)
     {
         if (recvLen == pConn->needRecvLen)
         {
+            if (this->floodAkEnable)
+                isFlood = this->testFlood(pConn);
             httpWaitRequestHandlerProcBody(pConn, isFlood);
         }
         else
@@ -120,6 +122,11 @@ ssize_t CSocket::recvProc(http_connection_ptr pConn, char *buff, ssize_t buflen)
 void CSocket::httpWaitRequestHandlerProcHeader(http_connection_ptr pConn, bool &isFlood)
 {
     CMemory *CMemoryPtr = CMemory::GetInstance();
+    if (isFlood)
+    {
+        CMemoryPtr->FreeMemory(pConn->recvMemoryPtr);
+        zdCloseSocketProc(pConn);
+    }
     COMM_PKG_HEADER_PTR pakagePtr = (COMM_PKG_HEADER_PTR)pConn->dataHeadInfo;
     uint16_t pakageLen = ntohs(pakagePtr->pkgLen);
     if (pakageLen < PKG_HEADER_LEN) // 数据包的总长度比包头长度还小，肯定是伪造数据包
@@ -139,13 +146,6 @@ void CSocket::httpWaitRequestHandlerProcHeader(http_connection_ptr pConn, bool &
         pConn->needRecvLen = PKG_HEADER_LEN;
         return;
     }
-
-    if (pakageLen == PKG_HEADER_LEN) // 只有一个包头
-    {
-        httpWaitRequestHandlerProcBody(pConn, isFlood);
-        return;
-    }
-
     char *recvBuff = (char *)CMemoryPtr->AllocMemory(pakageLen + MSG_HEADER_LEN, false);
     pConn->recvMemoryPtr = recvBuff;
     // 填写消息体
@@ -156,6 +156,14 @@ void CSocket::httpWaitRequestHandlerProcHeader(http_connection_ptr pConn, bool &
     // 填写包头
     memcpy(recvBuff, pConn->dataHeadInfo, PKG_HEADER_LEN);
     recvBuff += PKG_HEADER_LEN;
+
+    if (pakageLen == PKG_HEADER_LEN) // 只有一个包头
+    {
+        if (this->floodAkEnable)
+            isFlood = this->testFlood(pConn);
+        httpWaitRequestHandlerProcBody(pConn, isFlood);
+        return;
+    }
     // 开始收包体
     pConn->currentStat = _PKG_BD_INIT;
     pConn->recvBufHeadPtr = recvBuff;
@@ -191,23 +199,54 @@ ssize_t CSocket::sendProc(http_connection_ptr pConn, char *sendBuff, ssize_t siz
             return 0;
         }
 
-        if(errno == EAGAIN || errno == EWOULDBLOCK)
+        if (errno == EAGAIN || errno == EWOULDBLOCK)
         {
-            //缓冲区满了
+            // 缓冲区满了
             return -1;
         }
 
-        if(errno == EINTR)  //慢系统调用，阻塞
+        if (errno == EINTR) // 慢系统调用，阻塞
         {
             continue;
         }
         else
         {
-            return -2;  //一般来说这种情况属于对端关闭连接
+            return -2; // 一般来说这种情况属于对端关闭连接
         }
     }
 }
 
 void CSocket::writeRequestHandler(http_connection_ptr pConn)
 {
+    CMemory *memoryPtr = CMemory::GetInstance();
+    ssize_t n = send(pConn->fd, pConn->sendPackageSendBuf, pConn->needSendLen, 0);
+
+    if (n > 0 && n != pConn->needSendLen) // 数据没发送完并且缓冲区满，继续监听
+    {
+        pConn->sendPackageSendBuf += n;
+        pConn->needSendLen -= n;
+        return;
+    }
+    else if (n == -1)
+    {
+        // 虽然不太可能发生，因为已经通知我发送数据了，一般不会出现发送数据失败的问题，但是为了程序的健壮性还是打印一下
+        perror("CSocket::writeRequestHandler send error");
+        return;
+    }
+
+    if (n > 0 && n == pConn->needSendLen) // 缓冲区可以全部发送完，说明缓冲区比较空闲，将写监听事件从红黑树上摘下
+    {
+        if (httpEpollOperEvent(pConn->fd, EPOLL_CTL_MOD, EPOLLOUT, 1, pConn) == -1)
+        {
+            perror("CSocket::writeRequestHandler httpEpollOperEvent error");
+            return;
+        }
+    }
+
+    // 走到这的要么是数据发送完毕的，要么是对端断开了，执行收尾工作
+    memoryPtr->FreeMemory(pConn->sendPackageMemPtr);
+    pConn->sendPackageMemPtr = NULL;
+    --pConn->iThrowSendCount;
+    if (sem_post(&this->sendMsgQueueSem_t) == -1)
+        perror("CSocket::writeRequestHandler sem_post error");
 }

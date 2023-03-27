@@ -3,6 +3,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/net.dir/http_c_socket_accept.cxx.o"
   "CMakeFiles/net.dir/http_c_socket_connect.cxx.o"
   "CMakeFiles/net.dir/http_c_socket_request.cxx.o"
+  "CMakeFiles/net.dir/http_c_socket_time.cxx.o"
   "libnet.a"
   "libnet.pdb"
 )

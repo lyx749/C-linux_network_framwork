@@ -7,6 +7,7 @@ add_library(
     http_c_socket_connect.cxx
     http_c_socket_accept.cxx
     http_c_socket_request.cxx
+    http_c_socket_time.cxx
 )
 
 target_link_libraries(net PUBLIC memory)

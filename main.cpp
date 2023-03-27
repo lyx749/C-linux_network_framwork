@@ -50,17 +50,20 @@
 // // }
 CLogicSocket g_socket;
 WorkerThreadPool g_threadpool;
-bool g_stopEvent;
+bool g_stopEvent = false;
 int main()
 {
     g_socket.addThreadFuncToVector();
     g_threadpool.createAllThreads(ProcMsgRecvWorkThreadCount);
-    CSocket a{};
-    a.openListeningSockets();
-    a.httpEpollInit();
+
+    //printf("%0x\n", &g_CSocket);
+    g_socket.Initialize();
+    g_socket.InitializeSubproc();
+    g_socket.httpEpollInit();
     while (1)
     {
-        a.httpEpollProcessEvents(-1);
+        g_socket.httpEpollProcessEvents(-1);
     }
     g_threadpool.destroyAllThreads();
+    g_socket.shutdownSubproc();
 }

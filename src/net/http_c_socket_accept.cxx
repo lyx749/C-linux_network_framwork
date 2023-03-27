@@ -53,12 +53,19 @@ void CSocket::httpEventAccept(http_connection_ptr oldc)
             return;
         }
 
+        if(onlineUserCount >= workerConnections)
+        {
+            perror("CSocket::httpEventAccept have too much connections onlineUserCount >= workerConnections");
+            close(s);
+            return;
+        }
         // 处理恶意连接的代码
-        if (connectionPool.size() > (worker_connections)*5)
+        if (connectionPool.size() > (workerConnections)*5)
         {
             // 比如你允许同时最大2048个连接，但连接池却有了 2048*5这么大的容量，这肯定是表示短时间内 产生大量连接/断开，因为延迟回收机制，这里连接还在垃圾池里没有被回收
             if (freeConnectionPool.size() < workerConnections)
             {
+                perror("CSocket::httpEventAccept have too much connections freeConnectionPool.size() < workerConnections");
                 close(s);
                 return;
             }
@@ -81,6 +88,11 @@ void CSocket::httpEventAccept(http_connection_ptr oldc)
         {
             closeConnection(newc);
             return;
+        }
+
+        if(this->ifOpenTimeCount == 1)
+        {
+            addToTimerMapQueue(newc);
         }
         ++onlineUserCount;
         break;

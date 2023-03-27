@@ -52,20 +52,30 @@ public:
         }
     };
 
-    std::pair<char *, ssize_t> initPakage()
+    std::pair<char *, ssize_t> initPingPackage()
+    {
+        char *sendBuff = new char[PKG_HEADER_LEN]{};
+        COMM_PKG_HEADER_PTR packageHeaderPtr = (COMM_PKG_HEADER_PTR)sendBuff;
+        packageHeaderPtr->crc32 = 0;
+        packageHeaderPtr->msgCode = htons(1);
+        packageHeaderPtr->pkgLen = htons(PKG_HEADER_LEN);
+        return std::make_pair(sendBuff, PKG_HEADER_LEN);
+    }
+
+    std::pair<char *, ssize_t> initPackage()
     {
         char *temp = new char[PKG_HEADER_LEN + sizeof(STRUCT_LOGIN_T)]{};
-        COMM_PKG_HEADER_PTR pakageHeaderPtr = (COMM_PKG_HEADER_PTR)temp;
-        pakageHeaderPtr->pkgLen = htons(PKG_HEADER_LEN + sizeof(STRUCT_LOGIN_T));
+        COMM_PKG_HEADER_PTR packageHeaderPtr = (COMM_PKG_HEADER_PTR)temp;
+        packageHeaderPtr->pkgLen = htons(PKG_HEADER_LEN + sizeof(STRUCT_LOGIN_T));
 
-        pakageHeaderPtr->msgCode = htons(0);
+        packageHeaderPtr->msgCode = htons(0);
 
         STRUCT_LOGIN_PTR loginPtr = (STRUCT_LOGIN_PTR)(temp + PKG_HEADER_LEN);
         strcpy(loginPtr->password, "123456");
         strcpy(loginPtr->username, "lyx");
         int calcCrc = CCRC32::GetInstance()->Get_CRC((unsigned char *)loginPtr, sizeof(STRUCT_LOGIN_T));
         printf("%d\n", calcCrc);
-        pakageHeaderPtr->crc32 = htonl(calcCrc);
+        packageHeaderPtr->crc32 = htonl(calcCrc);
         return std::make_pair(temp, PKG_HEADER_LEN + sizeof(STRUCT_LOGIN_T));
     }
 
@@ -95,7 +105,7 @@ public:
         return sockfd;
     }
 
-    int sendPakage(std::pair<char *, ssize_t> buff, int sockfd)
+    int sendPackage(std::pair<char *, ssize_t> buff, int sockfd)
     {
         ssize_t needSendLen = buff.second;
         ssize_t sendedLen = 0;
@@ -112,8 +122,17 @@ public:
             sendedLen += tempLen;
             printf("SendLen = %ld\n", sendedLen);
         }
-        delete[] buff.first;
+        //delete[] buff.first;
         return sendedLen;
+    }
+
+    int recvPackage(char *recvBuff, int fd)
+    {
+        ssize_t n = recv(fd, recvBuff, sizeof(recvBuff), 0);
+        if (n < 0)
+            perror("recv error");
+
+        return n;
     }
 };
 client *client::clientInterface = NULL;
@@ -121,6 +140,20 @@ int main()
 {
     client *cPtr = client::getInterface();
     int sockfd = cPtr->initSocket();
-    std::pair<char *, ssize_t> buff = cPtr->initPakage();
-    cPtr->sendPakage(buff, sockfd);
+    //std::pair<char *, ssize_t> buff = cPtr->initPackage();
+    std::pair<char *, ssize_t> buff = cPtr->initPingPackage();
+    while (1)
+    {
+        cPtr->sendPackage(buff, sockfd);
+        // char recvBuff[4096]{};
+        // ssize_t n = cPtr->recvPackage(recvBuff, sockfd);
+        // if(n > 0)
+        //     printf("%s\n", recvBuff);
+        // if(n == 0)
+        // {
+        //     printf("connection is be closed");
+        //     close(sockfd);
+        //     break;
+        // }
+    }
 }
