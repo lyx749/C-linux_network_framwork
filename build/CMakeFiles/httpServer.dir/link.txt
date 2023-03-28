@@ -1,1 +1,0 @@
-/usr/bin/g++   -fsanitize=undefined -fsanitize=address -Wall -g -g  -rdynamic -fsanitize=address -fsanitize=undefined CMakeFiles/httpServer.dir/main.cpp.o  -o httpServer  src/net/libnet.a src/misc/libthreadPool.a src/logic/liblogic.a src/logs/liblog.a -lpthread src/misc/libcrc32.a src/net/libnet.a src/misc/libmemory.a src/app/libfunc.a 
