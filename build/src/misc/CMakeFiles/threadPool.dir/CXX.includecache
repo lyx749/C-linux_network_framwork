@@ -77,6 +77,8 @@ chrono
 ../src/include/http_global.h
 sys/types.h
 -
+signal.h
+-
 http_c_threadpool.h
 ../src/include/http_c_threadpool.h
 http_c_logic.h

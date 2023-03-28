@@ -6,7 +6,6 @@ void CSocket::httpEventAccept(http_connection_ptr oldc)
 {
     struct sockaddr clientAddr;
     socklen_t clientAddrLen = sizeof(clientAddr);
-    int level;
 
     int s;
     http_connection_ptr newc; // 代表连接池的一个连接
@@ -19,10 +18,9 @@ void CSocket::httpEventAccept(http_connection_ptr oldc)
             // 对accept、send和recv而言，事件未发生时errno通常被设置成EAGAIN（意为“再来一次”）或者EWOULDBLOCK（意为“期待阻塞”）
             if (errno == EAGAIN || errno == EWOULDBLOCK)
             {
+                perror("CSocket::httpEventAccept accept error errno == EAGAIN || errno == EWOULDBLOCK");
                 continue;
             }
-            level = HTTP_LOG_ALERT;
-
             /*
             该错误被描述为“software caused connection abort”，即“软件引起的连接中止”。原因在于当服务和客户进程在完成用于 TCP 连接的“三次握手”后，
             客户 TCP 却发送了一个 RST （复位）分节，在服务进程看来，就在该连接已由 TCP 排队，等着服务进程调用 accept 的时候 RST 却到达了。
@@ -31,19 +29,20 @@ void CSocket::httpEventAccept(http_connection_ptr oldc)
             */
             // ECONNRESET错误则发生在对方意外关闭套接字后【您的主机中的软件放弃了一个已建立的连接--由于超时或者其它失败而中止接连(用户插拔网线就可能有这个错误出现)】
             if (errno == ECONNABORTED)
-                level = HTTP_LOG_ERR;
+                perror("CSocket::httpEventAccept accept error errno == ECONNABORTED");
 
             /*
             EMFILE：进程fd已用尽{已达到系统所允许单一进程所能打开的文件/套接字总数}
             需要扩充文件描述符
             */
             else if (errno == EMFILE)
-                level = HTTP_LOG_CRIT;
+                 perror("CSocket::httpEventAccept accept error errno == EMFILE");
 
             if (errno == ECONNABORTED) // 对方关闭套接字
             {
                 // 这个错误因为可以忽略，所以不用干啥
                 // do nothing
+                perror("CSocket::httpEventAccept accept error errno == ECONNABORTED");
             }
             // if (useAceept4 && errno == ENOSYS) // accpet4()函数未实现
             // {

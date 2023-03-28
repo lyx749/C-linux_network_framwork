@@ -4,6 +4,7 @@
 
 /*[log]*/
 //log 日志目录和文件名
+#cmakedefine ErrorLog "@ErrorLog@"
 #cmakedefine Log "@Log@" 
 //只打印日志等级 <= LogLevel 的日志到日志文件中
 #cmakedefine LogLevel @LogLevel@

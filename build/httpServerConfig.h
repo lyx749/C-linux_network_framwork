@@ -4,7 +4,8 @@
 
 /*[log]*/
 //log 日志目录和文件名
-#define Log "error.log" 
+#define ErrorLog "error.log"
+#define Log "log" 
 //只打印日志等级 <= LogLevel 的日志到日志文件中
 #define LogLevel 8
 
@@ -15,7 +16,7 @@
 #define Daemon 1
 
 //处理接收到的消息的线程池中线程数量
-#define ProcMsgRecvWorkThreadCount 12
+#define ProcMsgRecvWorkThreadCount 120
 
 /*[Net]*/
 //监听端口数量
