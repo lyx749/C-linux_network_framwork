@@ -29,13 +29,9 @@ char* http_slprintf(char* buf, char* last, const char* fmt, ...);
 char* http_vslprintf(char* buf, char* last, const char* fmt, va_list args);
 
 /*----------------------------日志输出，写入函数---------------------------*/
-void http_log_init();                                               // 日志初始化
-void http_log_stderr(int err, const char* fmt, ...);                // 输出日志消息
-void http_log_error_core(int level, int err, const char* fmt, ...); // 写日志文件
-
-// 由错误码获取错误信息
-char* http_log_errno(char* buf, char* last, int err);
-
+char *getNowTime();
+void httpErrorLog(char *fmt, ...);
+void httpCommonLog(char *fmt, ...);
 
 /*进程相关函数*/
 int http_init_signals();

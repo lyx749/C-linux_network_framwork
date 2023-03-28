@@ -2,7 +2,8 @@
 #include "../../build/httpServerConfig.h"
 #include "http_c_memory.h"
 #include "http_global.h"
-#include "sys/time.h"
+#include <sys/time.h>
+#include "http_func.h"
 CSocket::CSocket()
 {
     // config
@@ -46,7 +47,7 @@ int CSocket::httpEpollInit()
     this->epollHandlefd = epoll_create(workerConnections);
     if (this->epollHandlefd == -1)
     {
-        fprintf(stderr, "CSocket::httpEpollInit()'s epoll_create error %s\n", strerror(this->epollHandlefd));
+        httpErrorLog("CSocket::httpEpollInit()'s epoll_create error : %s", strerror(errno));
         exit(2);
     }
 
@@ -62,7 +63,7 @@ int CSocket::httpEpollInit()
 
         if (httpEpollOperEvent((*pos)->listenfd, EPOLL_CTL_ADD, EPOLLIN | EPOLLRDHUP, 0, p_Conn) == -1)
         {
-            perror("CSocket::httpEpollInit's httpEpollOperEvent error");
+            httpErrorLog("CSocket::httpEpollInit's httpEpollOperEvent error");
             exit(2);
         }
     }
@@ -114,7 +115,7 @@ int CSocket::httpEpollOperEvent(int fd, uint32_t eventType, uint32_t flag, int b
 
     if (epoll_ctl(epollHandlefd, eventType, fd, &ev) == -1)
     {
-        perror("CSocket::httpEpollOperEvent()中epoll_ctl error");
+        httpErrorLog("CSocket::httpEpollOperEvent()中epoll_ctl error : %s", strerror(errno));
         return -1;
     }
     return 1;
@@ -126,7 +127,7 @@ int CSocket::httpEpollProcessEvents(int timer)
     int eventsCount = epoll_wait(epollHandlefd, readyEvents, HTTP_MAX_EVENTS, timer);
     if (eventsCount == -1)
     {
-        perror("CSocket::httpEpollProcessEvents's epoll_wait() error");
+        httpErrorLog("CSocket::httpEpollProcessEvents's epoll_wait() error", strerror(errno));
         return -1;
     }
 
@@ -137,7 +138,7 @@ int CSocket::httpEpollProcessEvents(int timer)
             // 属于时间到了正常返回
             return 0;
         }
-        perror("CSocket::httpEpollProcessEvents's epoll_wait() don't set timeout, but don't baak any events");
+        httpErrorLog("CSocket::httpEpollProcessEvents's epoll_wait() don't set timeout, but don't baak any events");
         return -1;
     }
 
@@ -184,39 +185,39 @@ bool CSocket::openListeningSockets()
     {
         if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) == -1)
         {
-            fprintf(stderr, "CSocket::openListeningSockets's socket error\n");
+            httpErrorLog("CSocket::openListeningSockets's socket error : %s", strerror(errno));
             return false;
         }
 
         int opt;
         if (setsockopt(sockfd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt)) == -1)
         {
-            fprintf(stderr, "CSocket::openListeningSockets's setsockopt error\n");
+            httpErrorLog("CSocket::openListeningSockets's setsockopt error : %s", strerror(errno));
             return false;
         }
 
         if (setsockopt(sockfd, SOL_SOCKET, SO_REUSEPORT, &opt, sizeof(opt)) == -1)
         {
-            fprintf(stderr, "CSocket::openListeningSockets's setsockopt error\n");
+            httpErrorLog("CSocket::openListeningSockets's setsockopt error : %s", errno);
             return false;
         }
 
         if (fcntl(sockfd, F_SETFL, O_NONBLOCK) == -1)
         {
-            fprintf(stderr, "CSocket::openListeningSockets's fcntl error\n");
+            httpErrorLog("CSocket::openListeningSockets's fcntl error : %s", strerror(errno));
             return false;
         }
         serverAddr.sin_port = htons(ListenPort);
         if (bind(sockfd, (struct sockaddr *)(&serverAddr), sizeof(serverAddr)) == -1)
         {
             close(sockfd);
-            perror("CSocket::openListeningSockets's bind error\n");
+            httpErrorLog("CSocket::openListeningSockets's bind error : %s", strerror(errno));
             return false;
         }
         if (listen(sockfd, HTTP_LISTEN_BACKLOG) == -1)
         {
             close(sockfd);
-            fprintf(stderr, "CSocket::openListeningSockets's listen error\n");
+            httpErrorLog("CSocket::openListeningSockets's listen error : %s", strerror(errno));
             return false;
         }
 
@@ -224,12 +225,12 @@ bool CSocket::openListeningSockets()
         memset(listenSocketItem, 0, sizeof(http_listening_t));
         listenSocketItem->listenfd = sockfd;
         listenSocketItem->port = ListenPort;
-        printf("监听%d端口成功!\n", ListenPort);
+        httpCommonLog("Successfully listened on port %d", ListenPort);
         listenSocketList.push_back(listenSocketItem);
     }
     if (listenSocketList.size() <= 0)
     {
-        perror("no port in listening");
+        httpErrorLog("no port in listening");
         return false;
     }
     return true;
@@ -240,7 +241,7 @@ void CSocket::closeListeningSockets()
     for (int i = 0; i < CSlistenPortCount; ++i)
     {
         close(listenSocketList[i]->listenfd);
-        printf("close port'id is %d\n", listenSocketList[i]->listenfd);
+        httpCommonLog("close port's id is %d\n", listenSocketList[i]->listenfd);
     }
     return;
 }
@@ -268,7 +269,7 @@ bool CSocket::InitializeSubproc()
     this->serverProcThreadPool.push_back(std::thread(&CSocket::ServerRecycleConnectionThread, this, (void *)this)); // 创建回收线程
     if (sem_init(&this->sendMsgQueueSem_t, 0, 0) == -1)
     {
-        perror("CSocket::InitializeSubproc() sem_init error");
+        httpErrorLog("CSocket::InitializeSubproc() sem_init error : %s", strerror(errno));
         return false;
     }
 
@@ -282,7 +283,7 @@ void CSocket::shutdownSubproc()
     //(1)把干活的线程停止掉，注意 系统应该尝试通过设置 g_stopEvent = 1来 开始让整个项目停止
     //(2)用到信号量的，可能还需要调用一下sem_post
     if (sem_post(&this->sendMsgQueueSem_t) == -1)
-        perror("CSocket::shutdownSubproc() sem_post error");
+        httpErrorLog("CSocket::shutdownSubproc() sem_post error : %s", strerror(errno));
 
     for (auto pos = this->serverProcThreadPool.begin(); pos != this->serverProcThreadPool.end(); ++pos)
     {
@@ -335,7 +336,7 @@ void CSocket::msgSend(char *pSendBuff)
     {
         // 发送队列过大，比如客户端恶意不接受数据，就会导致这个队列越来越大
         // 那么可以考虑为了服务器安全，干掉一些数据的发送，虽然有可能导致客户端出现问题，但总比服务器不稳定要好很多
-        perror("CSocket::msgSend() messageSendQueueCount is to big");
+        httpErrorLog("CSocket::msgSend() messageSendQueueCount is to big");
         discardPackageCount++;
         memoryPtr->FreeMemory(pSendBuff);
         return;
@@ -347,7 +348,7 @@ void CSocket::msgSend(char *pSendBuff)
     if (pConn->inSendQueueCount > 400)
     {
         // 该用户收消息太慢(或者干脆不接收消息)，累积的该用户的发送队列中有的数据条目数过大，认为是恶意用户，直接切断
-        fprintf(stderr, "CSocekt::msgSend() found that a user %d has a backlog of packets to be sent, cutting off the connection to him!\n", pConn->fd);
+        httpErrorLog("CSocekt::msgSend() found that a user IP = %s port = %d has a backlog of packets to be sent, cutting off the connection to him!", inet_ntoa(pConn->clienAddr.sin_addr), ntohs(pConn->clienAddr.sin_port));
         discardPackageCount++;
         memoryPtr->FreeMemory(pSendBuff);
         zdCloseSocketProc(pConn);
@@ -359,7 +360,7 @@ void CSocket::msgSend(char *pSendBuff)
     ++messageSendQueueCount;
 
     if (sem_post(&this->sendMsgQueueSem_t) == -1)
-        perror("CSocekt::msgSend() sem_post error");
+        httpErrorLog("CSocekt::msgSend() sem_post error : %s", strerror(errno));
 }
 
 void CSocket::ServerSendPackageThread(void *threadData)
@@ -380,7 +381,7 @@ void CSocket::ServerSendPackageThread(void *threadData)
         if (sem_wait(&thisPtr->sendMsgQueueSem_t) == -1)
         {
             if (errno != EINTR)
-                fprintf(stderr, "CSocket::ServerSendPackageThread() sem_wait error : %s\n", strerror(errno));
+                httpErrorLog("CSocket::ServerSendPackageThread() sem_wait error : %s", strerror(errno));
         }
         if (g_stopEvent)
             break;
@@ -444,7 +445,7 @@ void CSocket::ServerSendPackageThread(void *threadData)
                         ++pConn->iThrowSendCount; // 标记缓冲区已满
 
                         if (thisPtr->httpEpollOperEvent(pConn->fd, EPOLL_CTL_MOD, EPOLLOUT, 0, pConn) == -1)
-                            perror("CSocket::ServerSendPackageThread httpEpollOperEvent error");
+                            httpErrorLog("CSocket::ServerSendPackageThread httpEpollOperEvent error");
                     }
                     goto again;
                 }
@@ -464,7 +465,7 @@ void CSocket::ServerSendPackageThread(void *threadData)
                     // printf("7\n");
                     ++pConn->iThrowSendCount;
                     if (thisPtr->httpEpollOperEvent(pConn->fd, EPOLL_CTL_MOD, EPOLLOUT, 0, pConn) == -1)
-                        perror("CSocket::ServerSendPackageThread httpEpollOperEvent error");
+                        httpErrorLog("CSocket::ServerSendPackageThread httpEpollOperEvent error");
 
                     goto again;
                 }

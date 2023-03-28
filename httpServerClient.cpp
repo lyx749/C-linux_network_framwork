@@ -122,7 +122,7 @@ public:
             sendedLen += tempLen;
             printf("SendLen = %ld\n", sendedLen);
         }
-        //delete[] buff.first;
+        // delete[] buff.first;
         return sendedLen;
     }
 
@@ -140,20 +140,26 @@ int main()
 {
     client *cPtr = client::getInterface();
     int sockfd = cPtr->initSocket();
-    //std::pair<char *, ssize_t> buff = cPtr->initPackage();
+    // std::pair<char *, ssize_t> buff = cPtr->initPackage();
     std::pair<char *, ssize_t> buff = cPtr->initPingPackage();
+    //int count = 0;
+    cPtr->sendPackage(buff, sockfd);
+
     while (1)
     {
-        cPtr->sendPackage(buff, sockfd);
-        // char recvBuff[4096]{};
-        // ssize_t n = cPtr->recvPackage(recvBuff, sockfd);
-        // if(n > 0)
-        //     printf("%s\n", recvBuff);
-        // if(n == 0)
-        // {
-        //     printf("connection is be closed");
-        //     close(sockfd);
-        //     break;
-        // }
+        //printf("count = %d\n", ++count);
+        char recvBuff[4096]{};
+        ssize_t n = cPtr->recvPackage(recvBuff, sockfd);
+        printf("n  = %lu\n", n);
+        if (n > 0)
+            printf("%s\n", recvBuff);
+        if (n == 0)
+        {
+            printf("connection is be closed");
+            close(sockfd);
+            break;
+        }
     }
+    // close(sockfd);
+    delete[] buff.first;
 }

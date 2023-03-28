@@ -2,6 +2,7 @@
 #include "../../build/httpServerConfig.h"
 #include "http_c_memory.h"
 #include "http_global.h"
+#include "http_func.h"
 void CSocket::httpEventAccept(http_connection_ptr oldc)
 {
     struct sockaddr clientAddr;
@@ -18,7 +19,7 @@ void CSocket::httpEventAccept(http_connection_ptr oldc)
             // 对accept、send和recv而言，事件未发生时errno通常被设置成EAGAIN（意为“再来一次”）或者EWOULDBLOCK（意为“期待阻塞”）
             if (errno == EAGAIN || errno == EWOULDBLOCK)
             {
-                perror("CSocket::httpEventAccept accept error errno == EAGAIN || errno == EWOULDBLOCK");
+                httpErrorLog("CSocket::httpEventAccept accept error : %s", strerror(errno));
                 continue;
             }
             /*
@@ -29,20 +30,20 @@ void CSocket::httpEventAccept(http_connection_ptr oldc)
             */
             // ECONNRESET错误则发生在对方意外关闭套接字后【您的主机中的软件放弃了一个已建立的连接--由于超时或者其它失败而中止接连(用户插拔网线就可能有这个错误出现)】
             if (errno == ECONNABORTED)
-                perror("CSocket::httpEventAccept accept error errno == ECONNABORTED");
+                httpErrorLog("CSocket::httpEventAccept accept error : %s", strerror(errno));
 
             /*
             EMFILE：进程fd已用尽{已达到系统所允许单一进程所能打开的文件/套接字总数}
             需要扩充文件描述符
             */
             else if (errno == EMFILE)
-                 perror("CSocket::httpEventAccept accept error errno == EMFILE");
+                 httpErrorLog("CSocket::httpEventAccept accept error errno == EMFILE");
 
             if (errno == ECONNABORTED) // 对方关闭套接字
             {
                 // 这个错误因为可以忽略，所以不用干啥
                 // do nothing
-                perror("CSocket::httpEventAccept accept error errno == ECONNABORTED");
+                httpErrorLog("CSocket::httpEventAccept accept error : %s", strerror(errno));
             }
             // if (useAceept4 && errno == ENOSYS) // accpet4()函数未实现
             // {
@@ -54,7 +55,7 @@ void CSocket::httpEventAccept(http_connection_ptr oldc)
 
         if(onlineUserCount >= workerConnections)
         {
-            perror("CSocket::httpEventAccept have too much connections onlineUserCount >= workerConnections");
+            httpErrorLog("CSocket::httpEventAccept have too much connections onlineUserCount >= workerConnections");
             close(s);
             return;
         }
@@ -64,14 +65,14 @@ void CSocket::httpEventAccept(http_connection_ptr oldc)
             // 比如你允许同时最大2048个连接，但连接池却有了 2048*5这么大的容量，这肯定是表示短时间内 产生大量连接/断开，因为延迟回收机制，这里连接还在垃圾池里没有被回收
             if (freeConnectionPool.size() < workerConnections)
             {
-                perror("CSocket::httpEventAccept have too much connections freeConnectionPool.size() < workerConnections");
+                httpErrorLog("CSocket::httpEventAccept have too much connections freeConnectionPool.size() < workerConnections");
                 close(s);
                 return;
             }
         }
         if (fcntl(s, F_SETFL, O_NONBLOCK) == -1)
         {
-            perror("CSocket::httpEventAccept's fcntl error");
+            httpErrorLog("CSocket::httpEventAccept's fcntl error : %s", strerror(errno));
             close(s);
             return;
         }

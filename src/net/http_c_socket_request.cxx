@@ -2,6 +2,7 @@
 #include "../../build/httpServerConfig.h"
 #include "http_c_memory.h"
 #include "http_global.h"
+#include "http_func.h"
 void CSocket::readRequestHandler(http_connection_ptr pConn)
 {
     bool isFlood = false;
@@ -63,10 +64,11 @@ void CSocket::readRequestHandler(http_connection_ptr pConn)
         }
     }
 
-    if (isFlood)
-    {
-        zdCloseSocketProc(pConn);
-    }
+    // if (isFlood)
+    // {
+    //     httpErrorLog("Attacked by a flood, IP = %s, port = %d\n", inet_ntoa(pConn->clienAddr.sin_addr), ntohs(pConn->clienAddr.sin_port));
+    //     zdCloseSocketProc(pConn);
+    // }
 
     return;
 }
@@ -76,7 +78,7 @@ ssize_t CSocket::recvProc(http_connection_ptr pConn, char *buff, ssize_t buflen)
     ssize_t n = recv(pConn->fd, buff, buflen, 0);
     if (n == 0) // client close connetion
     {
-        printf("client closed connect\n");
+        httpCommonLog("client IP = %s port = %d, closed connect", inet_ntoa(pConn->clienAddr.sin_addr), ntohs(pConn->clienAddr.sin_port));
         zdCloseSocketProc(pConn);
         return -1;
     }
@@ -85,12 +87,12 @@ ssize_t CSocket::recvProc(http_connection_ptr pConn, char *buff, ssize_t buflen)
     {
         if (errno == EAGAIN || errno == EWOULDBLOCK) // 因为采用LT模式，这个错误一般时ET模式下出的，ET模式不断地读就会出现这个错误
         {
-            perror("CSocket::recvProc's recv errno == EAGAIN || errno == EWOULDBLOCK");
+            fprintf(stderr, "CSocket::recvProc's recv error : %s", strerror(errno));
             return -1;
         }
         if (errno == EINTR) // 慢系统调用，阻塞
         {
-            perror("CSocket::recvProc's recv errno == EINTR");
+            httpErrorLog("CSocket::recvProc's recv error : %s", strerror(errno));
             return -1;
         }
         // 以上均不属于异常，不需要将客户从连接池移出
@@ -99,18 +101,18 @@ ssize_t CSocket::recvProc(http_connection_ptr pConn, char *buff, ssize_t buflen)
         {
             // 如果客户端没有正常关闭socket连接，却关闭了整个运行程序【真是够粗暴无理的，应该是直接给服务器发送rst包而不是4次挥手包完成连接断开】，那么会产生这个错误
             // 10054(WSAECONNRESET)--远程程序正在连接的时候关闭会产生这个错误--远程主机强迫关闭了一个现有的连接
-            perror("CSocket::recvProc's recv errno == ECONNRESET");
+            httpErrorLog("CSocket::recvProc's recv error : %s", strerror(errno));
         } // 这个属于客户端出错，下面属于服务器出错
         else
         {
             if (errno == EBADF) // #define EBADF   9 /* Bad file descriptor */
             {
                 // 多线程偶尔出现这个错误，关闭了文件描述符
-                perror("CSocket::recvProc's recv errno == EBADF");
+                httpErrorLog("CSocket::recvProc's recv error : %s", strerror(errno));
             }
             else
             {
-                fprintf(stderr, "CSocket::recvProc's recv errno = %s", strerror(errno));
+                httpErrorLog("CSocket::recvProc's recv error : %s", strerror(errno));
             }
         }
         zdCloseSocketProc(pConn);
@@ -122,16 +124,11 @@ ssize_t CSocket::recvProc(http_connection_ptr pConn, char *buff, ssize_t buflen)
 void CSocket::httpWaitRequestHandlerProcHeader(http_connection_ptr pConn, bool &isFlood)
 {
     CMemory *CMemoryPtr = CMemory::GetInstance();
-    if (isFlood)
-    {
-        CMemoryPtr->FreeMemory(pConn->recvMemoryPtr);
-        zdCloseSocketProc(pConn);
-    }
     COMM_PKG_HEADER_PTR pakagePtr = (COMM_PKG_HEADER_PTR)pConn->dataHeadInfo;
     uint16_t pakageLen = ntohs(pakagePtr->pkgLen);
     if (pakageLen < PKG_HEADER_LEN) // 数据包的总长度比包头长度还小，肯定是伪造数据包
     {
-        printf("pakageLen < PKG_HEADER_LEN error\n");
+        httpErrorLog("IP = %s, port = %d, pakageLen < PKG_HEADER_LEN error", inet_ntoa(pConn->clienAddr.sin_addr), ntohs(pConn->clienAddr.sin_port));
         pConn->recvBufHeadPtr = pConn->dataHeadInfo;
         pConn->currentStat = _PKG_HD_INIT;
         pConn->needRecvLen = PKG_HEADER_LEN;
@@ -140,7 +137,7 @@ void CSocket::httpWaitRequestHandlerProcHeader(http_connection_ptr pConn, bool &
 
     if (pakageLen >= _PKG_MAX_LENGTH - 1000) // pakage too len
     {
-        printf("pakageLen >= _PKG_MAX_LENGTH - 1000 error\n");
+        httpErrorLog("IP = %s, port = %d, pakageLen >= _PKG_MAX_LENGTH - 1000 error", inet_ntoa(pConn->clienAddr.sin_addr), ntohs(pConn->clienAddr.sin_port));
         pConn->recvBufHeadPtr = pConn->dataHeadInfo;
         pConn->currentStat = _PKG_HD_INIT;
         pConn->needRecvLen = PKG_HEADER_LEN;
@@ -173,6 +170,13 @@ void CSocket::httpWaitRequestHandlerProcHeader(http_connection_ptr pConn, bool &
 
 void CSocket::httpWaitRequestHandlerProcBody(http_connection_ptr pConn, bool &isFlood)
 {
+    if (isFlood)
+    {
+        httpErrorLog("Attacked by a flood, IP = %s, port = %d", inet_ntoa(pConn->clienAddr.sin_addr), ntohs(pConn->clienAddr.sin_port));
+        CMemory::GetInstance()->FreeMemory(pConn->recvMemoryPtr);
+        zdCloseSocketProc(pConn);
+        return;
+    }
     g_threadpool.inMsgRecvQueueAndSignal(pConn->recvMemoryPtr);
     pConn->recvMemoryPtr = NULL;
     pConn->recvBufHeadPtr = pConn->dataHeadInfo;
@@ -230,7 +234,7 @@ void CSocket::writeRequestHandler(http_connection_ptr pConn)
     else if (n == -1)
     {
         // 虽然不太可能发生，因为已经通知我发送数据了，一般不会出现发送数据失败的问题，但是为了程序的健壮性还是打印一下
-        perror("CSocket::writeRequestHandler send error");
+        httpErrorLog("CSocket::writeRequestHandler send error : %s", strerror(errno));
         return;
     }
 
@@ -238,7 +242,7 @@ void CSocket::writeRequestHandler(http_connection_ptr pConn)
     {
         if (httpEpollOperEvent(pConn->fd, EPOLL_CTL_MOD, EPOLLOUT, 1, pConn) == -1)
         {
-            perror("CSocket::writeRequestHandler httpEpollOperEvent error");
+            httpErrorLog("CSocket::writeRequestHandler httpEpollOperEvent error");
             return;
         }
     }
@@ -248,5 +252,5 @@ void CSocket::writeRequestHandler(http_connection_ptr pConn)
     pConn->sendPackageMemPtr = NULL;
     --pConn->iThrowSendCount;
     if (sem_post(&this->sendMsgQueueSem_t) == -1)
-        perror("CSocket::writeRequestHandler sem_post error");
+        httpErrorLog("CSocket::writeRequestHandler sem_post error : %s", strerror(errno));
 }

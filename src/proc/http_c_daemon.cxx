@@ -9,7 +9,7 @@ int http_daemon()
     switch (fork())
     {
     case -1:
-        perror("http_daemon() fork error");
+        httpErrorLog("http_daemon() fork error : %s", strerror(errno));
         return -1;
     case 0:
         break;
@@ -23,7 +23,7 @@ int http_daemon()
 
     if (setsid() == -1)
     {
-        perror("http_daemon() setsid() == -1 error");
+        httpErrorLog("http_daemon() setsid error : %s", strerror(errno));
         return -1;
     }
 
@@ -34,7 +34,7 @@ int http_daemon()
     int LogFd = open(Log, O_TRUNC | O_CREAT | O_RDWR, 0777);
     if (errorLogFd == -1 || LogFd == -1)
     {
-        perror("http_daemon() open error NullFd == -1 || errorLogFd == -1 || LogFd == -1");
+        httpErrorLog("http_daemon() open error errorLogFd == -1 || LogFd == -1", strerror(errno));
         return -1;
     }
 
@@ -42,7 +42,7 @@ int http_daemon()
     {
         close(errorLogFd);
         close(LogFd);
-        perror("http_daemon() dup2(errorLogFd, STDERR_FILENO) == -1");
+        httpErrorLog("dup2(errorLogFd, STDERR_FILENO) error : %s", strerror(errno));
         return -1;
     }
 
@@ -50,7 +50,7 @@ int http_daemon()
     {
         close(errorLogFd);
         close(LogFd);
-        perror("dup2(LogFd, STDOUT_FILENO) == -1");
+        httpErrorLog("dup2(LogFd, STDOUT_FILENO) error : %s", strerror(errno));
         return -1;
     }
     return 0;

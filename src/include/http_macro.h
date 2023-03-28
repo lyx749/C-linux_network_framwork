@@ -38,4 +38,5 @@ typedef struct _COMM_PKG_HEADER
     int crc32;              // CRC32位校验码
 } COMM_PKG_HEADER_T, *COMM_PKG_HEADER_PTR;
 #pragma pack()
+
 #endif

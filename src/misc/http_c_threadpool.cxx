@@ -2,6 +2,7 @@
 #include "http_c_socket.h"
 #include "http_c_memory.h"
 #include "http_global.h"
+#include "http_func.h"
 bool WorkerThreadPool::ifThreadExit = false;
 
 WorkerThreadPool::WorkerThreadPool()
@@ -48,7 +49,7 @@ bool WorkerThreadPool::createAllThreads(int threadNum)
     }
     catch (...)
     {
-        printf("create thread abnomal\n");
+        httpErrorLog("create thread abnormal");
         throw;
     }
 
@@ -120,7 +121,7 @@ void WorkerThreadPool::inMsgRecvQueueAndSignal(char *buf)
 again:
     if (this->callAHandlerThread() == -1)
     {
-        printf("wait for 5s\n");
+        httpErrorLog("wait for 5s\n");
         std::this_thread::sleep_for(std::chrono::minutes(5));
         goto again;
     }
@@ -130,7 +131,7 @@ int WorkerThreadPool::callAHandlerThread()
 {
     if (this->createThreadNumber == this->runningThreadNumbers)
     {
-        printf("threadNums is not enough\n");
+        httpErrorLog("threadNums is not enough");
         return -1;
     }
     this->pthreadCondition.notify_one();

@@ -2,6 +2,7 @@
 #include "../../build/httpServerConfig.h"
 #include "http_c_memory.h"
 #include "http_global.h"
+#include "http_func.h"
 void http_connection_s::getOneToUse()
 {
     ++inCurrsequence;
@@ -15,6 +16,9 @@ void http_connection_s::getOneToUse()
     sendPackageMemPtr = NULL;
     events = 0;
     lastPingTime = time(NULL); // 上次ping的时间
+
+    floodAttackCount = 0;
+    floodLateKickTime = 0;
 }
 
 void http_connection_s::putOneToFree()
@@ -156,7 +160,7 @@ void CSocket::ServerRecycleConnectionThread(void *threadData)
                 if ((*pos)->iThrowSendCount > 0)
                 {
                     // 不应该在这个位置出现这个现象，打印一下日志
-                    perror("CSocket::ServerRecycleConnectionThread's (*pos)->iThrowSendCount > 0");
+                    httpErrorLog("CSocket::ServerRecycleConnectionThread's (*pos)->iThrowSendCount > 0");
                 }
 
                 --thisPtr->recycleConnection_n;
@@ -178,7 +182,7 @@ void CSocket::ServerRecycleConnectionThread(void *threadData)
                     if ((*pos)->iThrowSendCount > 0)
                     {
                         // 不应该在这个位置出现这个现象，打印一下日志
-                        perror("CSocket::ServerRecycleConnectionThread's (*pos)->iThrowSendCount > 0");
+                        httpErrorLog("CSocket::ServerRecycleConnectionThread's (*pos)->iThrowSendCount > 0");
                     }
 
                     --thisPtr->recycleConnection_n;

@@ -2,6 +2,7 @@
 #include "http_c_crc32.h"
 #include "http_global.h"
 #include "http_c_memory.h"
+#include "http_func.h"
 std::vector<logicHandler> handlerVector;
 CLogicSocket::CLogicSocket()
 {
@@ -44,13 +45,8 @@ void CLogicSocket::threadRecvProcFunc(char *pMsgBuf)
         int calcCrc = CCRC32::GetInstance()->Get_CRC((unsigned char *)pPkgBody, pkglen - PKG_HEADER_LEN);
         if (calcCrc != pPkgHeader->crc32)
         {
-            perror("crc32 is not right");
+            // perror("crc32 is not right");
             return;
-        }
-
-        else
-        {
-            printf("success get client package\n");
         }
     }
     // crc校验ok
@@ -64,12 +60,12 @@ void CLogicSocket::threadRecvProcFunc(char *pMsgBuf)
     // printf("imsgCode = %d handlerVector.szie() = %d\n", imsgCode, handlerVector.size());
     if (imsgCode >= handlerVector.size())
     {
-        printf("error msgCode\n");
+        //printf("error msgCode\n");
         return;
     }
     if (!(this->*(handlerVector[imsgCode]))(pConn, pMsgHeader, (char *)pPkgBody, pkglen))
     {
-        perror("CLogicSocket::threadRecvProcFunc handlerVector[imsgCode] error");
+        //perror("CLogicSocket::threadRecvProcFunc handlerVector[imsgCode] error");
         return;
     }
     // logicHandlerLogin(pConn, pMsgHeader, pPkgHeader, (char *)pPkgBody, pkglen);
@@ -84,10 +80,12 @@ void CLogicSocket::procPingTimeOutChecking(STRUCT_MSG_HEADER_PTR pMsgHeader, tim
         if (this->ifOpenTimeoutKick == 1) // 要求超时就关闭连接
         {
             zdCloseSocketProc(pConn);
+            httpErrorLog("user IP = %s port = %d does not send heartbeat packet rejection for a long time, kick off!", inet_ntoa(pConn->clienAddr.sin_addr), ntohs(pConn->clienAddr.sin_port));
         }
 
         else if ((currentTime - pConn->lastPingTime) >= (3 * waitTime + 10)) // 超时踢的判断标准就是 每次检查的时间间隔*3，超过这个时间没发送心跳包，就踢
         {
+            httpErrorLog("user IP = %s port = %d does not send heartbeat packet rejection for a long time, kick off!", inet_ntoa(pConn->clienAddr.sin_addr), ntohs(pConn->clienAddr.sin_port));
             zdCloseSocketProc(pConn);
         }
     }
@@ -157,7 +155,7 @@ bool CLogicSocket::logicHandlerPing(http_connection_ptr pConn, STRUCT_MSG_HEADER
         return false;
 
     std::lock_guard<std::mutex> lk(pConn->logicProcMutex);
-    printf("accept ping\n");
+    //httpCommonLog("accept ping\n");
     pConn->lastPingTime = time(NULL);
 
     SendNoBodyPkgToClient(pMsgHeader, 1);

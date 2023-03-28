@@ -1,0 +1,2 @@
+/usr/bin/ar qc libmemory.a  CMakeFiles/memory.dir/http_c_memory.cxx.o
+/usr/bin/ranlib libmemory.a
