@@ -1,2 +1,0 @@
-/usr/bin/ar qc libsetproctitle.a  CMakeFiles/setproctitle.dir/http_setproctitle.cxx.o
-/usr/bin/ranlib libsetproctitle.a
