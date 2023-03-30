@@ -1,8 +1,8 @@
 #include "http_c_socket.h"
-#include "../../build/httpServerConfig.h"
+#include "httpServerConfig.h"
 #include "http_c_memory.h"
 #include "http_global.h"
-#include "http_func.h"
+#include "../logs/http_log.h"
 void http_connection_s::getOneToUse()
 {
     ++inCurrsequence;
@@ -160,7 +160,7 @@ void CSocket::ServerRecycleConnectionThread(void *threadData)
                 if ((*pos)->iThrowSendCount > 0)
                 {
                     // 不应该在这个位置出现这个现象，打印一下日志
-                    httpErrorLog("CSocket::ServerRecycleConnectionThread's (*pos)->iThrowSendCount > 0");
+                    myLog::getInterface()->getLogger()->error("CSocket::ServerRecycleConnectionThread's (*pos)->iThrowSendCount > 0");
                 }
 
                 --thisPtr->recycleConnection_n;
@@ -182,7 +182,7 @@ void CSocket::ServerRecycleConnectionThread(void *threadData)
                     if ((*pos)->iThrowSendCount > 0)
                     {
                         // 不应该在这个位置出现这个现象，打印一下日志
-                        httpErrorLog("CSocket::ServerRecycleConnectionThread's (*pos)->iThrowSendCount > 0");
+                        myLog::getInterface()->getLogger()->error("CSocket::ServerRecycleConnectionThread's (*pos)->iThrowSendCount > 0");
                     }
 
                     --thisPtr->recycleConnection_n;

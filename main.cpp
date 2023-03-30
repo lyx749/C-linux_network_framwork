@@ -1,8 +1,8 @@
 #include <iostream>
 #include "http_c_socket.h"
 #include "http_global.h"
-#include "build/httpServerConfig.h"
-#include "http_func.h"
+#include "httpServerConfig.h"
+#include "http_log.h"
 // char** g_os_argv;         // 原始命令行参数数组
 // int g_os_argc;            // 启动参数个数
 // size_t g_argvneedmem = 0; // 启动参数内存大小
@@ -52,9 +52,10 @@
 CLogicSocket g_socket;
 WorkerThreadPool g_threadpool;
 bool g_stopEvent = false;
+myLog *logPtr = myLog::getInterface();
 int main()
 {
-    test();
+    //test();
     g_socket.addThreadFuncToVector();
     g_threadpool.createAllThreads(ProcMsgRecvWorkThreadCount);
 

@@ -67,7 +67,7 @@ set(CMAKE_MAKEFILE_OUTPUTS
 
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
-  "httpServerConfig.h"
+  "../src/include/httpServerConfig.h"
   "DartConfiguration.tcl"
   "CPackConfig.cmake"
   "CPackSourceConfig.cmake"

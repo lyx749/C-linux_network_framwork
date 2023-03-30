@@ -1,10 +1,8 @@
-#include "http_c_threadpool.h"
 #include "http_c_socket.h"
 #include "http_c_memory.h"
 #include "http_global.h"
-#include "http_func.h"
+#include "http_log.h"
 bool WorkerThreadPool::ifThreadExit = false;
-
 WorkerThreadPool::WorkerThreadPool()
 {
     runningThreadNumbers = 0;
@@ -34,7 +32,7 @@ void WorkerThreadPool::clearMsgRecvQueue()
 bool WorkerThreadPool::createAllThreads(int threadNum)
 {
     createThreadNumber = threadNum;
-
+    myLog *logPtr = myLog::getInterface();
     try
     {
         for (int i = 0; i < threadNum; ++i)
@@ -49,7 +47,7 @@ bool WorkerThreadPool::createAllThreads(int threadNum)
     }
     catch (...)
     {
-        httpErrorLog("create thread abnormal");
+        logPtr->getLogger()->critical("create thread abnormal");
         throw;
     }
 
@@ -113,15 +111,13 @@ void WorkerThreadPool::destroyAllThreads()
 
 void WorkerThreadPool::inMsgRecvQueueAndSignal(char *buf)
 {
-    std::unique_lock<std::mutex> ulk(this->pthreadMutex);
-
+    std::unique_lock<std::mutex> ulk(pthreadMutex);
     this->messageRecvQueue.push_back(buf);
 
     ulk.unlock();
 again:
     if (this->callAHandlerThread() == -1)
     {
-        httpErrorLog("wait for 5s\n");
         std::this_thread::sleep_for(std::chrono::minutes(5));
         goto again;
     }
@@ -129,9 +125,10 @@ again:
 
 int WorkerThreadPool::callAHandlerThread()
 {
+    myLog *logPtr = myLog::getInterface();
     if (this->createThreadNumber == this->runningThreadNumbers)
     {
-        httpErrorLog("threadNums is not enough");
+        logPtr->getLogger()->warn("threadNums is not enough");
         return -1;
     }
     this->pthreadCondition.notify_one();

@@ -733,7 +733,6 @@ CMakeFiles/NightlyTest.dir/clean:
 # Target rules for target CMakeFiles/httpServer.dir
 
 # All Build rule for target.
-CMakeFiles/httpServer.dir/all: src/app/CMakeFiles/func.dir/all
 CMakeFiles/httpServer.dir/all: src/net/CMakeFiles/net.dir/all
 CMakeFiles/httpServer.dir/all: src/misc/CMakeFiles/threadPool.dir/all
 CMakeFiles/httpServer.dir/all: src/misc/CMakeFiles/crc32.dir/all
@@ -748,7 +747,7 @@ CMakeFiles/httpServer.dir/all: _deps/spdlog-build/CMakeFiles/spdlog.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/httpServer.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 29
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 26
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/httpServer.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 0
 .PHONY : CMakeFiles/httpServer.dir/rule
@@ -1092,6 +1091,8 @@ src/app/CMakeFiles/func.dir/clean:
 
 # All Build rule for target.
 src/net/CMakeFiles/net.dir/all: src/misc/CMakeFiles/memory.dir/all
+src/net/CMakeFiles/net.dir/all: src/logs/CMakeFiles/log.dir/all
+src/net/CMakeFiles/net.dir/all: _deps/spdlog-build/CMakeFiles/spdlog.dir/all
 	$(MAKE) -f src/net/CMakeFiles/net.dir/build.make src/net/CMakeFiles/net.dir/depend
 	$(MAKE) -f src/net/CMakeFiles/net.dir/build.make src/net/CMakeFiles/net.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lyx/httpServer/build/CMakeFiles --progress-num=16,17,18,19,20,21 "Built target net"
@@ -1099,7 +1100,7 @@ src/net/CMakeFiles/net.dir/all: src/misc/CMakeFiles/memory.dir/all
 
 # Build rule for subdir invocation for target.
 src/net/CMakeFiles/net.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 18
 	$(MAKE) -f CMakeFiles/Makefile2 src/net/CMakeFiles/net.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 0
 .PHONY : src/net/CMakeFiles/net.dir/rule
@@ -1119,6 +1120,8 @@ src/net/CMakeFiles/net.dir/clean:
 
 # All Build rule for target.
 src/misc/CMakeFiles/threadPool.dir/all: src/misc/CMakeFiles/crc32.dir/all
+src/misc/CMakeFiles/threadPool.dir/all: src/logs/CMakeFiles/log.dir/all
+src/misc/CMakeFiles/threadPool.dir/all: _deps/spdlog-build/CMakeFiles/spdlog.dir/all
 	$(MAKE) -f src/misc/CMakeFiles/threadPool.dir/build.make src/misc/CMakeFiles/threadPool.dir/depend
 	$(MAKE) -f src/misc/CMakeFiles/threadPool.dir/build.make src/misc/CMakeFiles/threadPool.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lyx/httpServer/build/CMakeFiles --progress-num=30,31 "Built target threadPool"
@@ -1126,7 +1129,7 @@ src/misc/CMakeFiles/threadPool.dir/all: src/misc/CMakeFiles/crc32.dir/all
 
 # Build rule for subdir invocation for target.
 src/misc/CMakeFiles/threadPool.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 14
 	$(MAKE) -f CMakeFiles/Makefile2 src/misc/CMakeFiles/threadPool.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 0
 .PHONY : src/misc/CMakeFiles/threadPool.dir/rule
@@ -1201,6 +1204,8 @@ src/misc/CMakeFiles/memory.dir/clean:
 # All Build rule for target.
 src/logic/CMakeFiles/logic.dir/all: src/net/CMakeFiles/net.dir/all
 src/logic/CMakeFiles/logic.dir/all: src/misc/CMakeFiles/memory.dir/all
+src/logic/CMakeFiles/logic.dir/all: src/logs/CMakeFiles/log.dir/all
+src/logic/CMakeFiles/logic.dir/all: _deps/spdlog-build/CMakeFiles/spdlog.dir/all
 	$(MAKE) -f src/logic/CMakeFiles/logic.dir/build.make src/logic/CMakeFiles/logic.dir/depend
 	$(MAKE) -f src/logic/CMakeFiles/logic.dir/build.make src/logic/CMakeFiles/logic.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lyx/httpServer/build/CMakeFiles --progress-num=12,13 "Built target logic"
@@ -1208,7 +1213,7 @@ src/logic/CMakeFiles/logic.dir/all: src/misc/CMakeFiles/memory.dir/all
 
 # Build rule for subdir invocation for target.
 src/logic/CMakeFiles/logic.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 10
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 20
 	$(MAKE) -f CMakeFiles/Makefile2 src/logic/CMakeFiles/logic.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 0
 .PHONY : src/logic/CMakeFiles/logic.dir/rule
@@ -1227,8 +1232,6 @@ src/logic/CMakeFiles/logic.dir/clean:
 # Target rules for target src/logs/CMakeFiles/log.dir
 
 # All Build rule for target.
-src/logs/CMakeFiles/log.dir/all: src/app/CMakeFiles/func.dir/all
-src/logs/CMakeFiles/log.dir/all: src/misc/CMakeFiles/memory.dir/all
 src/logs/CMakeFiles/log.dir/all: _deps/spdlog-build/CMakeFiles/spdlog.dir/all
 	$(MAKE) -f src/logs/CMakeFiles/log.dir/build.make src/logs/CMakeFiles/log.dir/depend
 	$(MAKE) -f src/logs/CMakeFiles/log.dir/build.make src/logs/CMakeFiles/log.dir/build
@@ -1237,7 +1240,7 @@ src/logs/CMakeFiles/log.dir/all: _deps/spdlog-build/CMakeFiles/spdlog.dir/all
 
 # Build rule for subdir invocation for target.
 src/logs/CMakeFiles/log.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 15
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 10
 	$(MAKE) -f CMakeFiles/Makefile2 src/logs/CMakeFiles/log.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/lyx/httpServer/build/CMakeFiles 0
 .PHONY : src/logs/CMakeFiles/log.dir/rule

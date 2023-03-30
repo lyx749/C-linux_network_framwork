@@ -8,10 +8,17 @@ set(CMAKE_DEPENDS_CHECK_CXX
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
+# Preprocessor definitions for this target.
+set(CMAKE_TARGET_DEFINITIONS_CXX
+  "SPDLOG_COMPILED_LIB"
+  )
+
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../src/net/../include"
   "../src/misc/../include"
+  "../src/logs/."
+  "../src/logs/spdlog/include"
   )
 
 # Targets to which this target links.
@@ -23,7 +30,6 @@ set(CMAKE_TARGET_LINKED_INFO_FILES
   "/home/lyx/httpServer/build/src/misc/CMakeFiles/crc32.dir/DependInfo.cmake"
   "/home/lyx/httpServer/build/src/misc/CMakeFiles/memory.dir/DependInfo.cmake"
   "/home/lyx/httpServer/build/_deps/spdlog-build/CMakeFiles/spdlog.dir/DependInfo.cmake"
-  "/home/lyx/httpServer/build/src/app/CMakeFiles/func.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

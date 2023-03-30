@@ -15,5 +15,5 @@ FetchContent_Declare(
 )
 
 FetchContent_MakeAvailable(spdlog)
-target_link_libraries(log PRIVATE spdlog::spdlog)
-target_link_libraries(log PRIVATE memory func)
+target_link_libraries(log PUBLIC spdlog::spdlog)
+target_include_directories(log PUBLIC .)

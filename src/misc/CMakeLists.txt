@@ -1,4 +1,5 @@
 include_directories(../include)
+include_directories(../logs)
 add_library(
     memory
     STATIC
@@ -17,7 +18,7 @@ add_library(
     http_c_threadpool.cxx   
 )
 
-target_link_libraries(threadPool PUBLIC pthread crc32)
+target_link_libraries(threadPool PUBLIC pthread crc32 log)
 # set_target_properties(
 #     memory
 #     PROPERTIES

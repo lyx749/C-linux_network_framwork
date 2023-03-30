@@ -480,13 +480,13 @@ httpServer_BINARY_DIR:STATIC=/home/lyx/httpServer/build
 httpServer_SOURCE_DIR:STATIC=/home/lyx/httpServer
 
 //Dependencies for the target
-log_LIB_DEPENDS:STATIC=general;spdlog::spdlog;general;memory;general;func;
+log_LIB_DEPENDS:STATIC=general;spdlog::spdlog;
 
 //Dependencies for the target
-logic_LIB_DEPENDS:STATIC=general;net;
+logic_LIB_DEPENDS:STATIC=general;net;general;log;
 
 //Dependencies for the target
-net_LIB_DEPENDS:STATIC=general;memory;
+net_LIB_DEPENDS:STATIC=general;memory;general;log;
 
 //Value Computed by CMake
 spdlog_BINARY_DIR:STATIC=/home/lyx/httpServer/build/_deps/spdlog-build
@@ -495,7 +495,7 @@ spdlog_BINARY_DIR:STATIC=/home/lyx/httpServer/build/_deps/spdlog-build
 spdlog_SOURCE_DIR:STATIC=/home/lyx/httpServer/src/logs/spdlog
 
 //Dependencies for the target
-threadPool_LIB_DEPENDS:STATIC=general;pthread;general;crc32;
+threadPool_LIB_DEPENDS:STATIC=general;pthread;general;crc32;general;log;
 
 
 ########################

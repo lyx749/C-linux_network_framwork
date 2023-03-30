@@ -1,5 +1,5 @@
 include_directories(../include)
-
+include_directories(../logs)
 add_library(
     net
     STATIC
@@ -10,5 +10,5 @@ add_library(
     http_c_socket_time.cxx
 )
 
-target_link_libraries(net PUBLIC memory)
+target_link_libraries(net PUBLIC memory log)
 target_include_directories(net PUBLIC ../include)

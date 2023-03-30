@@ -17,15 +17,12 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../src/logs/../include"
   "../src/logs/spdlog/include"
-  "../src/misc/../include"
-  "../src/app/../include"
+  "../src/logs/."
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
   "/home/lyx/httpServer/build/_deps/spdlog-build/CMakeFiles/spdlog.dir/DependInfo.cmake"
-  "/home/lyx/httpServer/build/src/misc/CMakeFiles/memory.dir/DependInfo.cmake"
-  "/home/lyx/httpServer/build/src/app/CMakeFiles/func.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.
