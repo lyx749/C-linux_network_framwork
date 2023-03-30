@@ -8,7 +8,9 @@ project(
 )
 include(configure.cmake)
 SetConfigure()
-
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/_staticLib)
+#set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/library)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/_bin)
 add_executable(httpServer main.cpp)
 add_executable(client httpServerClient.cpp)
 

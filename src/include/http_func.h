@@ -32,6 +32,7 @@ char* http_vslprintf(char* buf, char* last, const char* fmt, va_list args);
 char *getNowTime();
 void httpErrorLog(char *fmt, ...);
 void httpCommonLog(char *fmt, ...);
+void test();
 
 /*进程相关函数*/
 int http_init_signals();

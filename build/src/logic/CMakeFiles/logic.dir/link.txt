@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../../_staticLib/liblogic.a  CMakeFiles/logic.dir/http_c_logic.cxx.o
+/usr/bin/ranlib ../../../_staticLib/liblogic.a

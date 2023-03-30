@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/lyx/httpServer/httpServerClient.cpp
+sys/socket.h
+-
+sys/types.h
+-
+unistd.h
+-
+arpa/inet.h
+-
+string.h
+-
+map
+-
+stdio.h
+-
+src/include/http_c_crc32.h
+/home/lyx/httpServer/src/include/http_c_crc32.h
+
+/home/lyx/httpServer/src/include/http_c_crc32.h
+stddef.h
+-
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+

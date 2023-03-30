@@ -6,6 +6,9 @@
 #include <time.h>
 #include "http_c_memory.h"
 #include <stdio.h>
+#include "spdlog/spdlog.h"
+#include "spdlog/async.h"
+#include "spdlog/sinks/rotating_file_sink.h"
 char *getNowTime()
 {
     char *timeBuff = (char *)CMemory::GetInstance()->AllocMemory(26, true);
@@ -46,4 +49,9 @@ void httpCommonLog(char *fmt, ...)
     va_end(argus);
     memoryPtr->FreeMemory(timeBuff);
     memoryPtr->FreeMemory(fmtBuff);
+}
+
+void test()
+{
+    spdlog::info("i love c++");
 }

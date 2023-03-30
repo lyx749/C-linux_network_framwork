@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../../_staticLib/libcrc32.a  CMakeFiles/crc32.dir/http_c_crc32.cxx.o
+/usr/bin/ranlib ../../../_staticLib/libcrc32.a

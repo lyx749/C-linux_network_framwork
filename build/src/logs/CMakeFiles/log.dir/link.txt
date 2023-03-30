@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../../_staticLib/liblog.a  CMakeFiles/log.dir/http_log.cxx.o
+/usr/bin/ranlib ../../../_staticLib/liblog.a
