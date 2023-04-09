@@ -185,6 +185,33 @@ http_c_logic.cxx.s:
 	cd /home/lyx/httpServer/build && $(MAKE) -f src/logic/CMakeFiles/logic.dir/build.make src/logic/CMakeFiles/logic.dir/http_c_logic.cxx.s
 .PHONY : http_c_logic.cxx.s
 
+http_c_logic_handler.o: http_c_logic_handler.cxx.o
+
+.PHONY : http_c_logic_handler.o
+
+# target to build an object file
+http_c_logic_handler.cxx.o:
+	cd /home/lyx/httpServer/build && $(MAKE) -f src/logic/CMakeFiles/logic.dir/build.make src/logic/CMakeFiles/logic.dir/http_c_logic_handler.cxx.o
+.PHONY : http_c_logic_handler.cxx.o
+
+http_c_logic_handler.i: http_c_logic_handler.cxx.i
+
+.PHONY : http_c_logic_handler.i
+
+# target to preprocess a source file
+http_c_logic_handler.cxx.i:
+	cd /home/lyx/httpServer/build && $(MAKE) -f src/logic/CMakeFiles/logic.dir/build.make src/logic/CMakeFiles/logic.dir/http_c_logic_handler.cxx.i
+.PHONY : http_c_logic_handler.cxx.i
+
+http_c_logic_handler.s: http_c_logic_handler.cxx.s
+
+.PHONY : http_c_logic_handler.s
+
+# target to generate assembly for a file
+http_c_logic_handler.cxx.s:
+	cd /home/lyx/httpServer/build && $(MAKE) -f src/logic/CMakeFiles/logic.dir/build.make src/logic/CMakeFiles/logic.dir/http_c_logic_handler.cxx.s
+.PHONY : http_c_logic_handler.cxx.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -200,6 +227,9 @@ help:
 	@echo "... http_c_logic.o"
 	@echo "... http_c_logic.i"
 	@echo "... http_c_logic.s"
+	@echo "... http_c_logic_handler.o"
+	@echo "... http_c_logic_handler.i"
+	@echo "... http_c_logic_handler.s"
 .PHONY : help
 
 

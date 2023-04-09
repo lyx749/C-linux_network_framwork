@@ -1,0 +1,19 @@
+HTTP/1.1 200 OK
+Content-Type: application/soap+xml; charset=utf-8
+Content-Length: length
+ 
+<? xml version = "1.0" encoding = "utf-8" ?>
+< soap12:Envelope xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd = "http://www.w3.org/2001/XMLSchema" xmlns:soap12 = "http://www.w3.org/2003/05/soap-envelope" >
+< soap12:Body >
+     < CancelOrderResponse xmlns = "https://api.efxnow.com/webservices2.3" >
+       < CancelOrderResult >
+         < Success >boolean</ Success >
+         < ErrorDescription >string</ ErrorDescription >
+         < ErrorNumber >int</ ErrorNumber >
+         < CustomerOrderReference >long</ CustomerOrderReference >
+         < OrderConfirmation >string</ OrderConfirmation >
+         < CustomerDealRef >string</ CustomerDealRef >
+       </ CancelOrderResult >
+     </ CancelOrderResponse >
+</ soap12:Body >
+</ soap12:Envelope > 

@@ -5,21 +5,24 @@ class CLogicSocket;
 typedef bool (CLogicSocket::*logicHandler)(http_connection_ptr, STRUCT_MSG_HEADER_PTR, char *, int);
 class CLogicSocket : public CSocket
 {
+private:
+    std::vector<logicHandler> handlerVector;
+
 public:
     CLogicSocket();
     virtual ~CLogicSocket(){};
     virtual bool Initialize();
     virtual void threadRecvProcFunc(char *pMsgBuf);
-    virtual void procPingTimeOutChecking(STRUCT_MSG_HEADER_PTR pMsgHeader, time_t currrntTime); //重载父类函数
+    virtual void procPingTimeOutChecking(STRUCT_MSG_HEADER_PTR pMsgHeader, time_t currrntTime); // 重载父类函数
     virtual void addThreadFuncToVector();
 
-public:
-    //业务逻辑处理函数
+private:
+    // 业务逻辑处理函数
     bool logicHandlerLogin(http_connection_ptr pConn, STRUCT_MSG_HEADER_PTR pMsgHeader, char *pkgBodyPtr, int pkgLen);
     bool logicHandlerPing(http_connection_ptr pConn, STRUCT_MSG_HEADER_PTR pMsgHeader, char *pkgBodyPtr, int pkgLen);
+    bool logicHandlerHttp(http_connection_ptr pConn, STRUCT_MSG_HEADER_PTR pMsgHeader, char *pkgBodyPtr, int pkgLen);
 
-
-public:
+private:
     void SendNoBodyPkgToClient(STRUCT_MSG_HEADER_PTR pMsgHeader, unsigned short msgCode);
 };
 

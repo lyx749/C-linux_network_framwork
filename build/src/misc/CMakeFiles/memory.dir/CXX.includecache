@@ -6,15 +6,3 @@
 
 #IncludeRegexTransform: 
 
-../src/include/http_c_memory.h
-stddef.h
--
-stdlib.h
--
-string.h
--
-
-/home/lyx/httpServer/src/misc/http_c_memory.cxx
-http_c_memory.h
-/home/lyx/httpServer/src/misc/http_c_memory.h
-

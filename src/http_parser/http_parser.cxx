@@ -14,64 +14,59 @@ httpParser::httpParser(char *msg)
     parts part = startLine;
     std::string line;
     std::string bodyString;
-
     while (std::getline(bufStream, line))
     {
         switch (part)
         {
-            switch (part)
+        case startLine:
+        {
+            std::istringstream line_stream(line);
+            std::string tmp;
+            line_stream >> tmp;
+            if (tmp.find("HTTP") == std::string::npos)
             {
-            case startLine:
-            {
-                std::istringstream line_stream(line);
-                std::string tmp;
+                http.push_back(std::make_pair("method", tmp));
                 line_stream >> tmp;
-                if (tmp.find("HTTP") == std::string::npos)
-                {
-                    http.push_back(std::make_pair("method", tmp));
-                    line_stream >> tmp;
-                    http.push_back(std::make_pair("path", tmp));
-                    line_stream >> tmp;
-                    http.push_back(std::make_pair("version", tmp));
-                }
-                else
-                {
-                    http.push_back(std::make_pair("version", tmp));
-                    line_stream >> tmp;
-                    http.push_back(std::make_pair("status", tmp));
-                    line_stream >> tmp;
-                    http.push_back(std::make_pair("status_text", tmp));
-                }
-                part = headers;
-                break;
+                http.push_back(std::make_pair("path", tmp));
+                line_stream >> tmp;
+                http.push_back(std::make_pair("version", tmp));
             }
-            case headers:
+            else
             {
-                if (line.size() == 1)
-                {
-                    part = body;
-                    break;
-                }
-                auto pos = line.find(":");
-                if (pos == std::string::npos)
-                    continue;
-                std::string tmp1(line, 0, pos);
-                std::string tmp2(line, pos + 2);
-                http.push_back(std::make_pair(format_key(tmp1), tmp2));
-                break;
+                http.push_back(std::make_pair("version", tmp));
+                line_stream >> tmp;
+                http.push_back(std::make_pair("status", tmp));
+                line_stream >> tmp;
+                http.push_back(std::make_pair("status_text", tmp));
             }
-            case body:
+            part = headers;
+            break;
+        }
+        case headers:
+        {
+            if (line.size() == 1)
             {
-                bodyString.append(line);
-                bodyString.push_back('\n');
+                part = body;
                 break;
             }
-            default:
-                break;
-            }
+            auto pos = line.find(":");
+            if (pos == std::string::npos)
+                continue;
+            std::string tmp1(line, 0, pos);
+            std::string tmp2(line, pos + 2);
+            http.push_back(std::make_pair(format_key(tmp1), tmp2));
+            break;
+        }
+        case body:
+        {
+            bodyString.append(line);
+            bodyString.push_back('\n');
+            break;
+        }
+        default:
+            break;
         }
     }
-
     http.push_back(std::make_pair("body", bodyString));
 }
 

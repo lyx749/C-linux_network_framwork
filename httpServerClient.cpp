@@ -3,9 +3,13 @@
 #include <unistd.h>
 #include <arpa/inet.h>
 #include <string.h>
+#include <string>
 #include <map>
 #include <stdio.h>
 #include "src/include/http_c_crc32.h"
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <sys/types.h>
 #pragma pack(1) // 内存对齐1个字节
 typedef struct _COMM_PKG_HEADER
 {
@@ -23,6 +27,15 @@ typedef struct _STRUCT_LOGIN
 #pragma pack()
 
 int PKG_HEADER_LEN = sizeof(COMM_PKG_HEADER_T);
+
+
+std::pair<char *, ssize_t>makeHttpPackage()
+{
+    int fd = open("2.txt", O_RDONLY);
+    char *msg = new char[1000]{};
+    ssize_t n = read(fd, msg, 1000);
+    return std::make_pair(msg, n + 1);
+}
 
 class client
 {
@@ -77,6 +90,24 @@ public:
         printf("%d\n", calcCrc);
         packageHeaderPtr->crc32 = htonl(calcCrc);
         return std::make_pair(temp, PKG_HEADER_LEN + sizeof(STRUCT_LOGIN_T));
+    }
+
+
+    std::pair<char *, ssize_t> initHttpPackage()
+    {
+        std::pair<char *, ssize_t> http = makeHttpPackage();
+        char *temp = new char[PKG_HEADER_LEN + http.second]{};
+        COMM_PKG_HEADER_PTR packageHeaderPtr = (COMM_PKG_HEADER_PTR)temp;
+        packageHeaderPtr->pkgLen = htons(PKG_HEADER_LEN + http.second);
+
+        packageHeaderPtr->msgCode = htons(2);
+        char *next = (char *)(temp + PKG_HEADER_LEN);
+        memcpy(next, http.first, http.second);
+        delete[] http.first;
+        int calcCrc = CCRC32::GetInstance()->Get_CRC((unsigned char *)next, http.second);
+        printf("%d\n", calcCrc);
+        packageHeaderPtr->crc32 = htonl(calcCrc);
+        return std::make_pair(temp, PKG_HEADER_LEN + http.second);
     }
 
     int initSocket()
@@ -140,8 +171,9 @@ int main()
 {
     client *cPtr = client::getInterface();
     int sockfd = cPtr->initSocket();
-    // std::pair<char *, ssize_t> buff = cPtr->initPackage();
-    std::pair<char *, ssize_t> buff = cPtr->initPingPackage();
+    //std::pair<char *, ssize_t> buff = cPtr->initPackage();
+    //std::pair<char *, ssize_t> buff = cPtr->initPingPackage();
+    std::pair<char *, ssize_t> buff = cPtr->initHttpPackage();
     //int count = 0;
     cPtr->sendPackage(buff, sockfd);
 

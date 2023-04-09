@@ -70,17 +70,32 @@ src/logic/CMakeFiles/logic.dir/http_c_logic.cxx.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/logic.dir/http_c_logic.cxx.s"
 	cd /home/lyx/httpServer/build/src/logic && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lyx/httpServer/src/logic/http_c_logic.cxx -o CMakeFiles/logic.dir/http_c_logic.cxx.s
 
+src/logic/CMakeFiles/logic.dir/http_c_logic_handler.cxx.o: src/logic/CMakeFiles/logic.dir/flags.make
+src/logic/CMakeFiles/logic.dir/http_c_logic_handler.cxx.o: ../src/logic/http_c_logic_handler.cxx
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lyx/httpServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/logic/CMakeFiles/logic.dir/http_c_logic_handler.cxx.o"
+	cd /home/lyx/httpServer/build/src/logic && /usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/logic.dir/http_c_logic_handler.cxx.o -c /home/lyx/httpServer/src/logic/http_c_logic_handler.cxx
+
+src/logic/CMakeFiles/logic.dir/http_c_logic_handler.cxx.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/logic.dir/http_c_logic_handler.cxx.i"
+	cd /home/lyx/httpServer/build/src/logic && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lyx/httpServer/src/logic/http_c_logic_handler.cxx > CMakeFiles/logic.dir/http_c_logic_handler.cxx.i
+
+src/logic/CMakeFiles/logic.dir/http_c_logic_handler.cxx.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/logic.dir/http_c_logic_handler.cxx.s"
+	cd /home/lyx/httpServer/build/src/logic && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lyx/httpServer/src/logic/http_c_logic_handler.cxx -o CMakeFiles/logic.dir/http_c_logic_handler.cxx.s
+
 # Object files for target logic
 logic_OBJECTS = \
-"CMakeFiles/logic.dir/http_c_logic.cxx.o"
+"CMakeFiles/logic.dir/http_c_logic.cxx.o" \
+"CMakeFiles/logic.dir/http_c_logic_handler.cxx.o"
 
 # External object files for target logic
 logic_EXTERNAL_OBJECTS =
 
 ../_staticLib/liblogic.a: src/logic/CMakeFiles/logic.dir/http_c_logic.cxx.o
+../_staticLib/liblogic.a: src/logic/CMakeFiles/logic.dir/http_c_logic_handler.cxx.o
 ../_staticLib/liblogic.a: src/logic/CMakeFiles/logic.dir/build.make
 ../_staticLib/liblogic.a: src/logic/CMakeFiles/logic.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/lyx/httpServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library ../../../_staticLib/liblogic.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/lyx/httpServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library ../../../_staticLib/liblogic.a"
 	cd /home/lyx/httpServer/build/src/logic && $(CMAKE_COMMAND) -P CMakeFiles/logic.dir/cmake_clean_target.cmake
 	cd /home/lyx/httpServer/build/src/logic && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/logic.dir/link.txt --verbose=$(VERBOSE)
 

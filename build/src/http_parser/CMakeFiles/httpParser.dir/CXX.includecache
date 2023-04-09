@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../src/include/http_parser.h
+string
+-
+vector
+-
+map
+-
+sstream
+-
+
+/home/lyx/httpServer/src/http_parser/http_parser.cxx
+http_parser.h
+/home/lyx/httpServer/src/http_parser/http_parser.h
+iostream
+-
+

@@ -26,7 +26,8 @@ CMAKE_ADDR2LINE:FILEPATH=/usr/bin/addr2line
 //Path to a program.
 CMAKE_AR:FILEPATH=/usr/bin/ar
 
-//No help, variable specified on the command line.
+//Choose the type of build, options are: None Debug Release RelWithDebInfo
+// MinSizeRel ...
 CMAKE_BUILD_TYPE:STRING=Debug
 
 //Enable/Disable color output during build.
@@ -483,7 +484,7 @@ httpServer_SOURCE_DIR:STATIC=/home/lyx/httpServer
 log_LIB_DEPENDS:STATIC=general;spdlog::spdlog;
 
 //Dependencies for the target
-logic_LIB_DEPENDS:STATIC=general;net;general;log;
+logic_LIB_DEPENDS:STATIC=general;net;general;log;general;httpParser;
 
 //Dependencies for the target
 net_LIB_DEPENDS:STATIC=general;memory;general;log;

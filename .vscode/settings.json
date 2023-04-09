@@ -45,6 +45,10 @@
         "utility": "cpp",
         "map": "cpp",
         "*.in": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "cstdarg": "cpp",
+        "cstring": "cpp",
+        "deque": "cpp",
+        "functional": "cpp"
     }
 }

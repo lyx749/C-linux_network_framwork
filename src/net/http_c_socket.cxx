@@ -390,7 +390,6 @@ void CSocket::ServerSendPackageThread(void *threadData)
         {
             std::unique_lock<std::mutex> ulk(thisPtr->sendMsgQueueMutex);
         again:
-            // printf("2\n");
             for (auto pos = messageSendQueue.begin(); pos != messageSendQueue.end() && !g_stopEvent; ++pos)
             {
                 pMsgBuff = (*pos);

@@ -17,12 +17,20 @@ arpa/inet.h
 -
 string.h
 -
+string
+-
 map
 -
 stdio.h
 -
 src/include/http_c_crc32.h
 /home/lyx/httpServer/src/include/http_c_crc32.h
+sys/stat.h
+-
+fcntl.h
+-
+sys/types.h
+-
 
 /home/lyx/httpServer/src/include/http_c_crc32.h
 stddef.h

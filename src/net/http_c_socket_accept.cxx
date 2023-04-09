@@ -94,6 +94,7 @@ void CSocket::httpEventAccept(http_connection_ptr oldc)
         {
             addToTimerMapQueue(newc);
         }
+        myLog::getInterface()->getLogger()->info("IP = {}, port = {} connect", inet_ntoa(newc->clienAddr.sin_addr), ntohs(newc->clienAddr.sin_port));
         ++onlineUserCount;
         break;
     } while (1);

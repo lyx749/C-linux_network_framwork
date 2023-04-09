@@ -6,17 +6,3 @@
 
 #IncludeRegexTransform: 
 
-../src/include/http_c_crc32.h
-stddef.h
--
-stdio.h
--
-stdlib.h
--
-string.h
--
-
-/home/lyx/httpServer/src/misc/http_c_crc32.cxx
-http_c_crc32.h
-/home/lyx/httpServer/src/misc/http_c_crc32.h
-
