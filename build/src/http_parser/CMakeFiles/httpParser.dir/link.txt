@@ -1,0 +1,2 @@
+/usr/bin/ar qc ../../../_staticLib/libhttpParser.a  CMakeFiles/httpParser.dir/http_parser.cxx.o
+/usr/bin/ranlib ../../../_staticLib/libhttpParser.a

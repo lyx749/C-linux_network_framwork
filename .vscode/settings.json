@@ -1,5 +1,6 @@
 {
     "files.associations": {
+        "*.txt": "plaintext",
         "*.tcc": "cpp",
         "array": "cpp",
         "atomic": "cpp",
@@ -43,6 +44,7 @@
         "typeinfo": "cpp",
         "utility": "cpp",
         "map": "cpp",
-        "*.in": "cpp"
+        "*.in": "cpp",
+        "iostream": "cpp"
     }
 }

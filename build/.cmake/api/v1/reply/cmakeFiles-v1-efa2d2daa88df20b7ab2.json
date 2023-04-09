@@ -246,6 +246,9 @@
 			"isCMake" : true,
 			"isExternal" : true,
 			"path" : "/usr/share/cmake-3.16/Modules/FindPackageMessage.cmake"
+		},
+		{
+			"path" : "src/http_parser/CMakeLists.txt"
 		}
 	],
 	"kind" : "cmakeFiles",

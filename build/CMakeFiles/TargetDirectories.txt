@@ -76,3 +76,9 @@
 /home/lyx/httpServer/build/_deps/spdlog-build/CMakeFiles/rebuild_cache.dir
 /home/lyx/httpServer/build/_deps/spdlog-build/CMakeFiles/package.dir
 /home/lyx/httpServer/build/_deps/spdlog-build/CMakeFiles/spdlog.dir
+/home/lyx/httpServer/build/src/http_parser/CMakeFiles/edit_cache.dir
+/home/lyx/httpServer/build/src/http_parser/CMakeFiles/test.dir
+/home/lyx/httpServer/build/src/http_parser/CMakeFiles/package_source.dir
+/home/lyx/httpServer/build/src/http_parser/CMakeFiles/rebuild_cache.dir
+/home/lyx/httpServer/build/src/http_parser/CMakeFiles/package.dir
+/home/lyx/httpServer/build/src/http_parser/CMakeFiles/httpParser.dir

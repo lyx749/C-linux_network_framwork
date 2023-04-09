@@ -47,7 +47,7 @@
 						26,
 						27,
 						28,
-						31
+						32
 					]
 				},
 				{
@@ -58,7 +58,8 @@
 						3,
 						4,
 						5,
-						6
+						6,
+						8
 					],
 					"minimumCMakeVersion" : 
 					{
@@ -93,7 +94,7 @@
 					"source" : "src/net",
 					"targetIndexes" : 
 					[
-						35
+						36
 					]
 				},
 				{
@@ -108,8 +109,8 @@
 					"targetIndexes" : 
 					[
 						29,
-						34,
-						37
+						35,
+						38
 					]
 				},
 				{
@@ -123,7 +124,7 @@
 					"source" : "src/logic",
 					"targetIndexes" : 
 					[
-						33
+						34
 					]
 				},
 				{
@@ -141,7 +142,7 @@
 					"source" : "src/logs",
 					"targetIndexes" : 
 					[
-						32
+						33
 					]
 				},
 				{
@@ -155,7 +156,21 @@
 					"source" : "src/logs/spdlog",
 					"targetIndexes" : 
 					[
-						36
+						37
+					]
+				},
+				{
+					"build" : "src/http_parser",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.0.0"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "src/http_parser",
+					"targetIndexes" : 
+					[
+						31
 					]
 				}
 			],
@@ -175,7 +190,8 @@
 						3,
 						4,
 						5,
-						6
+						6,
+						8
 					],
 					"name" : "httpServer",
 					"targetIndexes" : 
@@ -216,7 +232,8 @@
 						33,
 						34,
 						35,
-						37
+						36,
+						38
 					]
 				},
 				{
@@ -228,7 +245,7 @@
 					"parentIndex" : 0,
 					"targetIndexes" : 
 					[
-						36
+						37
 					]
 				}
 			],
@@ -449,6 +466,13 @@
 					"id" : "func::@ff93792cf40911dae1b8",
 					"jsonFile" : "target-func-Debug-a5e83e78486241bcec1f.json",
 					"name" : "func",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 8,
+					"id" : "httpParser::@9d7024261b52b1f46fd5",
+					"jsonFile" : "target-httpParser-Debug-231bf545e9bbd88eb90d.json",
+					"name" : "httpParser",
 					"projectIndex" : 0
 				},
 				{

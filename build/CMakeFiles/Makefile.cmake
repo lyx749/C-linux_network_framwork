@@ -15,6 +15,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "../httpSeverConfig.h.in"
   "../src/CMakeLists.txt"
   "../src/app/CMakeLists.txt"
+  "../src/http_parser/CMakeLists.txt"
   "../src/logic/CMakeLists.txt"
   "../src/logs/CMakeLists.txt"
   "../src/logs/spdlog/CMakeLists.txt"
@@ -79,6 +80,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "src/logic/CMakeFiles/CMakeDirectoryInformation.cmake"
   "src/logs/CMakeFiles/CMakeDirectoryInformation.cmake"
   "_deps/spdlog-build/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "src/http_parser/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
@@ -121,4 +123,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "src/logic/CMakeFiles/logic.dir/DependInfo.cmake"
   "src/logs/CMakeFiles/log.dir/DependInfo.cmake"
   "_deps/spdlog-build/CMakeFiles/spdlog.dir/DependInfo.cmake"
+  "src/http_parser/CMakeFiles/httpParser.dir/DependInfo.cmake"
   )

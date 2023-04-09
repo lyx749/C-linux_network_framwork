@@ -103,5 +103,10 @@
   "directory": "/home/lyx/httpServer/build/_deps/spdlog-build",
   "command": "/usr/bin/g++  -DSPDLOG_COMPILED_LIB -I/home/lyx/httpServer/src/logs/../include -I/home/lyx/httpServer/src/logs/spdlog/include   -fsanitize=undefined -fsanitize=address -Wall -g -g   -std=c++11 -o CMakeFiles/spdlog.dir/src/fmt.cpp.o -c /home/lyx/httpServer/src/logs/spdlog/src/fmt.cpp",
   "file": "/home/lyx/httpServer/src/logs/spdlog/src/fmt.cpp"
+},
+{
+  "directory": "/home/lyx/httpServer/build/src/http_parser",
+  "command": "/usr/bin/g++   -I/home/lyx/httpServer/src/http_parser/../include -I/home/lyx/httpServer/src/http_parser/.   -fsanitize=undefined -fsanitize=address -Wall -g -g   -o CMakeFiles/httpParser.dir/http_parser.cxx.o -c /home/lyx/httpServer/src/http_parser/http_parser.cxx",
+  "file": "/home/lyx/httpServer/src/http_parser/http_parser.cxx"
 }
 ]
