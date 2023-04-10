@@ -108,7 +108,7 @@ private:
     http_connection_ptr getAConnectionFromPool(int isock);
     void freeConnectionToPool(http_connection_ptr pConn);
     void pushAConnectionToRecyclePool(http_connection_ptr pConn);
-
+    
     // init socket
     bool openListeningSockets();
     void closeListeningSockets();
@@ -128,6 +128,7 @@ private:
     void ServerRecycleConnectionThread(void *threadData);
     void ServerSendPackageThread(void *threadData);
     void ServerTimerMapQueueMonitorThread(void *threadData);
+    void printInfo(void *threadDate);
 
     // sendProc
     ssize_t sendProc(http_connection_ptr pConn, char *sendBuff, ssize_t size);
@@ -203,6 +204,8 @@ protected:
     ifOpenTimeoutKick该选项一般用于账号密码服务器，服务器不要用户长期留在该页面上，超时就自动剔除用户
     */
     int ifOpenTimeoutKick; // 是否开启立刻踢人
+
+    int lastPrintTime;  //上次打印时间
 };
 
 #endif

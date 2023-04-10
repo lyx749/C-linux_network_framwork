@@ -101,7 +101,7 @@ ssize_t CSocket::recvProc(http_connection_ptr pConn, char *buff, ssize_t buflen)
         {
             // 如果客户端没有正常关闭socket连接，却关闭了整个运行程序【真是够粗暴无理的，应该是直接给服务器发送rst包而不是4次挥手包完成连接断开】，那么会产生这个错误
             // 10054(WSAECONNRESET)--远程程序正在连接的时候关闭会产生这个错误--远程主机强迫关闭了一个现有的连接
-            myLog::getInterface()->getLogger()->error("CSocket::recvProc's recv error : {}", strerror(errno));
+            //myLog::getInterface()->getLogger()->error("CSocket::recvProc's recv error : {}", strerror(errno));
         } // 这个属于客户端出错，下面属于服务器出错
         else
         {

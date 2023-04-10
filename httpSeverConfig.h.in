@@ -45,3 +45,7 @@
 #cmakedefine Sock_FloodTimeInterval @Sock_FloodTimeInterval@
 //Sock_FloodKickCounter表示计算到连续10次，每次100毫秒时间间隔内发包，踢出此客户端
 #cmakedefine Sock_FloodKickCounter @Sock_FloodKickCounter@
+
+
+
+#cmakedefine Print_Time_Interval @Print_Time_Interval@

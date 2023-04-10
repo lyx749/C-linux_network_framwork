@@ -113,7 +113,7 @@ void WorkerThreadPool::inMsgRecvQueueAndSignal(char *buf)
 {
     std::unique_lock<std::mutex> ulk(pthreadMutex);
     this->messageRecvQueue.push_back(buf);
-
+    ++this->messageRecvQueueCount;
     ulk.unlock();
 again:
     if (this->callAHandlerThread() == -1)

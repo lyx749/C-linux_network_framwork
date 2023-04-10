@@ -52,7 +52,6 @@ void CSocket::httpEventAccept(http_connection_ptr oldc)
             // }
             return;
         }
-
         if (onlineUserCount >= workerConnections)
         {
             myLog::getInterface()->getLogger()->warn("CSocket::httpEventAccept have too much connections onlineUserCount >= workerConnections");
@@ -94,7 +93,7 @@ void CSocket::httpEventAccept(http_connection_ptr oldc)
         {
             addToTimerMapQueue(newc);
         }
-        myLog::getInterface()->getLogger()->info("IP = {}, port = {} connect", inet_ntoa(newc->clienAddr.sin_addr), ntohs(newc->clienAddr.sin_port));
+        //myLog::getInterface()->getLogger()->info("IP = {}, port = {} connect", inet_ntoa(newc->clienAddr.sin_addr), ntohs(newc->clienAddr.sin_port));
         ++onlineUserCount;
         break;
     } while (1);

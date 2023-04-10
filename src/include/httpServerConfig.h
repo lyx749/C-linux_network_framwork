@@ -34,7 +34,7 @@
 //是否开启踢人时钟，1：开启   0：不开启
 #define Sock_WaitTimeEnable 1
 //多少秒检测一次心跳包，只有当Sock_WaitTimeEnable = 1时，有效
-#define Sock_MaxWaitTime 5
+#define Sock_MaxWaitTime 20
 //当时间到达Sock_MaxWaitTime指定的时间时，直接把客户端踢出去，只有当Sock_WaitTimeEnable = 1时生效
 #define Sock_TimeOutKick 0
 
@@ -45,3 +45,7 @@
 #define Sock_FloodTimeInterval 100
 //Sock_FloodKickCounter表示计算到连续10次，每次100毫秒时间间隔内发包，踢出此客户端
 #define Sock_FloodKickCounter 10
+
+
+
+#define Print_Time_Interval 20

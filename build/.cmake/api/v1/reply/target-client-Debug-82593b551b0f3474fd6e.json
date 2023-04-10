@@ -76,6 +76,10 @@
 				"backtrace" : 2,
 				"fragment" : "../_staticLib/libcrc32.a",
 				"role" : "libraries"
+			},
+			{
+				"fragment" : "-lpthread",
+				"role" : "libraries"
 			}
 		],
 		"language" : "CXX"

@@ -33,6 +33,8 @@ CSocket::CSocket()
 
     timeMapQueueCount = 0;
     timeMapQueueHeaderValue = 0;
+
+    lastPrintTime = 0;
 }
 
 CSocket::~CSocket()
@@ -46,7 +48,7 @@ int CSocket::httpEpollInit()
     this->epollHandlefd = epoll_create(workerConnections);
     if (this->epollHandlefd == -1)
     {
-       logPtr->getLogger()->critical("CSocket::httpEpollInit()'s epoll_create error : {}", strerror(errno));
+        logPtr->getLogger()->critical("CSocket::httpEpollInit()'s epoll_create error : {}", strerror(errno));
         exit(2);
     }
 
@@ -274,6 +276,7 @@ bool CSocket::InitializeSubproc()
 
     this->serverProcThreadPool.push_back(std::thread(&CSocket::ServerSendPackageThread, this, (void *)this));          // 创建发送线程
     this->serverProcThreadPool.push_back(std::thread(&CSocket::ServerTimerMapQueueMonitorThread, this, (void *)this)); // 创建监控时间进程
+    this->serverProcThreadPool.push_back(std::thread(&CSocket::printInfo, this, (void *)this));
     return true;
 }
 
@@ -504,4 +507,33 @@ bool CSocket::testFlood(http_connection_ptr pConn)
         ifKick = true;
     // printf("pConn->floodAttackCount = %d, this->floodKickCount = %d\n", pConn->floodAttackCount, this->floodKickCount);
     return ifKick;
+}
+
+void CSocket::printInfo(void *threadDate)
+{
+    CSocket *thisPtr = (CSocket *)threadDate;
+    while (!g_stopEvent)
+    {
+        time_t currentTime = time(NULL);
+        if ((currentTime - thisPtr->lastPrintTime) > Print_Time_Interval)
+        {
+            int recvMsgCount = g_threadpool.getRecvMsgQueueCount();
+            thisPtr->lastPrintTime = currentTime;
+            int usrCount = thisPtr->onlineUserCount;
+            int sendMsgCount = thisPtr->messageSendQueueCount;
+
+            myLog::getInterface()->getLogger()->info("-------------------------------------------------begin-----------------------------------------------------------------");
+            myLog::getInterface()->getLogger()->info("Number of people currently online/total number of people({}/{})", usrCount, thisPtr->workerConnections);
+            myLog::getInterface()->getLogger()->info("In the connection pool free connections/total connections/connections to be released({}/{}/{})", freeConnectionPool.size(), connectionPool.size(), recycleConnectionPool.size());
+            myLog::getInterface()->getLogger()->info("Current time queue size({})", timerMapQueue.size());
+            myLog::getInterface()->getLogger()->info("The size of the current recv message queue and send message queue is ({}/{}), and the number of packets to be drop is {}", recvMsgCount, sendMsgCount, thisPtr->discardPackageCount);
+            myLog::getInterface()->getLogger()->info("--------------------------------------------------end-------------------------------------------------------------------");
+            if (recvMsgCount > 100000)
+            {
+                myLog::getInterface()->getLogger()->warn("The number of receive queue entries is too large ({}), consider limiting the speed or increasing the number of processing threads!!!!!!", recvMsgCount);
+            }
+        }
+    }
+
+    return;
 }

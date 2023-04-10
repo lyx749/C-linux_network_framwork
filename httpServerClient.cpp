@@ -10,6 +10,8 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <sys/types.h>
+#include <vector>
+#include <thread>
 #pragma pack(1) // 内存对齐1个字节
 typedef struct _COMM_PKG_HEADER
 {
@@ -28,8 +30,7 @@ typedef struct _STRUCT_LOGIN
 
 int PKG_HEADER_LEN = sizeof(COMM_PKG_HEADER_T);
 
-
-std::pair<char *, ssize_t>makeHttpPackage()
+std::pair<char *, ssize_t> makeHttpPackage()
 {
     int fd = open("2.txt", O_RDONLY);
     char *msg = new char[1000]{};
@@ -87,11 +88,9 @@ public:
         strcpy(loginPtr->password, "123456");
         strcpy(loginPtr->username, "lyx");
         int calcCrc = CCRC32::GetInstance()->Get_CRC((unsigned char *)loginPtr, sizeof(STRUCT_LOGIN_T));
-        printf("%d\n", calcCrc);
         packageHeaderPtr->crc32 = htonl(calcCrc);
         return std::make_pair(temp, PKG_HEADER_LEN + sizeof(STRUCT_LOGIN_T));
     }
-
 
     std::pair<char *, ssize_t> initHttpPackage()
     {
@@ -110,38 +109,41 @@ public:
         return std::make_pair(temp, PKG_HEADER_LEN + http.second);
     }
 
-    int initSocket()
+    std::vector<int> initSocket()
     {
-        char IP[INET_ADDRSTRLEN]{};
-        uint16_t port;
-        scanf("%s %hu", IP, &port);
+        std::vector<int> sockVec(21, 0);
+        for (int i = 0; i < 21; ++i)
+        {
+            int sockfd = socket(AF_INET, SOCK_STREAM, 0);
+            if (sockfd == -1)
+            {
+                perror("socked error");
+                exit(1);
+            }
+            sockVec[i] = sockfd;
+        }
         struct sockaddr_in serverAddr;
-        int sockfd = socket(AF_INET, SOCK_STREAM, 0);
-        if (sockfd < 0)
-        {
-            perror("socket error");
-            exit(1);
-        }
-        memset(&serverAddr, 0, sizeof(serverAddr));
-        serverAddr.sin_addr.s_addr = inet_addr(IP);
+        bzero(&serverAddr, sizeof(serverAddr));
         serverAddr.sin_family = AF_INET;
-
-        serverAddr.sin_port = htons(port);
-        if (connect(sockfd, (struct sockaddr *)&serverAddr, sizeof(serverAddr)) < 0)
+        serverAddr.sin_port = htons(7777);
+        serverAddr.sin_addr.s_addr = inet_addr("127.0.0.1");
+        for (auto &e : sockVec)
         {
-            perror("connect error");
-            exit(1);
+            if (connect(e, (sockaddr *)&serverAddr, sizeof(sockaddr)) < 0)
+            {
+                perror("connect error");
+                exit(1);
+            }
         }
-        printf("connect to IP = %s port = %hu\n", IP, port);
-        return sockfd;
+        return sockVec;
     }
 
-    int sendPackage(std::pair<char *, ssize_t> buff, int sockfd)
+    int sendPackage(std::pair<char *, ssize_t> &buff, int sockfd)
     {
         ssize_t needSendLen = buff.second;
         ssize_t sendedLen = 0;
         ssize_t tempLen = 0;
-        printf("needSendLen = %ld\n", needSendLen);
+        // printf("needSendLen = %ld\n", needSendLen);
         while (sendedLen < needSendLen)
         {
             if ((tempLen = send(sockfd, buff.first, needSendLen, 0)) < 0)
@@ -151,9 +153,10 @@ public:
             }
 
             sendedLen += tempLen;
-            printf("SendLen = %ld\n", sendedLen);
+            // printf("SendLen = %ld\n", sendedLen);
         }
-        // delete[] buff.first;
+        delete[] buff.first;
+        buff.first = NULL;
         return sendedLen;
     }
 
@@ -167,31 +170,39 @@ public:
     }
 };
 client *client::clientInterface = NULL;
-int main()
+
+void threadFunc()
 {
     client *cPtr = client::getInterface();
-    int sockfd = cPtr->initSocket();
-    //std::pair<char *, ssize_t> buff = cPtr->initPackage();
-    //std::pair<char *, ssize_t> buff = cPtr->initPingPackage();
-    std::pair<char *, ssize_t> buff = cPtr->initHttpPackage();
-    //int count = 0;
-    cPtr->sendPackage(buff, sockfd);
-
+    std::vector<int> sockVec = cPtr->initSocket();
     while (1)
     {
-        //printf("count = %d\n", ++count);
-        char recvBuff[4096]{};
-        ssize_t n = cPtr->recvPackage(recvBuff, sockfd);
-        printf("n  = %lu\n", n);
-        if (n > 0)
-            printf("%s\n", recvBuff);
-        if (n == 0)
+        for (auto &e : sockVec)
         {
-            printf("connection is be closed");
-            close(sockfd);
-            break;
+            std::pair<char *, ssize_t> buff = cPtr->initPackage();
+            cPtr->sendPackage(buff, e);
         }
+        for (auto &e : sockVec)
+        {
+            std::pair<char *, ssize_t> buff = cPtr->initPingPackage();
+            cPtr->sendPackage(buff, e);
+        }
+        sleep(2);
+    }
+}
+
+int main()
+{
+    std::vector<std::thread> threadPool;
+    for (int i = 0; i < 90; ++i)
+    {
+        threadPool.push_back(std::thread(threadFunc));
+    }
+
+    for (auto &e : threadPool)
+    {
+        if (e.joinable())
+            e.join();
     }
     // close(sockfd);
-    delete[] buff.first;
 }

@@ -31,6 +31,10 @@ fcntl.h
 -
 sys/types.h
 -
+vector
+-
+thread
+-
 
 /home/lyx/httpServer/src/include/http_c_crc32.h
 stddef.h
