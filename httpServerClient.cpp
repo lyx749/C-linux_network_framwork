@@ -111,8 +111,8 @@ public:
 
     std::vector<int> initSocket()
     {
-        std::vector<int> sockVec(21, 0);
-        for (int i = 0; i < 21; ++i)
+        std::vector<int> sockVec(22, 0);
+        for (int i = 0; i < 22; ++i)
         {
             int sockfd = socket(AF_INET, SOCK_STREAM, 0);
             if (sockfd == -1)
@@ -177,24 +177,24 @@ void threadFunc()
     std::vector<int> sockVec = cPtr->initSocket();
     while (1)
     {
-        for (auto &e : sockVec)
-        {
-            std::pair<char *, ssize_t> buff = cPtr->initPackage();
-            cPtr->sendPackage(buff, e);
-        }
+        // for (auto &e : sockVec)
+        // {
+        //     std::pair<char *, ssize_t> buff = cPtr->initPackage();
+        //     cPtr->sendPackage(buff, e);
+        // }
         for (auto &e : sockVec)
         {
             std::pair<char *, ssize_t> buff = cPtr->initPingPackage();
             cPtr->sendPackage(buff, e);
         }
-        sleep(2);
+        sleep(1);
     }
 }
 
 int main()
 {
     std::vector<std::thread> threadPool;
-    for (int i = 0; i < 90; ++i)
+    for (int i = 0; i < 93; ++i)
     {
         threadPool.push_back(std::thread(threadFunc));
     }

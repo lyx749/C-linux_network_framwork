@@ -24,6 +24,7 @@ private:
 
 private:
     void SendNoBodyPkgToClient(STRUCT_MSG_HEADER_PTR pMsgHeader, unsigned short msgCode);
+    char *buildHttpPackage();
 };
 
 #endif

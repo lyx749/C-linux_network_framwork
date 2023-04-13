@@ -82,3 +82,9 @@
 /home/lyx/httpServer/build/src/http_parser/CMakeFiles/rebuild_cache.dir
 /home/lyx/httpServer/build/src/http_parser/CMakeFiles/package.dir
 /home/lyx/httpServer/build/src/http_parser/CMakeFiles/httpParser.dir
+/home/lyx/httpServer/build/src/proc/CMakeFiles/edit_cache.dir
+/home/lyx/httpServer/build/src/proc/CMakeFiles/test.dir
+/home/lyx/httpServer/build/src/proc/CMakeFiles/package_source.dir
+/home/lyx/httpServer/build/src/proc/CMakeFiles/rebuild_cache.dir
+/home/lyx/httpServer/build/src/proc/CMakeFiles/package.dir
+/home/lyx/httpServer/build/src/proc/CMakeFiles/proc.dir

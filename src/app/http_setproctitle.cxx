@@ -1,9 +1,10 @@
 #include "http_func.h"
 
+
 void http_init_setproctitle()
 {
     gp_envmem = new char[g_envneedmem];
-    memset(gp_envmem, 0, g_envneedmem);
+    memset(gp_envmem, 0, g_envneedmem * sizeof(char));
     char *ptmp = gp_envmem;
     for (int i = 0; environ[i]; ++i)
     {

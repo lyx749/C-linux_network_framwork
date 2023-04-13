@@ -1,2 +1,2 @@
-/usr/bin/ar qc ../../../_staticLib/libfunc.a  CMakeFiles/func.dir/http_setproctitle.cxx.o CMakeFiles/func.dir/http_printf.cxx.o
+/usr/bin/ar qc ../../../_staticLib/libfunc.a  CMakeFiles/func.dir/http_setproctitle.cxx.o
 /usr/bin/ranlib ../../../_staticLib/libfunc.a

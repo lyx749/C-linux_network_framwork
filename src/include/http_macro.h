@@ -2,12 +2,6 @@
 #define HTTP_MACRO_H
 // 一些宏定义
 
-#define HTTP_MAX_ERROR_STR 2048 // 显示的错误信息最大数组长度
-
-// 一般 memcpy 返回的是指向目标 dst 的指针，而 HTTP_memcpy 返回的是目标拷贝数据后的终点位置，方便多次复制数据
-#define http_memcpy(dst, src, n) (((char *)memcpy(dst, src, n)) + (n))
-#define http_min(val1, val2) ((val1 < val2) ? (val1) : (val2))
-
 // 数字相关
 #define HTTP_MAX_UINT32_VALUE (uint32_t)0xffffffff // 最大的32位无符号数：十进制是‭4294967295‬
 #define HTTP_INT64_LEN (sizeof("-9223372036854775808") - 1)

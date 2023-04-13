@@ -45,6 +45,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/lyx/httpServer/build/src/logic/cmake_install.cmake")
   include("/home/lyx/httpServer/build/src/logs/cmake_install.cmake")
   include("/home/lyx/httpServer/build/src/http_parser/cmake_install.cmake")
+  include("/home/lyx/httpServer/build/src/proc/cmake_install.cmake")
 
 endif()
 

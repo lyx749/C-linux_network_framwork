@@ -70,32 +70,17 @@ src/app/CMakeFiles/func.dir/http_setproctitle.cxx.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/func.dir/http_setproctitle.cxx.s"
 	cd /home/lyx/httpServer/build/src/app && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lyx/httpServer/src/app/http_setproctitle.cxx -o CMakeFiles/func.dir/http_setproctitle.cxx.s
 
-src/app/CMakeFiles/func.dir/http_printf.cxx.o: src/app/CMakeFiles/func.dir/flags.make
-src/app/CMakeFiles/func.dir/http_printf.cxx.o: ../src/app/http_printf.cxx
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/lyx/httpServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/app/CMakeFiles/func.dir/http_printf.cxx.o"
-	cd /home/lyx/httpServer/build/src/app && /usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/func.dir/http_printf.cxx.o -c /home/lyx/httpServer/src/app/http_printf.cxx
-
-src/app/CMakeFiles/func.dir/http_printf.cxx.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/func.dir/http_printf.cxx.i"
-	cd /home/lyx/httpServer/build/src/app && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lyx/httpServer/src/app/http_printf.cxx > CMakeFiles/func.dir/http_printf.cxx.i
-
-src/app/CMakeFiles/func.dir/http_printf.cxx.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/func.dir/http_printf.cxx.s"
-	cd /home/lyx/httpServer/build/src/app && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lyx/httpServer/src/app/http_printf.cxx -o CMakeFiles/func.dir/http_printf.cxx.s
-
 # Object files for target func
 func_OBJECTS = \
-"CMakeFiles/func.dir/http_setproctitle.cxx.o" \
-"CMakeFiles/func.dir/http_printf.cxx.o"
+"CMakeFiles/func.dir/http_setproctitle.cxx.o"
 
 # External object files for target func
 func_EXTERNAL_OBJECTS =
 
 ../_staticLib/libfunc.a: src/app/CMakeFiles/func.dir/http_setproctitle.cxx.o
-../_staticLib/libfunc.a: src/app/CMakeFiles/func.dir/http_printf.cxx.o
 ../_staticLib/libfunc.a: src/app/CMakeFiles/func.dir/build.make
 ../_staticLib/libfunc.a: src/app/CMakeFiles/func.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/lyx/httpServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library ../../../_staticLib/libfunc.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/lyx/httpServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library ../../../_staticLib/libfunc.a"
 	cd /home/lyx/httpServer/build/src/app && $(CMAKE_COMMAND) -P CMakeFiles/func.dir/cmake_clean_target.cmake
 	cd /home/lyx/httpServer/build/src/app && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/func.dir/link.txt --verbose=$(VERBOSE)
 

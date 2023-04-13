@@ -1,0 +1,140 @@
+{
+	"archive" : {},
+	"artifacts" : 
+	[
+		{
+			"path" : "/home/lyx/httpServer/_staticLib/libproc.a"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"target_link_libraries",
+			"target_include_directories"
+		],
+		"files" : 
+		[
+			"src/proc/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 1,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 9,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 10,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : " -fsanitize=undefined -fsanitize=address -Wall -g -g  "
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 2,
+					"define" : "SPDLOG_COMPILED_LIB"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 3,
+					"path" : "/home/lyx/httpServer/src/proc/../include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/lyx/httpServer/src/logs/."
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/lyx/httpServer/src/logs/spdlog/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/lyx/httpServer/src/app/../include"
+				}
+			],
+			"language" : "CXX",
+			"sourceIndexes" : 
+			[
+				0,
+				1
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "func::@ff93792cf40911dae1b8"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "log::@bfc44f7229aa5e58d3de"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "spdlog::@eb35cfce7893ccfeff1e"
+		}
+	],
+	"id" : "proc::@0c2eae97c9c89056d99a",
+	"name" : "proc",
+	"nameOnDisk" : "libproc.a",
+	"paths" : 
+	{
+		"build" : "src/proc",
+		"source" : "src/proc"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/proc/http_c_daemon.cxx",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/proc/http_c_process_cycle.cxx",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "STATIC_LIBRARY"
+}

@@ -6,18 +6,13 @@
 },
 {
   "directory": "/home/lyx/httpServer/build",
-  "command": "/usr/bin/g++  -DSPDLOG_COMPILED_LIB -I/home/lyx/httpServer/src/net/../include -I/home/lyx/httpServer/src/misc/../include -I/home/lyx/httpServer/src/logs/. -I/home/lyx/httpServer/src/logs/spdlog/include -I/home/lyx/httpServer/src/http_parser/.   -fsanitize=undefined -fsanitize=address -Wall -g -g   -o CMakeFiles/httpServer.dir/main.cpp.o -c /home/lyx/httpServer/main.cpp",
+  "command": "/usr/bin/g++  -DSPDLOG_COMPILED_LIB -I/home/lyx/httpServer/src/net/../include -I/home/lyx/httpServer/src/misc/../include -I/home/lyx/httpServer/src/logs/. -I/home/lyx/httpServer/src/logs/spdlog/include -I/home/lyx/httpServer/src/http_parser/. -I/home/lyx/httpServer/src/proc/../include   -fsanitize=undefined -fsanitize=address -Wall -g -g   -o CMakeFiles/httpServer.dir/main.cpp.o -c /home/lyx/httpServer/main.cpp",
   "file": "/home/lyx/httpServer/main.cpp"
 },
 {
   "directory": "/home/lyx/httpServer/build/src/app",
   "command": "/usr/bin/g++   -I/home/lyx/httpServer/src/app/../include   -fsanitize=undefined -fsanitize=address -Wall -g -g   -o CMakeFiles/func.dir/http_setproctitle.cxx.o -c /home/lyx/httpServer/src/app/http_setproctitle.cxx",
   "file": "/home/lyx/httpServer/src/app/http_setproctitle.cxx"
-},
-{
-  "directory": "/home/lyx/httpServer/build/src/app",
-  "command": "/usr/bin/g++   -I/home/lyx/httpServer/src/app/../include   -fsanitize=undefined -fsanitize=address -Wall -g -g   -o CMakeFiles/func.dir/http_printf.cxx.o -c /home/lyx/httpServer/src/app/http_printf.cxx",
-  "file": "/home/lyx/httpServer/src/app/http_printf.cxx"
 },
 {
   "directory": "/home/lyx/httpServer/build/src/net",
@@ -113,5 +108,15 @@
   "directory": "/home/lyx/httpServer/build/src/http_parser",
   "command": "/usr/bin/g++   -I/home/lyx/httpServer/src/http_parser/../include -I/home/lyx/httpServer/src/http_parser/.   -fsanitize=undefined -fsanitize=address -Wall -g -g   -o CMakeFiles/httpParser.dir/http_parser.cxx.o -c /home/lyx/httpServer/src/http_parser/http_parser.cxx",
   "file": "/home/lyx/httpServer/src/http_parser/http_parser.cxx"
+},
+{
+  "directory": "/home/lyx/httpServer/build/src/proc",
+  "command": "/usr/bin/g++  -DSPDLOG_COMPILED_LIB -I/home/lyx/httpServer/src/proc/../include -I/home/lyx/httpServer/src/logs/. -I/home/lyx/httpServer/src/logs/spdlog/include -I/home/lyx/httpServer/src/app/../include   -fsanitize=undefined -fsanitize=address -Wall -g -g   -o CMakeFiles/proc.dir/http_c_daemon.cxx.o -c /home/lyx/httpServer/src/proc/http_c_daemon.cxx",
+  "file": "/home/lyx/httpServer/src/proc/http_c_daemon.cxx"
+},
+{
+  "directory": "/home/lyx/httpServer/build/src/proc",
+  "command": "/usr/bin/g++  -DSPDLOG_COMPILED_LIB -I/home/lyx/httpServer/src/proc/../include -I/home/lyx/httpServer/src/logs/. -I/home/lyx/httpServer/src/logs/spdlog/include -I/home/lyx/httpServer/src/app/../include   -fsanitize=undefined -fsanitize=address -Wall -g -g   -o CMakeFiles/proc.dir/http_c_process_cycle.cxx.o -c /home/lyx/httpServer/src/proc/http_c_process_cycle.cxx",
+  "file": "/home/lyx/httpServer/src/proc/http_c_process_cycle.cxx"
 }
 ]

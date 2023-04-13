@@ -56,6 +56,7 @@ void CLogicSocket::threadRecvProcFunc(char *pMsgBuf)
     {
         return;
     }
+    //myLog::getInterface()->getLogger()->info("imsgcode = {}", imsgCode);
     if (imsgCode >= handlerVector.size())
     {
         // printf("error msgCode\n");

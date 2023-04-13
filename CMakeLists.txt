@@ -31,7 +31,7 @@ elseif(CMAKE_BUILD_TYPE MATCHES "Releases")
         "${CMAKE_CXX_FLAGS} -Wall -g" 
     )
 endif()
-target_link_libraries(httpServer PUBLIC net threadPool logic log)
+target_link_libraries(httpServer PUBLIC net threadPool logic log proc)
 target_link_libraries(client PUBLIC crc32 pthread)
 include(CTest)
 enable_testing()

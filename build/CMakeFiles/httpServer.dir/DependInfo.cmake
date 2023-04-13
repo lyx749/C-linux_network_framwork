@@ -20,6 +20,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../src/logs/."
   "../src/logs/spdlog/include"
   "../src/http_parser/."
+  "../src/proc/../include"
   )
 
 # Targets to which this target links.
@@ -28,10 +29,12 @@ set(CMAKE_TARGET_LINKED_INFO_FILES
   "/home/lyx/httpServer/build/src/misc/CMakeFiles/threadPool.dir/DependInfo.cmake"
   "/home/lyx/httpServer/build/src/logic/CMakeFiles/logic.dir/DependInfo.cmake"
   "/home/lyx/httpServer/build/src/logs/CMakeFiles/log.dir/DependInfo.cmake"
+  "/home/lyx/httpServer/build/src/proc/CMakeFiles/proc.dir/DependInfo.cmake"
   "/home/lyx/httpServer/build/src/misc/CMakeFiles/crc32.dir/DependInfo.cmake"
   "/home/lyx/httpServer/build/src/misc/CMakeFiles/memory.dir/DependInfo.cmake"
-  "/home/lyx/httpServer/build/_deps/spdlog-build/CMakeFiles/spdlog.dir/DependInfo.cmake"
   "/home/lyx/httpServer/build/src/http_parser/CMakeFiles/httpParser.dir/DependInfo.cmake"
+  "/home/lyx/httpServer/build/_deps/spdlog-build/CMakeFiles/spdlog.dir/DependInfo.cmake"
+  "/home/lyx/httpServer/build/src/app/CMakeFiles/func.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

@@ -473,6 +473,9 @@ SPDLOG_WCHAR_SUPPORT:BOOL=OFF
 //Path to a program.
 SVNCOMMAND:FILEPATH=SVNCOMMAND-NOTFOUND
 
+//Dependencies for the target
+daemon_LIB_DEPENDS:STATIC=general;log;general;func;
+
 //Value Computed by CMake
 httpServer_BINARY_DIR:STATIC=/home/lyx/httpServer/build
 
@@ -487,6 +490,9 @@ logic_LIB_DEPENDS:STATIC=general;net;general;log;general;httpParser;
 
 //Dependencies for the target
 net_LIB_DEPENDS:STATIC=general;memory;general;log;
+
+//Dependencies for the target
+proc_LIB_DEPENDS:STATIC=general;log;general;func;
 
 //Value Computed by CMake
 spdlog_BINARY_DIR:STATIC=/home/lyx/httpServer/build/_deps/spdlog-build
@@ -646,7 +652,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=9
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=10
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

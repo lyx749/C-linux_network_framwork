@@ -64,10 +64,12 @@ bool CLogicSocket::logicHandlerLogin(http_connection_ptr pConn, STRUCT_MSG_HEADE
 
 bool CLogicSocket::logicHandlerPing(http_connection_ptr pConn, STRUCT_MSG_HEADER_PTR pMsgHeader, char *pkgBodyPtr, int pkgLen)
 {
+    //myLog::getInterface()->getLogger()->info("get ping IP = {} port = {}", inet_ntoa(pConn->clienAddr.sin_addr), ntohs(pConn->clienAddr.sin_port));
     if (pkgLen - PKG_HEADER_LEN != 0) // 有包体则认为是非法包
         return false;
 
     std::lock_guard<std::mutex> lk(pConn->logicProcMutex);
+
     // httpCommonLog("accept ping\n");
     pConn->lastPingTime = time(NULL);
 
@@ -79,9 +81,29 @@ bool CLogicSocket::logicHandlerHttp(http_connection_ptr pConn, STRUCT_MSG_HEADER
 {
     httpParser http(pkgBodyPtr);
     std::vector<std::pair<std::string, std::string>> package = http.getHttp();
-    for(auto e : package)
+    if (package[0].first == "method")
     {
-        std::cout << e.first << " " << e.second << std::endl;
+        if (package[0].second == "get")
+        {
+            /*
+            get请求干。。。
+            */
+        }
+        else if (package[0].second == "post")
+        {
+            /*
+            post 请求干。。。。
+            */
+        }
     }
-    return true;
+    else
+    {
+        /*
+        响应报文。。。
+        */
+    }
+}
+
+char *CLogicSocket::buildHttpPackage()
+{
 }

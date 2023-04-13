@@ -118,17 +118,16 @@ void WorkerThreadPool::inMsgRecvQueueAndSignal(char *buf)
 again:
     if (this->callAHandlerThread() == -1)
     {
-        std::this_thread::sleep_for(std::chrono::minutes(5));
+        //std::this_thread::sleep_for(std::chrono::minutes(5));
         goto again;
     }
 }
 
 int WorkerThreadPool::callAHandlerThread()
 {
-    myLog *logPtr = myLog::getInterface();
     if (this->createThreadNumber == this->runningThreadNumbers)
     {
-        logPtr->getLogger()->warn("threadNums is not enough");
+        //logPtr->getLogger()->warn("threadNums is not enough({}/{})", this->createThreadNumber, this->runningThreadNumbers);
         return -1;
     }
     this->pthreadCondition.notify_one();

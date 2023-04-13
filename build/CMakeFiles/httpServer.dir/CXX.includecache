@@ -8,9 +8,27 @@
 
 ../src/include/httpServerConfig.h
 
+../src/include/http_c_crc32.h
+stddef.h
+-
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+
 ../src/include/http_c_logic.h
 http_c_socket.h
 ../src/include/http_c_socket.h
+
+../src/include/http_c_memory.h
+stddef.h
+-
+stdlib.h
+-
+string.h
+-
 
 ../src/include/http_c_socket.h
 mutex
@@ -67,6 +85,24 @@ future
 -
 chrono
 -
+
+../src/include/http_func.h
+stdio.h
+-
+stdlib.h
+-
+unistd.h
+-
+string.h
+-
+stdarg.h
+-
+stdint.h
+-
+http_global.h
+../src/include/http_global.h
+http_macro.h
+../src/include/http_macro.h
 
 ../src/include/http_global.h
 sys/types.h
@@ -737,4 +773,10 @@ httpServerConfig.h
 /home/lyx/httpServer/httpServerConfig.h
 http_log.h
 /home/lyx/httpServer/http_log.h
+http_func.h
+/home/lyx/httpServer/http_func.h
+http_c_memory.h
+/home/lyx/httpServer/http_c_memory.h
+http_c_crc32.h
+/home/lyx/httpServer/http_c_crc32.h
 

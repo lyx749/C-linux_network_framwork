@@ -752,18 +752,6 @@ spdlog-inl.h
 
 ../src/logs/spdlog/include/spdlog/version.h
 
-/home/lyx/httpServer/src/logic/http_c_logic.cxx
-http_macro.h
-/home/lyx/httpServer/src/logic/http_macro.h
-http_c_crc32.h
-/home/lyx/httpServer/src/logic/http_c_crc32.h
-http_global.h
-/home/lyx/httpServer/src/logic/http_global.h
-http_c_memory.h
-/home/lyx/httpServer/src/logic/http_c_memory.h
-http_log.h
-/home/lyx/httpServer/src/logic/http_log.h
-
 /home/lyx/httpServer/src/logic/http_c_logic_handler.cxx
 http_macro.h
 /home/lyx/httpServer/src/logic/http_macro.h

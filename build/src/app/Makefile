@@ -158,33 +158,6 @@ func/fast:
 	cd /home/lyx/httpServer/build && $(MAKE) -f src/app/CMakeFiles/func.dir/build.make src/app/CMakeFiles/func.dir/build
 .PHONY : func/fast
 
-http_printf.o: http_printf.cxx.o
-
-.PHONY : http_printf.o
-
-# target to build an object file
-http_printf.cxx.o:
-	cd /home/lyx/httpServer/build && $(MAKE) -f src/app/CMakeFiles/func.dir/build.make src/app/CMakeFiles/func.dir/http_printf.cxx.o
-.PHONY : http_printf.cxx.o
-
-http_printf.i: http_printf.cxx.i
-
-.PHONY : http_printf.i
-
-# target to preprocess a source file
-http_printf.cxx.i:
-	cd /home/lyx/httpServer/build && $(MAKE) -f src/app/CMakeFiles/func.dir/build.make src/app/CMakeFiles/func.dir/http_printf.cxx.i
-.PHONY : http_printf.cxx.i
-
-http_printf.s: http_printf.cxx.s
-
-.PHONY : http_printf.s
-
-# target to generate assembly for a file
-http_printf.cxx.s:
-	cd /home/lyx/httpServer/build && $(MAKE) -f src/app/CMakeFiles/func.dir/build.make src/app/CMakeFiles/func.dir/http_printf.cxx.s
-.PHONY : http_printf.cxx.s
-
 http_setproctitle.o: http_setproctitle.cxx.o
 
 .PHONY : http_setproctitle.o
@@ -224,9 +197,6 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... package"
 	@echo "... func"
-	@echo "... http_printf.o"
-	@echo "... http_printf.i"
-	@echo "... http_printf.s"
 	@echo "... http_setproctitle.o"
 	@echo "... http_setproctitle.i"
 	@echo "... http_setproctitle.s"

@@ -83,12 +83,14 @@ httpServer_EXTERNAL_OBJECTS =
 ../_bin/httpServer: ../_staticLib/libthreadPool.a
 ../_bin/httpServer: ../_staticLib/liblogic.a
 ../_bin/httpServer: ../_staticLib/liblog.a
+../_bin/httpServer: ../_staticLib/libproc.a
 ../_bin/httpServer: ../_staticLib/libcrc32.a
 ../_bin/httpServer: ../_staticLib/libnet.a
 ../_bin/httpServer: ../_staticLib/libmemory.a
+../_bin/httpServer: ../_staticLib/libhttpParser.a
 ../_bin/httpServer: ../_staticLib/liblog.a
 ../_bin/httpServer: ../_staticLib/libspdlogd.a
-../_bin/httpServer: ../_staticLib/libhttpParser.a
+../_bin/httpServer: ../_staticLib/libfunc.a
 ../_bin/httpServer: CMakeFiles/httpServer.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/lyx/httpServer/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ../_bin/httpServer"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/httpServer.dir/link.txt --verbose=$(VERBOSE)

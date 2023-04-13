@@ -78,7 +78,7 @@ ssize_t CSocket::recvProc(http_connection_ptr pConn, char *buff, ssize_t buflen)
     ssize_t n = recv(pConn->fd, buff, buflen, 0);
     if (n == 0) // client close connetion
     {
-        myLog::getInterface()->getLogger()->warn("client IP = %s port = %d, closed connect", inet_ntoa(pConn->clienAddr.sin_addr), ntohs(pConn->clienAddr.sin_port));
+        //myLog::getInterface()->getLogger()->warn("client IP = {} port = {}, closed connect", inet_ntoa(pConn->clienAddr.sin_addr), ntohs(pConn->clienAddr.sin_port));
         zdCloseSocketProc(pConn);
         return -1;
     }

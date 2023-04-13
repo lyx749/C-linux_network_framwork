@@ -4,7 +4,6 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/lyx/httpServer/src/app/http_printf.cxx" "/home/lyx/httpServer/build/src/app/CMakeFiles/func.dir/http_printf.cxx.o"
   "/home/lyx/httpServer/src/app/http_setproctitle.cxx" "/home/lyx/httpServer/build/src/app/CMakeFiles/func.dir/http_setproctitle.cxx.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

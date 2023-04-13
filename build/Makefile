@@ -650,6 +650,19 @@ httpParser/fast:
 	$(MAKE) -f src/http_parser/CMakeFiles/httpParser.dir/build.make src/http_parser/CMakeFiles/httpParser.dir/build
 .PHONY : httpParser/fast
 
+#=============================================================================
+# Target rules for targets named proc
+
+# Build rule for target.
+proc: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 proc
+.PHONY : proc
+
+# fast build rule for target.
+proc/fast:
+	$(MAKE) -f src/proc/CMakeFiles/proc.dir/build.make src/proc/CMakeFiles/proc.dir/build
+.PHONY : proc/fast
+
 httpServerClient.o: httpServerClient.cpp.o
 
 .PHONY : httpServerClient.o
@@ -754,6 +767,7 @@ help:
 	@echo "... log"
 	@echo "... spdlog"
 	@echo "... httpParser"
+	@echo "... proc"
 	@echo "... httpServerClient.o"
 	@echo "... httpServerClient.i"
 	@echo "... httpServerClient.s"

@@ -96,10 +96,6 @@ http_c_logic.h
 
 ../src/include/http_macro.h
 
-/home/lyx/httpServer/src/app/http_printf.cxx
-http_func.h
-/home/lyx/httpServer/src/app/http_func.h
-
 /home/lyx/httpServer/src/app/http_setproctitle.cxx
 http_func.h
 /home/lyx/httpServer/src/app/http_func.h

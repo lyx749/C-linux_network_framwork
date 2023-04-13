@@ -23,21 +23,9 @@ void http_init_setproctitle();
 */
 void http_setproctitle(const char *title);
 
-/*------------------------格式化输出函数--------------------------------- */
-char* http_snprintf(char* buf, size_t max, const char* fmt, ...);
-char* http_slprintf(char* buf, char* last, const char* fmt, ...);
-char* http_vslprintf(char* buf, char* last, const char* fmt, va_list args);
-
-/*----------------------------日志输出，写入函数---------------------------*/
-char *getNowTime();
-void httpErrorLog(char *fmt, ...);
-void httpCommonLog(char *fmt, ...);
-void test();
-
 /*进程相关函数*/
 int http_init_signals();
 void http_master_process_cycle();
 int http_daemon();
-void http_process_events_and_timers();
 
 #endif

@@ -23,6 +23,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "../src/logs/spdlog/cmake/utils.cmake"
   "../src/misc/CMakeLists.txt"
   "../src/net/CMakeLists.txt"
+  "../src/proc/CMakeLists.txt"
   "/usr/share/cmake-3.16/Modules/CMakeCInformation.cmake"
   "/usr/share/cmake-3.16/Modules/CMakeCXXInformation.cmake"
   "/usr/share/cmake-3.16/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake"
@@ -81,6 +82,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "src/logs/CMakeFiles/CMakeDirectoryInformation.cmake"
   "_deps/spdlog-build/CMakeFiles/CMakeDirectoryInformation.cmake"
   "src/http_parser/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "src/proc/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
@@ -124,4 +126,5 @@ set(CMAKE_DEPEND_INFO_FILES
   "src/logs/CMakeFiles/log.dir/DependInfo.cmake"
   "_deps/spdlog-build/CMakeFiles/spdlog.dir/DependInfo.cmake"
   "src/http_parser/CMakeFiles/httpParser.dir/DependInfo.cmake"
+  "src/proc/CMakeFiles/proc.dir/DependInfo.cmake"
   )
