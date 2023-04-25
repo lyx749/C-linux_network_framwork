@@ -120,7 +120,10 @@ static void http_worker_process_init(int id)
         myLog::getInterface()->getLogger()->error("http_worker_process_init sigprocmask error : {}", strerror(errno));
         return;
     }
-
+    if (!g_socket.Initialize())
+    {
+        exit(-2);
+    }
     if (!g_threadpool.createAllThreads(ProcMsgRecvWorkThreadCount))
     {
         myLog::getInterface()->getLogger()->critical("http_worker_process_init createAllThreads failed");

@@ -1,0 +1,383 @@
+[info] [2023-04-14 23:01:12,768] [Precess:12631] [Thread:12631] - master process [master process] running!
+[info] [2023-04-14 23:01:12,770] [Precess:12634] [Thread:12631] - Successfully listened on port 7777
+[info] [2023-04-14 23:01:12,770] [Precess:12636] [Thread:12631] - Successfully listened on port 7777
+[info] [2023-04-14 23:01:12,770] [Precess:12640] [Thread:12631] - Successfully listened on port 7777
+[info] [2023-04-14 23:01:12,771] [Precess:12647] [Thread:12631] - Successfully listened on port 7777
+[info] [2023-04-14 23:01:12,772] [Precess:12667] [Thread:12631] - Successfully listened on port 7777
+[info] [2023-04-14 23:01:12,773] [Precess:12709] [Thread:12631] - Successfully listened on port 7777
+[info] [2023-04-14 23:01:12,773] [Precess:12689] [Thread:12631] - Successfully listened on port 7777
+[info] [2023-04-14 23:01:12,774] [Precess:12722] [Thread:12631] - Successfully listened on port 7777
+[info] [2023-04-14 23:01:12,775] [Precess:12738] [Thread:12631] - Successfully listened on port 7777
+[info] [2023-04-14 23:01:12,776] [Precess:12729] [Thread:12631] - Successfully listened on port 7777
+[info] [2023-04-14 23:01:12,776] [Precess:12750] [Thread:12631] - Successfully listened on port 7777
+[info] [2023-04-14 23:01:12,777] [Precess:12760] [Thread:12631] - Successfully listened on port 7777
+[info] [2023-04-14 23:01:13,833] [Precess:12640] [Thread:14090] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:01:13,833] [Precess:12640] [Thread:14090] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:01:13,833] [Precess:12640] [Thread:14090] - In the connection pool free connections/total connections/connections to be released(168/169/0)
+[info] [2023-04-14 23:01:13,833] [Precess:12640] [Thread:14090] - Current time queue size(0)
+[info] [2023-04-14 23:01:13,833] [Precess:12640] [Thread:14090] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:01:13,833] [Precess:12640] [Thread:14090] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:01:13,835] [Precess:12640] [Thread:12631] - [worker proc] running procname = worker process num = 2
+[info] [2023-04-14 23:01:13,838] [Precess:12722] [Thread:14096] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:01:13,838] [Precess:12722] [Thread:14096] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:01:13,838] [Precess:12722] [Thread:14096] - In the connection pool free connections/total connections/connections to be released(100/101/0)
+[info] [2023-04-14 23:01:13,838] [Precess:12722] [Thread:14096] - Current time queue size(0)
+[info] [2023-04-14 23:01:13,838] [Precess:12722] [Thread:14096] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:01:13,838] [Precess:12722] [Thread:14096] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:01:13,838] [Precess:12647] [Thread:14098] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:01:13,838] [Precess:12647] [Thread:14098] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:01:13,838] [Precess:12647] [Thread:14098] - In the connection pool free connections/total connections/connections to be released(116/116/0)
+[info] [2023-04-14 23:01:13,838] [Precess:12647] [Thread:14098] - Current time queue size(0)
+[info] [2023-04-14 23:01:13,838] [Precess:12647] [Thread:14098] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:01:13,838] [Precess:12647] [Thread:14098] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:01:13,841] [Precess:12722] [Thread:12631] - [worker proc] running procname = worker process num = 7
+[info] [2023-04-14 23:01:13,841] [Precess:12647] [Thread:12631] - [worker proc] running procname = worker process num = 3
+[info] [2023-04-14 23:01:13,841] [Precess:12634] [Thread:14102] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:01:13,841] [Precess:12634] [Thread:14102] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:01:13,841] [Precess:12634] [Thread:14102] - In the connection pool free connections/total connections/connections to be released(101/101/0)
+[info] [2023-04-14 23:01:13,841] [Precess:12634] [Thread:14102] - Current time queue size(0)
+[info] [2023-04-14 23:01:13,841] [Precess:12634] [Thread:14102] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:01:13,841] [Precess:12634] [Thread:14102] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:01:13,842] [Precess:12738] [Thread:14106] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:01:13,842] [Precess:12738] [Thread:14106] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:01:13,842] [Precess:12738] [Thread:14106] - In the connection pool free connections/total connections/connections to be released(117/117/0)
+[info] [2023-04-14 23:01:13,842] [Precess:12738] [Thread:14106] - Current time queue size(0)
+[info] [2023-04-14 23:01:13,842] [Precess:12738] [Thread:14106] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:01:13,842] [Precess:12738] [Thread:14106] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:01:13,843] [Precess:12689] [Thread:14110] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:01:13,843] [Precess:12689] [Thread:14110] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:01:13,843] [Precess:12689] [Thread:14110] - In the connection pool free connections/total connections/connections to be released(97/97/0)
+[info] [2023-04-14 23:01:13,843] [Precess:12689] [Thread:14110] - Current time queue size(0)
+[info] [2023-04-14 23:01:13,843] [Precess:12689] [Thread:14110] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:01:13,843] [Precess:12689] [Thread:14110] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:01:13,845] [Precess:12634] [Thread:12631] - [worker proc] running procname = worker process num = 0
+[info] [2023-04-14 23:01:13,846] [Precess:12729] [Thread:14114] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:01:13,846] [Precess:12738] [Thread:12631] - [worker proc] running procname = worker process num = 9
+[info] [2023-04-14 23:01:13,846] [Precess:12729] [Thread:14114] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:01:13,846] [Precess:12729] [Thread:14114] - In the connection pool free connections/total connections/connections to be released(58/58/0)
+[info] [2023-04-14 23:01:13,846] [Precess:12729] [Thread:14114] - Current time queue size(0)
+[info] [2023-04-14 23:01:13,846] [Precess:12729] [Thread:14114] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:01:13,846] [Precess:12729] [Thread:14114] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:01:13,846] [Precess:12689] [Thread:12631] - [worker proc] running procname = worker process num = 5
+[info] [2023-04-14 23:01:13,847] [Precess:12636] [Thread:14119] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:01:13,847] [Precess:12636] [Thread:14119] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:01:13,847] [Precess:12636] [Thread:14119] - In the connection pool free connections/total connections/connections to be released(53/53/0)
+[info] [2023-04-14 23:01:13,847] [Precess:12636] [Thread:14119] - Current time queue size(0)
+[info] [2023-04-14 23:01:13,847] [Precess:12636] [Thread:14119] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:01:13,847] [Precess:12636] [Thread:14119] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:01:13,847] [Precess:12667] [Thread:14122] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:01:13,847] [Precess:12667] [Thread:14122] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:01:13,847] [Precess:12667] [Thread:14122] - In the connection pool free connections/total connections/connections to be released(78/78/0)
+[info] [2023-04-14 23:01:13,847] [Precess:12667] [Thread:14122] - Current time queue size(0)
+[info] [2023-04-14 23:01:13,847] [Precess:12667] [Thread:14122] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:01:13,847] [Precess:12667] [Thread:14122] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:01:13,848] [Precess:12729] [Thread:12631] - [worker proc] running procname = worker process num = 8
+[info] [2023-04-14 23:01:13,849] [Precess:12760] [Thread:14126] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:01:13,849] [Precess:12760] [Thread:14126] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:01:13,849] [Precess:12760] [Thread:14126] - In the connection pool free connections/total connections/connections to be released(1/1/0)
+[info] [2023-04-14 23:01:13,849] [Precess:12760] [Thread:14126] - Current time queue size(0)
+[info] [2023-04-14 23:01:13,849] [Precess:12760] [Thread:14126] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:01:13,849] [Precess:12760] [Thread:14126] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:01:13,850] [Precess:12636] [Thread:12631] - [worker proc] running procname = worker process num = 1
+[info] [2023-04-14 23:01:13,850] [Precess:12667] [Thread:12631] - [worker proc] running procname = worker process num = 4
+[info] [2023-04-14 23:01:13,852] [Precess:12760] [Thread:12631] - [worker proc] running procname = worker process num = 11
+[info] [2023-04-14 23:01:34,012] [Precess:12667] [Thread:14122] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:01:34,012] [Precess:12647] [Thread:14098] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:01:34,012] [Precess:12634] [Thread:14102] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:01:34,012] [Precess:12729] [Thread:14114] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:01:34,012] [Precess:12738] [Thread:14106] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:01:34,012] [Precess:12636] [Thread:14119] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:01:34,012] [Precess:12640] [Thread:14090] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:01:34,012] [Precess:12760] [Thread:14126] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:01:34,012] [Precess:12722] [Thread:14096] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:01:34,012] [Precess:12689] [Thread:14110] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:01:34,012] [Precess:12667] [Thread:14122] - Number of people currently online/total number of people(561/2048)
+[info] [2023-04-14 23:01:34,012] [Precess:12647] [Thread:14098] - Number of people currently online/total number of people(550/2048)
+[info] [2023-04-14 23:01:34,012] [Precess:12634] [Thread:14102] - Number of people currently online/total number of people(544/2048)
+[info] [2023-04-14 23:01:34,012] [Precess:12729] [Thread:14114] - Number of people currently online/total number of people(570/2048)
+[info] [2023-04-14 23:01:34,012] [Precess:12738] [Thread:14106] - Number of people currently online/total number of people(554/2048)
+[info] [2023-04-14 23:01:34,012] [Precess:12636] [Thread:14119] - Number of people currently online/total number of people(528/2048)
+[info] [2023-04-14 23:01:34,012] [Precess:12760] [Thread:14126] - Number of people currently online/total number of people(529/2048)
+[info] [2023-04-14 23:01:34,012] [Precess:12640] [Thread:14090] - Number of people currently online/total number of people(581/2048)
+[info] [2023-04-14 23:01:34,012] [Precess:12722] [Thread:14096] - Number of people currently online/total number of people(537/2048)
+[info] [2023-04-14 23:01:34,012] [Precess:12689] [Thread:14110] - Number of people currently online/total number of people(562/2048)
+[info] [2023-04-14 23:01:34,012] [Precess:12667] [Thread:14122] - In the connection pool free connections/total connections/connections to be released(1486/2048/0)
+[info] [2023-04-14 23:01:34,012] [Precess:12634] [Thread:14102] - In the connection pool free connections/total connections/connections to be released(1503/2048/0)
+[info] [2023-04-14 23:01:34,012] [Precess:12647] [Thread:14098] - In the connection pool free connections/total connections/connections to be released(1497/2048/0)
+[info] [2023-04-14 23:01:34,012] [Precess:12729] [Thread:14114] - In the connection pool free connections/total connections/connections to be released(1477/2048/0)
+[info] [2023-04-14 23:01:34,012] [Precess:12738] [Thread:14106] - In the connection pool free connections/total connections/connections to be released(1493/2048/0)
+[info] [2023-04-14 23:01:34,012] [Precess:12636] [Thread:14119] - In the connection pool free connections/total connections/connections to be released(1519/2048/0)
+[info] [2023-04-14 23:01:34,012] [Precess:12760] [Thread:14126] - In the connection pool free connections/total connections/connections to be released(1518/2048/0)
+[info] [2023-04-14 23:01:34,012] [Precess:12722] [Thread:14096] - In the connection pool free connections/total connections/connections to be released(1510/2048/0)
+[info] [2023-04-14 23:01:34,012] [Precess:12634] [Thread:14102] - Current time queue size(544)
+[info] [2023-04-14 23:01:34,012] [Precess:12640] [Thread:14090] - In the connection pool free connections/total connections/connections to be released(1466/2048/0)
+[info] [2023-04-14 23:01:34,012] [Precess:12689] [Thread:14110] - In the connection pool free connections/total connections/connections to be released(1485/2048/0)
+[info] [2023-04-14 23:01:34,012] [Precess:12667] [Thread:14122] - Current time queue size(561)
+[info] [2023-04-14 23:01:34,012] [Precess:12647] [Thread:14098] - Current time queue size(550)
+[info] [2023-04-14 23:01:34,012] [Precess:12689] [Thread:14110] - Current time queue size(562)
+[info] [2023-04-14 23:01:34,012] [Precess:12729] [Thread:14114] - Current time queue size(570)
+[info] [2023-04-14 23:01:34,012] [Precess:12738] [Thread:14106] - Current time queue size(554)
+[info] [2023-04-14 23:01:34,012] [Precess:12636] [Thread:14119] - Current time queue size(528)
+[info] [2023-04-14 23:01:34,012] [Precess:12760] [Thread:14126] - Current time queue size(529)
+[info] [2023-04-14 23:01:34,012] [Precess:12634] [Thread:14102] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:01:34,012] [Precess:12722] [Thread:14096] - Current time queue size(537)
+[info] [2023-04-14 23:01:34,012] [Precess:12640] [Thread:14090] - Current time queue size(581)
+[info] [2023-04-14 23:01:34,012] [Precess:12647] [Thread:14098] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:01:34,012] [Precess:12667] [Thread:14122] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:01:34,012] [Precess:12689] [Thread:14110] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:01:34,012] [Precess:12738] [Thread:14106] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:01:34,012] [Precess:12636] [Thread:14119] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:01:34,012] [Precess:12634] [Thread:14102] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:01:34,012] [Precess:12722] [Thread:14096] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:01:34,012] [Precess:12647] [Thread:14098] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:01:34,012] [Precess:12667] [Thread:14122] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:01:34,012] [Precess:12640] [Thread:14090] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:01:34,012] [Precess:12689] [Thread:14110] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:01:34,012] [Precess:12722] [Thread:14096] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:01:34,012] [Precess:12738] [Thread:14106] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:01:34,012] [Precess:12636] [Thread:14119] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:01:34,012] [Precess:12640] [Thread:14090] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:01:34,012] [Precess:12760] [Thread:14126] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:01:34,012] [Precess:12760] [Thread:14126] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:01:34,012] [Precess:12729] [Thread:14114] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:01:34,012] [Precess:12729] [Thread:14114] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:01:55,012] [Precess:12647] [Thread:14098] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:01:55,012] [Precess:12722] [Thread:14096] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:01:55,012] [Precess:12640] [Thread:14090] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:01:55,012] [Precess:12636] [Thread:14119] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:01:55,012] [Precess:12689] [Thread:14110] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:01:55,012] [Precess:12634] [Thread:14102] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:01:55,012] [Precess:12729] [Thread:14114] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:01:55,012] [Precess:12738] [Thread:14106] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:01:55,012] [Precess:12760] [Thread:14126] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:01:55,012] [Precess:12667] [Thread:14122] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:01:55,012] [Precess:12647] [Thread:14098] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:01:55,012] [Precess:12722] [Thread:14096] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:01:55,012] [Precess:12636] [Thread:14119] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:01:55,012] [Precess:12640] [Thread:14090] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:01:55,012] [Precess:12689] [Thread:14110] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:01:55,012] [Precess:12634] [Thread:14102] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:01:55,012] [Precess:12738] [Thread:14106] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:01:55,012] [Precess:12729] [Thread:14114] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:01:55,012] [Precess:12640] [Thread:14090] - In the connection pool free connections/total connections/connections to be released(1466/2048/581)
+[info] [2023-04-14 23:01:55,012] [Precess:12760] [Thread:14126] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:01:55,012] [Precess:12667] [Thread:14122] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:01:55,012] [Precess:12647] [Thread:14098] - In the connection pool free connections/total connections/connections to be released(1497/2048/550)
+[info] [2023-04-14 23:01:55,012] [Precess:12722] [Thread:14096] - In the connection pool free connections/total connections/connections to be released(1510/2048/537)
+[info] [2023-04-14 23:01:55,012] [Precess:12636] [Thread:14119] - In the connection pool free connections/total connections/connections to be released(1519/2048/528)
+[info] [2023-04-14 23:01:55,012] [Precess:12689] [Thread:14110] - In the connection pool free connections/total connections/connections to be released(1485/2048/562)
+[info] [2023-04-14 23:01:55,012] [Precess:12634] [Thread:14102] - In the connection pool free connections/total connections/connections to be released(1503/2048/544)
+[info] [2023-04-14 23:01:55,012] [Precess:12729] [Thread:14114] - In the connection pool free connections/total connections/connections to be released(1477/2048/570)
+[info] [2023-04-14 23:01:55,012] [Precess:12738] [Thread:14106] - In the connection pool free connections/total connections/connections to be released(1493/2048/554)
+[info] [2023-04-14 23:01:55,012] [Precess:12640] [Thread:14090] - Current time queue size(0)
+[info] [2023-04-14 23:01:55,012] [Precess:12647] [Thread:14098] - Current time queue size(0)
+[info] [2023-04-14 23:01:55,012] [Precess:12760] [Thread:14126] - In the connection pool free connections/total connections/connections to be released(1518/2048/529)
+[info] [2023-04-14 23:01:55,012] [Precess:12667] [Thread:14122] - In the connection pool free connections/total connections/connections to be released(1486/2048/561)
+[info] [2023-04-14 23:01:55,012] [Precess:12722] [Thread:14096] - Current time queue size(0)
+[info] [2023-04-14 23:01:55,012] [Precess:12636] [Thread:14119] - Current time queue size(0)
+[info] [2023-04-14 23:01:55,012] [Precess:12689] [Thread:14110] - Current time queue size(0)
+[info] [2023-04-14 23:01:55,012] [Precess:12634] [Thread:14102] - Current time queue size(0)
+[info] [2023-04-14 23:01:55,012] [Precess:12729] [Thread:14114] - Current time queue size(0)
+[info] [2023-04-14 23:01:55,012] [Precess:12738] [Thread:14106] - Current time queue size(0)
+[info] [2023-04-14 23:01:55,012] [Precess:12640] [Thread:14090] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:01:55,012] [Precess:12647] [Thread:14098] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:01:55,012] [Precess:12760] [Thread:14126] - Current time queue size(0)
+[info] [2023-04-14 23:01:55,012] [Precess:12667] [Thread:14122] - Current time queue size(0)
+[info] [2023-04-14 23:01:55,012] [Precess:12722] [Thread:14096] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:01:55,012] [Precess:12729] [Thread:14114] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:01:55,012] [Precess:12636] [Thread:14119] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:01:55,012] [Precess:12689] [Thread:14110] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:01:55,012] [Precess:12634] [Thread:14102] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:01:55,012] [Precess:12640] [Thread:14090] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:01:55,012] [Precess:12738] [Thread:14106] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:01:55,012] [Precess:12647] [Thread:14098] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:01:55,012] [Precess:12760] [Thread:14126] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:01:55,012] [Precess:12667] [Thread:14122] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:01:55,012] [Precess:12722] [Thread:14096] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:01:55,012] [Precess:12729] [Thread:14114] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:01:55,012] [Precess:12636] [Thread:14119] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:01:55,012] [Precess:12689] [Thread:14110] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:01:55,012] [Precess:12634] [Thread:14102] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:01:55,012] [Precess:12738] [Thread:14106] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:01:55,012] [Precess:12760] [Thread:14126] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:01:55,012] [Precess:12667] [Thread:14122] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:02:16,012] [Precess:12738] [Thread:14106] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:02:16,012] [Precess:12729] [Thread:14114] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:02:16,012] [Precess:12636] [Thread:14119] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:02:16,012] [Precess:12722] [Thread:14096] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:02:16,012] [Precess:12647] [Thread:14098] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:02:16,012] [Precess:12667] [Thread:14122] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:02:16,012] [Precess:12634] [Thread:14102] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:02:16,012] [Precess:12634] [Thread:14102] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:02:16,012] [Precess:12634] [Thread:14102] - In the connection pool free connections/total connections/connections to be released(1503/2048/544)
+[info] [2023-04-14 23:02:16,012] [Precess:12634] [Thread:14102] - Current time queue size(0)
+[info] [2023-04-14 23:02:16,012] [Precess:12634] [Thread:14102] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:02:16,012] [Precess:12760] [Thread:14126] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:02:16,012] [Precess:12634] [Thread:14102] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:02:16,012] [Precess:12689] [Thread:14110] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:02:16,012] [Precess:12760] [Thread:14126] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:02:16,012] [Precess:12689] [Thread:14110] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:02:16,012] [Precess:12760] [Thread:14126] - In the connection pool free connections/total connections/connections to be released(1518/2048/529)
+[info] [2023-04-14 23:02:16,012] [Precess:12689] [Thread:14110] - In the connection pool free connections/total connections/connections to be released(1485/2048/562)
+[info] [2023-04-14 23:02:16,012] [Precess:12760] [Thread:14126] - Current time queue size(0)
+[info] [2023-04-14 23:02:16,012] [Precess:12738] [Thread:14106] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:02:16,012] [Precess:12636] [Thread:14119] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:02:16,012] [Precess:12729] [Thread:14114] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:02:16,012] [Precess:12722] [Thread:14096] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:02:16,012] [Precess:12647] [Thread:14098] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:02:16,012] [Precess:12636] [Thread:14119] - In the connection pool free connections/total connections/connections to be released(1519/2048/528)
+[info] [2023-04-14 23:02:16,012] [Precess:12722] [Thread:14096] - In the connection pool free connections/total connections/connections to be released(1510/2048/537)
+[info] [2023-04-14 23:02:16,012] [Precess:12729] [Thread:14114] - In the connection pool free connections/total connections/connections to be released(1477/2048/570)
+[info] [2023-04-14 23:02:16,012] [Precess:12722] [Thread:14096] - Current time queue size(0)
+[info] [2023-04-14 23:02:16,012] [Precess:12729] [Thread:14114] - Current time queue size(0)
+[info] [2023-04-14 23:02:16,012] [Precess:12729] [Thread:14114] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:02:16,012] [Precess:12729] [Thread:14114] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:02:16,012] [Precess:12667] [Thread:14122] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:02:16,012] [Precess:12640] [Thread:14090] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:02:16,012] [Precess:12689] [Thread:14110] - Current time queue size(0)
+[info] [2023-04-14 23:02:16,012] [Precess:12667] [Thread:14122] - In the connection pool free connections/total connections/connections to be released(1486/2048/561)
+[info] [2023-04-14 23:02:16,012] [Precess:12760] [Thread:14126] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:02:16,012] [Precess:12667] [Thread:14122] - Current time queue size(0)
+[info] [2023-04-14 23:02:16,012] [Precess:12760] [Thread:14126] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:02:16,012] [Precess:12667] [Thread:14122] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:02:16,012] [Precess:12667] [Thread:14122] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:02:16,012] [Precess:12738] [Thread:14106] - In the connection pool free connections/total connections/connections to be released(1493/2048/554)
+[info] [2023-04-14 23:02:16,012] [Precess:12647] [Thread:14098] - In the connection pool free connections/total connections/connections to be released(1497/2048/550)
+[info] [2023-04-14 23:02:16,012] [Precess:12636] [Thread:14119] - Current time queue size(0)
+[info] [2023-04-14 23:02:16,013] [Precess:12738] [Thread:14106] - Current time queue size(0)
+[info] [2023-04-14 23:02:16,013] [Precess:12636] [Thread:14119] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:02:16,013] [Precess:12636] [Thread:14119] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:02:16,012] [Precess:12722] [Thread:14096] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:02:16,013] [Precess:12722] [Thread:14096] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:02:16,012] [Precess:12640] [Thread:14090] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:02:16,013] [Precess:12640] [Thread:14090] - In the connection pool free connections/total connections/connections to be released(1466/2048/581)
+[info] [2023-04-14 23:02:16,012] [Precess:12689] [Thread:14110] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:02:16,013] [Precess:12647] [Thread:14098] - Current time queue size(0)
+[info] [2023-04-14 23:02:16,013] [Precess:12689] [Thread:14110] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:02:16,013] [Precess:12647] [Thread:14098] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:02:16,013] [Precess:12647] [Thread:14098] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:02:16,013] [Precess:12738] [Thread:14106] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:02:16,013] [Precess:12640] [Thread:14090] - Current time queue size(0)
+[info] [2023-04-14 23:02:16,014] [Precess:12640] [Thread:14090] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:02:16,014] [Precess:12738] [Thread:14106] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:02:16,014] [Precess:12640] [Thread:14090] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:02:37,012] [Precess:12667] [Thread:14122] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:02:37,012] [Precess:12636] [Thread:14119] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:02:37,012] [Precess:12722] [Thread:14096] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:02:37,012] [Precess:12647] [Thread:14098] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:02:37,012] [Precess:12640] [Thread:14090] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:02:37,012] [Precess:12738] [Thread:14106] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:02:37,012] [Precess:12689] [Thread:14110] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:02:37,012] [Precess:12729] [Thread:14114] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:02:37,012] [Precess:12760] [Thread:14126] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:02:37,012] [Precess:12634] [Thread:14102] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:02:37,012] [Precess:12667] [Thread:14122] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:02:37,012] [Precess:12636] [Thread:14119] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:02:37,012] [Precess:12722] [Thread:14096] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:02:37,012] [Precess:12647] [Thread:14098] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:02:37,012] [Precess:12640] [Thread:14090] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:02:37,012] [Precess:12738] [Thread:14106] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:02:37,012] [Precess:12729] [Thread:14114] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:02:37,012] [Precess:12689] [Thread:14110] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:02:37,012] [Precess:12634] [Thread:14102] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:02:37,012] [Precess:12760] [Thread:14126] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:02:37,012] [Precess:12667] [Thread:14122] - In the connection pool free connections/total connections/connections to be released(1486/2048/561)
+[info] [2023-04-14 23:02:37,012] [Precess:12636] [Thread:14119] - In the connection pool free connections/total connections/connections to be released(1519/2048/528)
+[info] [2023-04-14 23:02:37,012] [Precess:12640] [Thread:14090] - In the connection pool free connections/total connections/connections to be released(1466/2048/581)
+[info] [2023-04-14 23:02:37,012] [Precess:12647] [Thread:14098] - In the connection pool free connections/total connections/connections to be released(1497/2048/550)
+[info] [2023-04-14 23:02:37,012] [Precess:12722] [Thread:14096] - In the connection pool free connections/total connections/connections to be released(1510/2048/537)
+[info] [2023-04-14 23:02:37,012] [Precess:12738] [Thread:14106] - In the connection pool free connections/total connections/connections to be released(1493/2048/554)
+[info] [2023-04-14 23:02:37,012] [Precess:12689] [Thread:14110] - In the connection pool free connections/total connections/connections to be released(1485/2048/562)
+[info] [2023-04-14 23:02:37,012] [Precess:12729] [Thread:14114] - In the connection pool free connections/total connections/connections to be released(1477/2048/570)
+[info] [2023-04-14 23:02:37,012] [Precess:12636] [Thread:14119] - Current time queue size(0)
+[info] [2023-04-14 23:02:37,012] [Precess:12634] [Thread:14102] - In the connection pool free connections/total connections/connections to be released(1503/2048/544)
+[info] [2023-04-14 23:02:37,012] [Precess:12667] [Thread:14122] - Current time queue size(0)
+[info] [2023-04-14 23:02:37,012] [Precess:12640] [Thread:14090] - Current time queue size(0)
+[info] [2023-04-14 23:02:37,012] [Precess:12760] [Thread:14126] - In the connection pool free connections/total connections/connections to be released(1518/2048/529)
+[info] [2023-04-14 23:02:37,012] [Precess:12647] [Thread:14098] - Current time queue size(0)
+[info] [2023-04-14 23:02:37,012] [Precess:12722] [Thread:14096] - Current time queue size(0)
+[info] [2023-04-14 23:02:37,012] [Precess:12738] [Thread:14106] - Current time queue size(0)
+[info] [2023-04-14 23:02:37,012] [Precess:12689] [Thread:14110] - Current time queue size(0)
+[info] [2023-04-14 23:02:37,012] [Precess:12729] [Thread:14114] - Current time queue size(0)
+[info] [2023-04-14 23:02:37,012] [Precess:12636] [Thread:14119] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:02:37,012] [Precess:12640] [Thread:14090] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:02:37,012] [Precess:12634] [Thread:14102] - Current time queue size(0)
+[info] [2023-04-14 23:02:37,012] [Precess:12667] [Thread:14122] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:02:37,012] [Precess:12760] [Thread:14126] - Current time queue size(0)
+[info] [2023-04-14 23:02:37,012] [Precess:12636] [Thread:14119] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:02:37,012] [Precess:12647] [Thread:14098] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:02:37,012] [Precess:12722] [Thread:14096] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:02:37,012] [Precess:12738] [Thread:14106] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:02:37,012] [Precess:12640] [Thread:14090] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:02:37,012] [Precess:12689] [Thread:14110] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:02:37,012] [Precess:12729] [Thread:14114] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:02:37,012] [Precess:12634] [Thread:14102] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:02:37,012] [Precess:12667] [Thread:14122] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:02:37,012] [Precess:12647] [Thread:14098] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:02:37,012] [Precess:12760] [Thread:14126] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:02:37,012] [Precess:12722] [Thread:14096] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:02:37,012] [Precess:12738] [Thread:14106] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:02:37,012] [Precess:12689] [Thread:14110] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:02:37,012] [Precess:12729] [Thread:14114] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:02:37,012] [Precess:12634] [Thread:14102] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:02:37,012] [Precess:12760] [Thread:14126] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:02:58,012] [Precess:12667] [Thread:14122] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:02:58,012] [Precess:12738] [Thread:14106] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:02:58,012] [Precess:12760] [Thread:14126] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:02:58,012] [Precess:12636] [Thread:14119] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:02:58,012] [Precess:12722] [Thread:14096] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:02:58,012] [Precess:12647] [Thread:14098] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:02:58,012] [Precess:12640] [Thread:14090] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:02:58,012] [Precess:12634] [Thread:14102] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:02:58,012] [Precess:12729] [Thread:14114] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:02:58,012] [Precess:12689] [Thread:14110] - -------------------------------------------------begin-----------------------------------------------------------------
+[info] [2023-04-14 23:02:58,012] [Precess:12738] [Thread:14106] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:02:58,012] [Precess:12667] [Thread:14122] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:02:58,012] [Precess:12760] [Thread:14126] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:02:58,012] [Precess:12636] [Thread:14119] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:02:58,012] [Precess:12722] [Thread:14096] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:02:58,012] [Precess:12647] [Thread:14098] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:02:58,012] [Precess:12689] [Thread:14110] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:02:58,012] [Precess:12634] [Thread:14102] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:02:58,012] [Precess:12640] [Thread:14090] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:02:58,012] [Precess:12729] [Thread:14114] - Number of people currently online/total number of people(0/2048)
+[info] [2023-04-14 23:02:58,012] [Precess:12738] [Thread:14106] - In the connection pool free connections/total connections/connections to be released(1493/2048/554)
+[info] [2023-04-14 23:02:58,012] [Precess:12667] [Thread:14122] - In the connection pool free connections/total connections/connections to be released(1486/2048/561)
+[info] [2023-04-14 23:02:58,012] [Precess:12760] [Thread:14126] - In the connection pool free connections/total connections/connections to be released(1518/2048/529)
+[info] [2023-04-14 23:02:58,012] [Precess:12636] [Thread:14119] - In the connection pool free connections/total connections/connections to be released(1519/2048/528)
+[info] [2023-04-14 23:02:58,012] [Precess:12722] [Thread:14096] - In the connection pool free connections/total connections/connections to be released(1510/2048/537)
+[info] [2023-04-14 23:02:58,012] [Precess:12689] [Thread:14110] - In the connection pool free connections/total connections/connections to be released(1485/2048/562)
+[info] [2023-04-14 23:02:58,012] [Precess:12647] [Thread:14098] - In the connection pool free connections/total connections/connections to be released(1497/2048/550)
+[info] [2023-04-14 23:02:58,012] [Precess:12640] [Thread:14090] - In the connection pool free connections/total connections/connections to be released(1466/2048/581)
+[info] [2023-04-14 23:02:58,012] [Precess:12634] [Thread:14102] - In the connection pool free connections/total connections/connections to be released(1503/2048/544)
+[info] [2023-04-14 23:02:58,012] [Precess:12738] [Thread:14106] - Current time queue size(0)
+[info] [2023-04-14 23:02:58,012] [Precess:12729] [Thread:14114] - In the connection pool free connections/total connections/connections to be released(1477/2048/570)
+[info] [2023-04-14 23:02:58,012] [Precess:12667] [Thread:14122] - Current time queue size(0)
+[info] [2023-04-14 23:02:58,012] [Precess:12760] [Thread:14126] - Current time queue size(0)
+[info] [2023-04-14 23:02:58,012] [Precess:12636] [Thread:14119] - Current time queue size(0)
+[info] [2023-04-14 23:02:58,012] [Precess:12689] [Thread:14110] - Current time queue size(0)
+[info] [2023-04-14 23:02:58,012] [Precess:12722] [Thread:14096] - Current time queue size(0)
+[info] [2023-04-14 23:02:58,012] [Precess:12647] [Thread:14098] - Current time queue size(0)
+[info] [2023-04-14 23:02:58,012] [Precess:12640] [Thread:14090] - Current time queue size(0)
+[info] [2023-04-14 23:02:58,012] [Precess:12634] [Thread:14102] - Current time queue size(0)
+[info] [2023-04-14 23:02:58,012] [Precess:12729] [Thread:14114] - Current time queue size(0)
+[info] [2023-04-14 23:02:58,012] [Precess:12738] [Thread:14106] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:02:58,012] [Precess:12667] [Thread:14122] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:02:58,012] [Precess:12689] [Thread:14110] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:02:58,012] [Precess:12760] [Thread:14126] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:02:58,012] [Precess:12634] [Thread:14102] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:02:58,012] [Precess:12738] [Thread:14106] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:02:58,012] [Precess:12636] [Thread:14119] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:02:58,012] [Precess:12722] [Thread:14096] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:02:58,012] [Precess:12647] [Thread:14098] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:02:58,012] [Precess:12640] [Thread:14090] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:02:58,012] [Precess:12729] [Thread:14114] - The size of the current recv message queue and send message queue is (0/0), and the number of packets to be drop is 0
+[info] [2023-04-14 23:02:58,012] [Precess:12689] [Thread:14110] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:02:58,012] [Precess:12667] [Thread:14122] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:02:58,012] [Precess:12760] [Thread:14126] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:02:58,012] [Precess:12634] [Thread:14102] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:02:58,012] [Precess:12636] [Thread:14119] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:02:58,012] [Precess:12722] [Thread:14096] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:02:58,012] [Precess:12647] [Thread:14098] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:02:58,012] [Precess:12640] [Thread:14090] - --------------------------------------------------end-------------------------------------------------------------------
+[info] [2023-04-14 23:02:58,012] [Precess:12729] [Thread:14114] - --------------------------------------------------end-------------------------------------------------------------------

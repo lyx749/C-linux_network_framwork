@@ -69,12 +69,6 @@ int main(int argc, char *const *argv)
         CMemory::GetInstance();
         CCRC32::GetInstance();
         myLog::getInterface();
-
-        if (!g_socket.Initialize())
-        {
-            exitCode = 1;
-            goto lblexit;
-        }
         g_daemonized = 1; // 守护进程标记
     }
 

@@ -111,8 +111,8 @@ public:
 
     std::vector<int> initSocket()
     {
-        std::vector<int> sockVec(22, 0);
-        for (int i = 0; i < 22; ++i)
+        std::vector<int> sockVec(200, 0);
+        for (int i = 0; i < 21; ++i)
         {
             int sockfd = socket(AF_INET, SOCK_STREAM, 0);
             if (sockfd == -1)
@@ -125,8 +125,8 @@ public:
         struct sockaddr_in serverAddr;
         bzero(&serverAddr, sizeof(serverAddr));
         serverAddr.sin_family = AF_INET;
-        serverAddr.sin_port = htons(7777);
-        serverAddr.sin_addr.s_addr = inet_addr("127.0.0.1");
+        serverAddr.sin_port = htons(8848);
+        serverAddr.sin_addr.s_addr = inet_addr("47.94.222.192");
         for (auto &e : sockVec)
         {
             if (connect(e, (sockaddr *)&serverAddr, sizeof(sockaddr)) < 0)
@@ -177,11 +177,11 @@ void threadFunc()
     std::vector<int> sockVec = cPtr->initSocket();
     while (1)
     {
-        // for (auto &e : sockVec)
-        // {
-        //     std::pair<char *, ssize_t> buff = cPtr->initPackage();
-        //     cPtr->sendPackage(buff, e);
-        // }
+        for (auto &e : sockVec)
+        {
+            std::pair<char *, ssize_t> buff = cPtr->initPackage();
+            cPtr->sendPackage(buff, e);
+        }
         for (auto &e : sockVec)
         {
             std::pair<char *, ssize_t> buff = cPtr->initPingPackage();
@@ -194,7 +194,7 @@ void threadFunc()
 int main()
 {
     std::vector<std::thread> threadPool;
-    for (int i = 0; i < 93; ++i)
+    for (int i = 0; i <93; ++i)
     {
         threadPool.push_back(std::thread(threadFunc));
     }

@@ -1,2 +1,0 @@
-/usr/bin/ar qc ../../../_staticLib/libdaemon.a  CMakeFiles/daemon.dir/http_c_daemon.cxx.o CMakeFiles/daemon.dir/http_c_process_cycle.cxx.o
-/usr/bin/ranlib ../../../_staticLib/libdaemon.a

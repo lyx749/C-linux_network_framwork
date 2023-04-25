@@ -473,9 +473,6 @@ SPDLOG_WCHAR_SUPPORT:BOOL=OFF
 //Path to a program.
 SVNCOMMAND:FILEPATH=SVNCOMMAND-NOTFOUND
 
-//Dependencies for the target
-daemon_LIB_DEPENDS:STATIC=general;log;general;func;
-
 //Value Computed by CMake
 httpServer_BINARY_DIR:STATIC=/home/lyx/httpServer/build
 

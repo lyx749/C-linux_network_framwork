@@ -37,7 +37,7 @@ int http_daemon()
         return -1;
     }
 
-    if(dup2(nullFd, STDIN_FILENO) == -1)
+    if(dup2(nullFd, STDIN_FILENO) == -1 || dup2(nullFd, STDERR_FILENO) == -1)
     {
         myLog::getInterface()->getLogger()->error("http_daemon() dup2 error : {}", strerror(errno));
         return -1;

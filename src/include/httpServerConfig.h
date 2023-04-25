@@ -11,7 +11,7 @@
 
 /*[Proc]*/
 //需启动的 worker 进程数量
-#define WorkerProcesses 1
+#define WorkerProcesses 12
 //是否以守护进程方式运行
 #define Daemon 1
 

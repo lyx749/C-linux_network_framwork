@@ -760,19 +760,3 @@ sys/stat.h
 http_log.h
 /home/lyx/httpServer/src/proc/http_log.h
 
-/home/lyx/httpServer/src/proc/http_c_process_cycle.cxx
-http_func.h
-/home/lyx/httpServer/src/proc/http_func.h
-sys/signal.h
--
-signal.h
--
-http_log.h
-/home/lyx/httpServer/src/proc/http_log.h
-errno.h
--
-string.h
--
-httpServerConfig.h
-/home/lyx/httpServer/src/proc/httpServerConfig.h
-
